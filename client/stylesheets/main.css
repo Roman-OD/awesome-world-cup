@@ -10,9 +10,9 @@
 
 #login-panel {
   position: fixed;
-  width: 50%;
-  top: 40%;
-  left: 25%;
+  width: 40%;
+  top: 20%;
+  left: 30%;
   background: rgba(0, 0, 0, 0.5);
   color: #f1f1f1;
   padding: 20px;
@@ -22,7 +22,7 @@
   text-align: center;
   background: rgba(0, 0, 0, 0.5);
   color: #f1f1f1;
-  border-style: none;
+  /*border-style: none;*/
   /*border-width: 1px;*/
   /*border-color: white;*/
 }

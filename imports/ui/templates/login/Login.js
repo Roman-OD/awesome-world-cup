@@ -15,10 +15,13 @@ Template.Login.helpers({
 });
 
 Template.Login.events({
-  'click #activate-login': () => {
-    Template.instance().showLogin.set(true);
-  },
-  'click #deactivate-login': () => {
-    Template.instance().showLogin.set(false);
+  'click #login-submit': () => {
+    FlowRouter.go('home');
   }
+  // 'click #activate-login': () => {
+  //   Template.instance().showLogin.set(true);
+  // },
+  // 'click #deactivate-login': () => {
+  //   Template.instance().showLogin.set(false);
+  // }
 })

@@ -3,13 +3,28 @@
     <source src="/video/brazil_germany.webm" type="video/webm">
   </video>
 
-  <div id="login-panel" class="panel panel-default">
-    <div id="login-heading" class="panel-heading">
+  <div id="login-panel" class="card">
+    <div id="login-heading" class="card-header">
       <h1>Awesome World Cup</h1>
     </div>
     <div class="panel-body">
+      <form class="form-signin">
+      <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="text" id="username" class="form-control" placeholder="Enter your username" required="" autofocus="">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="password" class="form-control" placeholder="Enter your password" required="">
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button id="login-submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+    </form>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="username">Username</label>
           <input type="text" id="username" class="form-control input-md" placeholder="Enter your username">
         </div>
@@ -35,7 +50,7 @@
             <button id="deactivate-login" class="btn btn-primary">New User</button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

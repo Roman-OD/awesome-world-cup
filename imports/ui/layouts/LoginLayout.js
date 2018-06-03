@@ -8,7 +8,7 @@ import './LoginLayout.html';
 
 Template.LoginLayout.helpers({
   authInProcess() {
-    if(Meteor.loggingIn() || Template.insance().subscriptionsReady() === false)
+    if(Meteor.loggingIn() || Template.instance().subscriptionsReady() === false)
       return true;
     else
       return false;
