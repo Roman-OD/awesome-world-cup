@@ -8,7 +8,7 @@
       <h1>Awesome World Cup</h1>
     </div>
     <div class="panel-body">
-      {{#if loginActive}}
+
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" id="username" class="form-control input-md" placeholder="Enter your username">
@@ -17,14 +17,17 @@
           <label for="password">Password</label>
           <input type="password" id="password" class="form-control input-md" placeholder="Enter your password">
         </div>
+      {{#if loginActive}}
         <div class="form-group submit-row col-xs-12">
           <button id="login-submit" class="btn btn-primary">Log in</button>
         </div>
       {{else}}
-
+        <div class="form-group submit-row col-xs-12">
+          <button id="create-submit" class="btn btn-primary">Create user</button>
+        </div>
       {{/if}}
       <div class="col-xs-12">
-        <div class="row">
+        <div id="switch-login-form" class="row">
           <div class="col-xs-6">
             <button id="activate-login" class="btn btn-primary">Existing User</button>
           </div>

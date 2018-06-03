@@ -11,7 +11,7 @@
 #login-panel {
   position: fixed;
   width: 50%;
-  top: 50%;
+  top: 40%;
   left: 25%;
   background: rgba(0, 0, 0, 0.5);
   color: #f1f1f1;
@@ -20,4 +20,29 @@
 
 #login-heading {
   text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  border-style: none;
+  /*border-width: 1px;*/
+  /*border-color: white;*/
+}
+
+#login-submit, #create-submit {
+  width: 100%
+
+}
+
+#switch-login-form {
+  padding-top: 10px;
+}
+
+#activate-login{
+  width: 100%;
+  height: 50px;
+  background-color: green;
+}
+#deactivate-login {
+  width: 100%;
+  height: 50px;
+  background-color: red;
 }

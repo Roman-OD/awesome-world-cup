@@ -4,6 +4,8 @@ import { Template } from 'meteor/templating';
 
 import './LoginLayout.html';
 
+
+
 Template.LoginLayout.helpers({
   authInProcess() {
     if(Meteor.loggingIn() || Template.insance().subscriptionsReady() === false)
