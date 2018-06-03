@@ -1,0 +1,19 @@
+<template name="MainLayout">
+  <div id="content-wrapper">
+    {{#if authInProcess}}
+      <div id="content">
+        <div class="centered col-xs-12">
+          <h3 class="col-xs-12 loading text-center">Beaming content from orbit...</h3>
+          <i class="fa fa-refresh fa-spin loading-spinner col-xs-12 text-center"></i>
+        </div>
+      </div>
+    {{else}}
+      {{> Header}}
+      <div id="content">
+        <main class="main-layout">
+          {{> Template.dynamic template=main}}
+        </main>
+      </div>
+    {{/if}}
+  </div>
+</template>
