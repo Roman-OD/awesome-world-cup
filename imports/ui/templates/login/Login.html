@@ -17,22 +17,14 @@
           <label for="password">Password</label>
           <input type="password" id="password" class="form-control input-md" placeholder="Enter your password">
         </div>
-      {{#if loginActive}}
-        <div class="form-group submit-row col-xs-12">
-          <button id="login-submit" class="btn btn-primary">Log in</button>
-        </div>
-      {{else}}
-        <div class="form-group submit-row col-xs-12">
-          <button id="create-submit" class="btn btn-primary">Create user</button>
-        </div>
-      {{/if}}
+
       <div class="col-xs-12">
         <div id="switch-login-form" class="row">
           <div class="col-xs-6">
-            <button id="activate-login" class="btn btn-primary">Existing User</button>
+            <button id="submit-login" class="btn btn-primary">Log in</button>
           </div>
           <div class="col-xs-6">
-            <button id="deactivate-login" class="btn btn-primary">New User</button>
+            <button id="submit-create" class="btn btn-primary">New User</button>
           </div>
         </div>
       </div>
