@@ -1,3 +1,24 @@
 <template name="Games">
-  <h3>games</h3>
+  <h1 id='games-title'>{{currentUser.username}}'s Games</h1>
+  <div class="container">
+    <div class="row full-width-row">
+      <div class="panel panel-default games-panel">
+        <div class="panel panel-heading">
+          Game List
+        </div>
+        <div class="panel panel-body">
+          {{#if nogames}}
+            No games created by users
+          {{else}}
+            {{#each game in games}}
+              {{game.name}}
+            {{/each}}
+          {{/if}}
+            <button id="create-new-game" class="btn btn-primary">Create New Game</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
 </template>

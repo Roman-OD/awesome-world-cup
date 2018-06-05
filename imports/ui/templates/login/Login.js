@@ -27,16 +27,24 @@ Template.Login.events({
     })
   },
   'click #submit-login': () => {
-    const user = {
-      username: $('#username').val(),
-      password: $('#password').val()
-    }
-    loginUser.call(user, function(err, resp){
+    // const user = {
+    //   username: $('#username').val(),
+    //   password: $('#password').val()
+    // }
+
+    Meteor.loginWithPassword( $('#username').val(), $('#password').val(), (err, resp) => {
       if(err)
         console.log(err);
-      else {
-        console.log("added new user successfully: " + resp);
-      }
-    })
+      else
+        FlowRouter.go('/');
+    });
+    // loginUser.call(user, function(err, resp){
+    //   if(err)
+    //     console.log(err);
+    //   else {
+    //     console.log(Meteor.userId());
+    //     FlowRouter.go('/')
+    //   }
+    // })
   },
 });
