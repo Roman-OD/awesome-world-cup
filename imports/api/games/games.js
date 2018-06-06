@@ -30,7 +30,7 @@ Games.schema = new SimpleSchema({
     type: String
   },
   users: {
-    type: [String]
+    type: [Object]
   },
   createdAt: {
     type: Date,

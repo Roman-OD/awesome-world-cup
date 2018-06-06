@@ -13,10 +13,35 @@
             <div class="panel panel-body">
               <ul>
                 {{#each user in users}}
-                  <li>{{user.username}}</li>
+
+                    <div id="switch-login-form" class="row">
+                      <div class="col-xs-6">
+                        {{user.username}}
+                      </div>
+                      <div class="col-xs-6">
+                        <button id="{{user._id}}" class="btn btn-primary add-user">Add User</button>
+                      </div>
+                    </div>
+
                 {{/each}}
               </ul>
-
+            </div>
+            <div class="panel panel-footer">
+              Players:
+              {{#if noPlayers}}
+                No players selected
+              {{else}}
+              <div id="switch-login-form" class="row">
+                <div class="col-xs-6">
+                  {{#each player in players}}
+                    {{player.username}}
+                  {{/each}}
+                </div>
+                <div class="col-xs-6">
+                  <button id="create-game-button" class="btn btn-primary">Create Game</button>
+                </div>
+              </div>
+              {{/if}}
             </div>
           </div>
         </div>

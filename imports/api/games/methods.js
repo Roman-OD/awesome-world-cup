@@ -9,7 +9,7 @@ export const createNewGame = new ValidatedMethod({
     creator: Games.simpleSchema().schema('creator'),
     users: Games.simpleSchema().schema('users'),
     'users.$': {
-      type: String
+      type: Object
     }
   }).validator(),
   run({name, creator, users}){
