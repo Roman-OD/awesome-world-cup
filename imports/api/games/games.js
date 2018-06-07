@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+ // import { SimpleSchema } from 'simpl-schema'
 
 class GamesCollection extends Mongo.Collection{
 
@@ -18,9 +19,18 @@ Games.deny({
 Games.publicFields = {
   name: 1,
   creator: 1,
-  users: 1,
+  players: 1,
   createdAt: 1,
 }
+
+playersSchema = new SimpleSchema({
+  playerId: {
+    type: String
+  },
+  Score: {
+    type: Number
+  }
+});
 
 Games.schema = new SimpleSchema({
   name: {
@@ -29,8 +39,8 @@ Games.schema = new SimpleSchema({
   creator:{
     type: String
   },
-  users: {
-    type: [Object]
+  players: {
+    type: playersSchema
   },
   createdAt: {
     type: Date,
@@ -40,5 +50,7 @@ Games.schema = new SimpleSchema({
     }
   }
 });
+
+
 
 Games.attachSchema(Games.schema);

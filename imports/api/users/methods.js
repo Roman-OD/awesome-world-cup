@@ -21,21 +21,21 @@ export const addUser = new ValidatedMethod({
   }
 });
 
-export const loginUser = new ValidatedMethod({
-  name: 'users.login',
-  validate: new SimpleSchema({
-    username: {type: String},
-    password: {type: String}
-  }).validator(),
-  run({ username, password }){
-    if(Meteor.isClient){
-      Meteor.loginWithPassword(username, password, (err, resp) => {
-        if(err)
-          console.log(err);
-        else
-          console.log("logged in user");
+// export const loginUser = new ValidatedMethod({
+//   name: 'users.login',
+//   validate: new SimpleSchema({
+//     username: {type: String},
+//     password: {type: String}
+//   }).validator(),
+//   run({ username, password }){
+//     if(Meteor.isClient){
+//       Meteor.loginWithPassword(username, password, (err, resp) => {
+//         if(err)
+//           console.log(err);
+//         else
+//           console.log("logged in user");
 
-      });
-    }
-  }
-});
+//       });
+//     }
+//   }
+// });

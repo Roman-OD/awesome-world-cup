@@ -19,7 +19,7 @@
                         {{user.username}}
                       </div>
                       <div class="col-xs-6">
-                        <button id="{{user._id}}" class="btn btn-primary add-user">Add User</button>
+                        <button id="{{user.username}}" class="btn btn-primary add-user">Toggle User</button>
                       </div>
                     </div>
 
@@ -27,6 +27,10 @@
               </ul>
             </div>
             <div class="panel panel-footer">
+              <div class="col-xs-12">
+                <label for="game-name-label">Name Your Game</label>
+                <input type="text" id="game-name-field" class="form-control input-md" placeholder="Give your game a name...">
+              </div>
               Players:
               {{#if noPlayers}}
                 No players selected
@@ -34,11 +38,13 @@
               <div id="switch-login-form" class="row">
                 <div class="col-xs-6">
                   {{#each player in players}}
-                    {{player.username}}
+                    <div class="col-xs-12">
+                      {{player}}
+                    </div>
                   {{/each}}
                 </div>
                 <div class="col-xs-6">
-                  <button id="create-game-button" class="btn btn-primary">Create Game</button>
+                 <button id="create-game-button" class="btn btn-primary">Create Game</button>
                 </div>
               </div>
               {{/if}}
