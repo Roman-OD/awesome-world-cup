@@ -22,7 +22,6 @@ kadira:blaze-layout
 accounts-base@1.4.2
 fourseven:scss
 accounts-password@1.5.0
-twbs:bootstrap
 mdg:validated-method
 #aldeed:simple-schema
 aldeed:collection2
@@ -30,4 +29,3 @@ shell-server
 dynamic-import
 arillo:flow-router-helpers
 peppelg:bootstrap-3-modal
-
