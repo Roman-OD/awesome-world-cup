@@ -1,27 +1,51 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import { addUser, loginUser } from '/imports/api/users/methods.js';
 
 import './Login.html'
 
 Template.Login.onCreated(function(){
-  this.showLogin = new ReactiveVar(true)
 });
 
 
 Template.Login.helpers({
-  loginActive(){
-    return Template.instance().showLogin.get();
-  }
+
 });
 
 Template.Login.events({
-  'click #login-submit': () => {
-    FlowRouter.go('home');
-  }
-  // 'click #activate-login': () => {
-  //   Template.instance().showLogin.set(true);
-  // },
-  // 'click #deactivate-login': () => {
-  //   Template.instance().showLogin.set(false);
-  // }
-})
+
+  'click #submit-create': () => {
+    const user = {
+      username: $('#username').val(),
+      password: $('#password').val()
+    }
+    addUser.call(user, function(err, resp){
+      if(err)
+        console.log(err);
+      else {
+        console.log("added new user successfully: " + resp);
+      }
+    })
+  },
+  'click #submit-login': () => {
+    // const user = {
+    //   username: $('#username').val(),
+    //   password: $('#password').val()
+    // }
+
+    Meteor.loginWithPassword( $('#username').val(), $('#password').val(), (err, resp) => {
+      if(err)
+        console.log(err);
+      else
+        FlowRouter.go('/');
+    });
+    // loginUser.call(user, function(err, resp){
+    //   if(err)
+    //     console.log(err);
+    //   else {
+    //     console.log(Meteor.userId());
+    //     FlowRouter.go('/')
+    //   }
+    // })
+  },
+});

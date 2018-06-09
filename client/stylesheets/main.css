@@ -10,9 +10,9 @@
 
 #login-panel {
   position: fixed;
-  width: 40%;
-  top: 20%;
-  left: 30%;
+  width: 50%;
+  top: 60%;
+  left: 25%;
   background: rgba(0, 0, 0, 0.5);
   color: #f1f1f1;
   padding: 20px;
@@ -27,22 +27,61 @@
   /*border-color: white;*/
 }
 
-#login-submit, #create-submit {
-  width: 100%
-
-}
 
 #switch-login-form {
   padding-top: 10px;
 }
 
-#activate-login{
+#submit-login{
   width: 100%;
   height: 50px;
   background-color: green;
 }
-#deactivate-login {
+#submit-create {
   width: 100%;
   height: 50px;
   background-color: red;
+}
+
+#football-icon {
+  height: 5%;
+  width: 5%;
+  float: right;
+  padding-right:25px;
+}
+
+#navigation {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  border-bottom: 2px solid #01D7FE;
+  /* border-style: solid; */
+  /* border-color: ; */
+  /* height: 15px; */
+
+}
+
+#user-name{
+  padding-left: 35px;
+}
+
+#nav-fixtures, #nav-games, #nav-scoreboard, #nav-home{
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* padding-left: 20px; */
+  padding-right: 20px;
+  /* width: 100%; */
+  font-size: 1em;
+  background-color: inherit !important;
+}
+
+.navbar-right > li {
+  width: 100%;
+}
+
+#games-title{
+  padding-top: 60px;
+  padding-left: 20px;
 }

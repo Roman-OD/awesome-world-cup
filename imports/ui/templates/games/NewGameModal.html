@@ -1,0 +1,57 @@
+<template name="NewGameModal">
+  <div id="new-games-modal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Create new game</h3>
+        </div>
+        <div class="modal-body">
+          <div class="panel default-panel user-panel">
+            <div class="panel panel-heading">
+              Add Players
+            </div>
+            <div class="panel panel-body">
+              <ul>
+                {{#each user in users}}
+
+                    <div id="switch-login-form" class="row">
+                      <div class="col-xs-6">
+                        {{user.username}}
+                      </div>
+                      <div class="col-xs-6">
+                        <button id="{{user.username}}" class="btn btn-primary add-user">Toggle User</button>
+                      </div>
+                    </div>
+
+                {{/each}}
+              </ul>
+            </div>
+            <div class="panel panel-footer">
+              <div class="col-xs-12">
+                <label for="game-name-label">Name Your Game</label>
+                <input type="text" id="game-name-field" class="form-control input-md" placeholder="Give your game a name...">
+              </div>
+              Players:
+              {{#if noPlayers}}
+                No players selected
+              {{else}}
+              <div id="switch-login-form" class="row">
+                <div class="col-xs-6">
+                  {{#each player in players}}
+                    <div class="col-xs-12">
+                      {{player}}
+                    </div>
+                  {{/each}}
+                </div>
+                <div class="col-xs-6">
+                 <button id="create-game-button" class="btn btn-primary">Create Game</button>
+                </div>
+              </div>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
