@@ -54,7 +54,16 @@ Template.NewGameModal.events({
       let player = Users.find({"username":Template.instance().players.get()[i]}).fetch()[0];
       formattedPlayer = {
         id: player._id,
-        score: 0
+        name: player.username,
+        score: 0,
+        rerollCount: 0,
+        lockedIn: false,
+        teams: {
+          seed_1: "unassigned",
+          seed_2: "unassigned",
+          seed_3: "unassigned",
+          seed_4: "unassigned"
+        }
       }
       confirmedPlayers.push(formattedPlayer);
     }

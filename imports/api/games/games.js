@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
- // import { SimpleSchema } from 'simpl-schema'
+// import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+ import SimpleSchema from 'simpl-schema'
 
 class GamesCollection extends Mongo.Collection{
 

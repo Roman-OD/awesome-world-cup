@@ -23,6 +23,15 @@ Template.Games.helpers({
     else
       return true;
 
+  },
+  players: (game)=>{
+    let playersLookup = [];
+    for(var i=0;i<game.players.length;i++){
+      playersLookup.push(Users.find({_id: game.players[i]}).fetch()[0].username);
+    }
+    console.log(playersLookup);
+    return playersLookup;
+    
   }
 });
 

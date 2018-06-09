@@ -10,12 +10,17 @@
           {{#if nogames}}
             No games created by users
           {{else}}
-            {{#each game in games}}
-              {{game.name}}
-            {{/each}}
+            <div class="row">
+              {{#each game in games}}
+              <div class="col-xs-12">
+                  <button id="{{game.name}}" class="btn btn-primary open-game">{{game.name}}</button>
+              </div>
+               {{/each}}
+            </div>
           {{/if}}
-            <button id="create-new-game" class="btn btn-primary">Create New Game</button>
-
+          </div>
+          <div class="panel panel-footer">
+             <button id="create-new-game" class="btn btn-primary">Create New Game</button>
           </div>
         </div>
       </div>
