@@ -31,7 +31,7 @@ Template.Games.helpers({
     }
     console.log(playersLookup);
     return playersLookup;
-    
+
   }
 });
 

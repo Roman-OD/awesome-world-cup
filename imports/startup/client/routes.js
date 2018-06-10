@@ -9,6 +9,7 @@ import '/imports/ui/layouts/LoginLayout.js';
 import '/imports/ui/templates/login/Login.js';
 import '/imports/ui/templates/home/Home.js';
 import '/imports/ui/templates/games/Games.js';
+import '/imports/ui/templates/games/NewGame.js';
 import '/imports/ui/templates/fixtures/Fixtures.js';
 import '/imports/ui/templates/scoreboard/Scoreboard.js';
 import '/imports/ui/templates/404/NotFound.js';
@@ -28,9 +29,9 @@ FlowRouter.notFound = {
 };
 
 FlowRouter.triggers.enter([function(context, redirect){
-  if(!Meteor.userId()){
-    FlowRouter.go('login');
-  }
+  // if(!Meteor.userId()){
+  //   FlowRouter.go('login');
+  // }
 }]);
 
 FlowRouter.route('/login', {
@@ -50,7 +51,7 @@ FlowRouter.route('/', {
   action() {
     BlazeLayout.render('MainLayout', {main: 'Home'});
   }
-});
+})
 
 FlowRouter.route('/games', {
   name: 'games',
@@ -65,6 +66,13 @@ FlowRouter.route('/games/:id', {
     BlazeLayout.render('MainLayout', {main: 'TeamSelection'});
   }
 });
+
+FlowRouter.route('/new-game', {
+    name: 'new-game',
+    action() {
+        BlazeLayout.render('MainLayout', {main: 'NewGame'});
+    }
+})
 
 FlowRouter.route('/fixtures', {
   name: 'fixtures',
