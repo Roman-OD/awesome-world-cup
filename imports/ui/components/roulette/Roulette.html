@@ -1,48 +1,59 @@
 <template name="Roulette">
-  <!-- <div class="row">
-  <div class="roulette_container">
-  <div class="roulette" style="display:none;">
-  <img class="flag" src="/img/flags/ad.png"/>
-  <img class="flag" src="/img/flags/ae.png"/>
-  <img class="flag" src="/img/flags/af.png"/>
-  <img class="flag" src="/img/flags/al.png"/>
-  <img class="flag" src="/img/flags/am.png"/>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="btn_container">
-<p>
-<button class="btn btn-large btn-primary start"> START </button>
-<button class="stop btn-large btn btn-warning"> STOP </button>
-</p>
-</div>
-</div> -->
-<div id="plane">
-  <div class="well content">
-    <p>Choose a team</p>
-    <div id="planeMachine" style="overflow: hidden;">
-      <div class="slotMachineContainer" style="transition: 0.9s ease-out; transform: matrix(1, 0, 0, 1, 0, -413);">
-        <div class="text-center">
-          England
+  <div id="plane" class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          Pick a team
         </div>
-        <div class="text-center">
-          France
+        <div class="card-body">
+          <div class="well content">
+            <div id="planeMachine">
+              <div class="slotMachineContainer">
+                <div class="text-center">
+                  England
+                </div>
+                <div class="text-center">
+                  France
+                </div>
+                <div class="text-center">
+                  Mexico
+                </div>
+                <div class="text-center">
+                  Spain
+                </div>
+                <div class="text-center">
+                  Brasil
+                </div>
+                <div class="text-center">
+                  Germany
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="text-center">
-          Mexico
+        <div class="card-footer">
+          <button id="shuffle" type="button" class="btn btn-primary">Shuffle</button>
+          <button id="stop" type="button" class="btn btn-secondary">Stop</button>
         </div>
-        <div class="text-center">
-          Spain
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          Selected teams
         </div>
-        <div class="text-center">
-          Brasil
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item">Brasil</li>
+            <li class="list-group-item">Spain</li>
+            <li class="list-group-item">France</li>
+            <li class="list-group-item">Mexico</li>
+          </ul>
         </div>
-        <div class="text-center">
-          Germany
+        <div class="card-footer">
+          <button id="submit-teams" type="button" class="btn btn-primary">Submit teams</button>
         </div>
       </div>
     </div>
   </div>
-</div>
 </template>

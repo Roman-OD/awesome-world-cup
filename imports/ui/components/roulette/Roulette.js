@@ -1,21 +1,29 @@
 import { $ } from 'meteor/jquery';
 import '/node_modules/jquery-slotmachine/dist/slotmachine.js';
-// import '/node_modules/jquery-slotmachine/dist/jquery.slotmachine.js';
 
 import './Roulette.html';
 
 Template.Roulette.onRendered(() => {
   const planeMachine = document.querySelector('#planeMachine');
-
-  new SlotMachine(planeMachine, {
-    active: 1,
+  Template.instance().machine = new SlotMachine(planeMachine, {
+    active: 0,
     delay: 450,
-    auto: 1500,
     randomize() {
-      return this.nextIndex;
+      const randomIndex = Math.floor((Math.random() * 3));
+      console.log(randomIndex);
+      return randomIndex;
     }
   });
 });
+
+Template.Roulette.events({
+  'click #shuffle': () => {
+    Template.instance().machine.shuffle(9999);
+  },
+  'click #stop': () => {
+    Template.instance().machine.stop();
+  },
+})
 
 // Template.Roulette.onRendered(() => {
 //   var option = {
