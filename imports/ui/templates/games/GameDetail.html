@@ -2,7 +2,7 @@
     <div class="container">
         <h1>Detail of Game {{gameId}}</h1>
         <hr/>
-        <div class="row">
+        <div class="row mt-5 mb-4">
             <div class="col">
                 <h2>Players</h2>
             </div>
@@ -28,6 +28,70 @@
                 </div>
             </div>
         {{/each}}
+        <div class="row mt-5">
+            <div class="col">
+                <h2>Game Lobby</h2>
+            </div>
+        </div>
+        <div class="row">
+            {{#each player in getPlayers}}
+            <div class="col-6 mt-4">
+                <div class="card">
+                    <h6 class="card-header">{{player.name}} <span class="float-right {{getStatusClass player.status}}">{{player.status}}</span></h6>
+                    <div class="card-body">
+                        <h5 class="card-title">Drafted Teams</h5>
+                        <ul class="list-group list-group-flush">
+                            {{#each team in player.teams}}
+                                <li class="list-group-item d-flex align-items-center">
+                                    <img src="/img/flags/xs/{{team.icon}}" class="img-responsive mr-2 xs-flag" alt="">
+                                    <span class="">{{team.name}}</span>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <div class="row mt-5">
+            <div class="col">
+                <h2>Leaderboard</h2>
+                <table class="table table-striped mt-4 mb-4">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
     </div>
 
     {{>AddPlayer}}
