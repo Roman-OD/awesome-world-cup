@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Games } from '/imports/api/games/games.js';
 
+import { assignTeams } from '/imports/api/games/methods.js';
+
 import './Games.html';
 import './NewGameModal.js';
 
@@ -10,6 +12,11 @@ Template.Games.onCreated(function(){
     this.subscribe('users.all');
     this.subscribe('games.all');
   })
+
+  assignTeams.call(function(err, resp){
+    if(err)
+      console.log(err);
+  });
 });
 
 Template.Games.helpers({
