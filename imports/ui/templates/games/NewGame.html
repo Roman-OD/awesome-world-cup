@@ -1,0 +1,58 @@
+<template name="NewGame">
+    <div class="container">
+        <h1>Create New Game</h1>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="game-name" class="form-control" id="game-name" aria-describedby="gameNameHelp" placeholder="Enter game name">
+                <small id="gameNameHelp" class="form-text text-muted">The name of your game room</small>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label>Players</label>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-dark float-right">Manage Players</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped">
+                        <thead class="">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Roman O'Dowd</td>
+                            <td>roman.odowd@metixmedical.co.uk</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Kevin Hicher</td>
+                            <td>kevin.hicher@metixmedical.co.uk</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div class="list-group">
+                    <div class="list-group-item list-group-item-action">
+                        <label>Roman O'Dowd <span> - roman.odowd@metixmedical.co.uk</span></label>
+                        <button type="button" class="btn btn-danger float-right">Danger</button>
+                    </div>
+                    <div class="list-group-item list-group-item-action">
+                        <label>Kevin Hicher <span> - kevin.hicher@metixmedical.co.uk</span></label>
+                        <button type="button" class="btn btn-danger float-right">Danger</button>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</template>
