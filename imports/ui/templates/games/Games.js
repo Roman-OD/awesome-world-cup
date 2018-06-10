@@ -37,7 +37,7 @@ Template.Games.helpers({
 
 Template.Games.events({
   'click #create-new-game': (event) => {
-    console.log('opening modal');
-    Modal.show('NewGameModal');
+    console.log('opening modal')
+    Modal.show('NewGameModal')
   }
 })

@@ -1,58 +1,38 @@
 <template name="NewGame">
     <div class="container">
         <h1>Create New Game</h1>
-        <form>
+        <hr/>
+        <form id="new-game">
             <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
-                <input type="game-name" class="form-control" id="game-name" aria-describedby="gameNameHelp" placeholder="Enter game name">
-                <small id="gameNameHelp" class="form-text text-muted">The name of your game room</small>
+                <h2>Name</h2>
+                <input type="name" class="form-control" id="name" placeholder="Enter the name of your game room">
             </div>
             <div class="row">
                 <div class="col-10">
-                    <label>Players</label>
+                    <h2>Players</h2>
+                    <small id="playerHelp" class="form-text text-muted">Invite your friends and family to join</small>
                 </div>
                 <div class="col-2">
-                    <button type="button" class="btn btn-dark float-right">Manage Players</button>
+                    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addPlayerModal">
+                        Add Player
+                    </button>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <table class="table table-striped">
-                        <thead class="">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Roman O'Dowd</td>
-                            <td>roman.odowd@metixmedical.co.uk</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Kevin Hicher</td>
-                            <td>kevin.hicher@metixmedical.co.uk</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div>
-                <div class="list-group">
-                    <div class="list-group-item list-group-item-action">
-                        <label>Roman O'Dowd <span> - roman.odowd@metixmedical.co.uk</span></label>
-                        <button type="button" class="btn btn-danger float-right">Danger</button>
+            <div class="form-group">
+                {{#each player in getPlayers}}
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action">
+                            <label>{{player.name}} <span class="text-secondary"><em> - {{player.email}}</em></span></label>
+                            <button id="removePlayerBtn" type="button" class="btn btn-danger float-right"><i class="fas fa-trash"></i></button>
+                        </div>
                     </div>
-                    <div class="list-group-item list-group-item-action">
-                        <label>Kevin Hicher <span> - kevin.hicher@metixmedical.co.uk</span></label>
-                        <button type="button" class="btn btn-danger float-right">Danger</button>
-                    </div>
-                </div>
+                {{/each}}
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary float-right">Submit</button>
+            </div>
         </form>
     </div>
+
+    {{>AddPlayer}}
 </template>

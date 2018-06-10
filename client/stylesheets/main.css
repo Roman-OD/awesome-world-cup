@@ -93,3 +93,7 @@
 #sign-in, #sign-up {
   width: 100%;
 }
+
+.sendEmailBtn {
+  margin-right: 10px;
+}

@@ -11,5 +11,6 @@ Template.MainLayout.helpers({
       return true;
     else
       return false;
-  }
-});
+  },
+
+})
