@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Games } from '/imports/api/games/games.js'
 
+import '/imports/ui/components/roulette/Roulette.js';
 import './MyGames.html'
 
 Template.MyGames.onCreated(function(){
