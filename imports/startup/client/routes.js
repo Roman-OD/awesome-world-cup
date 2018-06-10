@@ -10,6 +10,7 @@ import '/imports/ui/templates/login/Login.js';
 import '/imports/ui/templates/home/Home.js';
 import '/imports/ui/templates/games/Games.js';
 import '/imports/ui/templates/games/NewGame.js';
+import '/imports/ui/templates/games/MyGames.js';
 import '/imports/ui/templates/fixtures/Fixtures.js';
 import '/imports/ui/templates/scoreboard/Scoreboard.js';
 import '/imports/ui/templates/404/NotFound.js';
@@ -28,9 +29,9 @@ FlowRouter.notFound = {
 };
 
 FlowRouter.triggers.enter([function(context, redirect){
-  // if(!Meteor.userId()){
-  //   FlowRouter.go('login');
-  // }
+  if(!Meteor.userId()){
+    FlowRouter.go('login');
+  }
 }]);
 
 FlowRouter.route('/login', {
@@ -45,6 +46,9 @@ FlowRouter.route('/login', {
   }
 });
 
+/**
+ * Loads the home page
+ */
 FlowRouter.route('/', {
   name: 'home',
   action() {
@@ -52,6 +56,9 @@ FlowRouter.route('/', {
   }
 })
 
+/**
+ * Deprecated: consider removing
+ */
 FlowRouter.route('/games', {
   name: 'games',
   action(){
@@ -59,6 +66,19 @@ FlowRouter.route('/games', {
   }
 });
 
+/**
+ * Returns the list of games a user is a part of (master and player)
+ */
+FlowRouter.route('/games/:gameId', {
+    name: 'myGames',
+    action(){
+        BlazeLayout.render('MainLayout', {main: 'MyGames'});
+    }
+})
+
+/**
+ * Returns the creation form for players to create new games
+ */
 FlowRouter.route('/new-game', {
     name: 'new-game',
     action() {

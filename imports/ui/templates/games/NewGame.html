@@ -2,10 +2,10 @@
     <div class="container">
         <h1>Create New Game</h1>
         <hr/>
-        <form>
+        <form id="new-game">
             <div class="form-group">
                 <h2>Name</h2>
-                <input type="game-name" class="form-control" id="game-name" aria-describedby="gameNameHelp" placeholder="Enter the name of your game room">
+                <input type="name" class="form-control" id="name" placeholder="Enter the name of your game room">
             </div>
             <div class="row">
                 <div class="col-10">
@@ -19,16 +19,14 @@
                 </div>
             </div>
             <div class="form-group">
+            {{#each player in getPlayers}}
                 <div class="list-group">
                     <div class="list-group-item list-group-item-action">
-                        <label>Roman O'Dowd <span class="text-secondary"><em> - roman.odowd@metixmedical.co.uk</em></span></label>
-                        <button type="button" class="btn btn-danger float-right"><i class="fas fa-trash"></i></button>
-                    </div>
-                    <div class="list-group-item list-group-item-action">
-                        <label>Kevin Hicher <span class="text-secondary"><em> - kevin.hicher@metixmedical.co.uk</em></span></label>
-                        <button type="button" class="btn btn-danger float-right"><i class="fas fa-trash"></i></button>
+                        <label>{{player.name}} <span class="text-secondary"><em> - {{player.email}}</em></span></label>
+                        <button id="removePlayerBtn" type="button" class="btn btn-danger float-right"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
+                {{/each}}
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary float-right">Submit</button>
