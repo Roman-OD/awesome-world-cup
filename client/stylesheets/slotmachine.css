@@ -29,7 +29,8 @@
   background-color: rgb(0, 175, 225);
 }
 
-#planeMachine {
+#teamMachine {
+  margin-top: 20px;
   height: 150px;
   overflow: hidden;
   display: inline-block;

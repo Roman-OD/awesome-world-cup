@@ -9,9 +9,12 @@ import './GameDetail.html'
 
 Template.GameDetail.onCreated(function(){
     const playerList = [
-        {name: 'Roman ODowd', email: 'roman.odowd@metixmedical.co.uk', status: 'Locked-in'},
-        {name: 'Kevin Hicher', email: 'kevin.hicher@metixmedical.co.uk', status: 'Selecting'},
-        {name: 'Pablo Perez', email: 'pablo@metixmedical.co.uk', status: 'Pending Invitation'}
+        {name: 'Roman ODowd', email: 'roman.odowd@metixmedical.co.uk', status: 'Locked-in',
+            teams: [{name: 'Belgium', icon: "be.png"}, {name: 'Germany', icon: 'de.png'}]},
+        {name: 'Kevin Hicher', email: 'kevin.hicher@metixmedical.co.uk', status: 'Selecting',
+            teams: [{name: 'France', icon: "fr.png"}]},
+        {name: 'Pablo Perez', email: 'pablo@metixmedical.co.uk', status: 'Pending Invitation',
+            teams: [{name: 'Mexico', icon: "mx.png"}]}
     ]
     this.players = new ReactiveVar(playerList)
 })

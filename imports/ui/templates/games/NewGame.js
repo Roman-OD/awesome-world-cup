@@ -1,6 +1,9 @@
+import { ReactiveVar } from 'meteor/reactive-var'
+
 import './NewGame.html';
 import './modals/AddPlayer.js'
-import { ReactiveVar } from 'meteor/reactive-var'
+import './modals/RemovePlayer.js'
+
 
 Template.NewGame.onCreated(function(){
     const playerList = [
