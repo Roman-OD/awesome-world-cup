@@ -8,21 +8,29 @@ import './NewGameModal.js';
 Template.Games.onCreated(function(){
   this.autorun(() => {
     this.subscribe('users.all');
-    this.subscribe('games.byCreator', Meteor.user().username);
+    this.subscribe('games.all');
   })
 });
 
 Template.Games.helpers({
-  games: ()=>{
-
-    return Games.find({}).fetch();
+  creatorGames: ()=>{
+    return Games.find({'creator': Meteor.userId()}).fetch();
   },
-  nogames: ()=>{
-    if (Games.find({}).count() > 0)
+  noCreatorGames: ()=>{
+    if (Games.find({'creator': Meteor.userId()}).count() > 0)
       return false;
     else
       return true;
 
+  },
+  memberGames: ()=>{
+    return Games.find({'players.id': Meteor.userId()}).fetch();
+  },
+  noMemberGames: ()=>{
+    if (Games.find({'players.id': Meteor.userId()}).count() > 0)
+      return false;
+    else
+      return true;
   },
   players: (game)=>{
     let playersLookup = [];
