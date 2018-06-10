@@ -85,3 +85,7 @@
   padding-top: 60px;
   padding-left: 20px;
 }
+
+#sign-in, #sign-up {
+  width: 100%;
+}
