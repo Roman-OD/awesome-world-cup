@@ -25,17 +25,15 @@ import { Games } from './games.js';
 export const createNewGame = new ValidatedMethod({
   name: 'Games.create',
   validate:null,
-  run({name, creator, players}){
+  run({name, creator, players, started}){
     console.log('inserting new game');
-    const doc = {
-      game: {
+    console.log(players);
+    let gameID = Games.insert({
         'name': name,
         'creator': creator,
-        'players': players
-      }
-    };
-    console.log(doc.game);
-    let gameID = Games.insert(doc.game);
+        'players': players,
+        'started' : started
+      });
     console.log(gameID);
     return gameID;
   }

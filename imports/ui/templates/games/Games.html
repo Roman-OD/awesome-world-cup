@@ -1,17 +1,16 @@
 <template name="Games">
   <h1 id='games-title'>{{currentUser.username}}'s Games</h1>
   <div class="container">
-    <div class="row full-width-row">
       <div class="panel panel-default games-panel">
         <div class="panel panel-heading">
-          Game List
+          Games I created
         </div>
         <div class="panel panel-body">
-          {{#if nogames}}
-            No games created by users
+          {{#if noCreatorGames}}
+            No games
           {{else}}
             <div class="row">
-              {{#each game in games}}
+              {{#each game in creatorGames}}
               <div class="col-xs-12">
                   <button id="{{game.name}}" class="btn btn-primary open-game">{{game.name}}</button>
               </div>
@@ -24,6 +23,27 @@
           </div>
         </div>
       </div>
-    </div>
-
+   <div class="container">
+      <div class="panel panel-default games-panel">
+        <div class="panel panel-heading">
+          Games I'm a member of
+        </div>
+        <div class="panel panel-body">
+          {{#if noMemberGames}}
+            No games
+          {{else}}
+            <div class="row">
+              {{#each game in memberGames}}
+              <div class="col-xs-12">
+                  <button id="{{game.name}}" class="btn btn-primary open-game">{{game.name}}</button>
+              </div>
+               {{/each}}
+            </div>
+          {{/if}}
+          </div>
+          <div class="panel panel-footer">
+             <button id="create-new-game" class="btn btn-primary">Create New Game</button>
+          </div>
+        </div>
+      </div>
 </template>

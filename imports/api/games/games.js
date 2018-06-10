@@ -21,36 +21,70 @@ Games.publicFields = {
   creator: 1,
   players: 1,
   createdAt: 1,
+  started:1 ,
 }
 
-playersSchema = new SimpleSchema({
-  playerId: {
-    type: String
-  },
-  Score: {
-    type: Number
-  }
-});
+// teamSeedSchema = new SimpleSchema({
+//   seed_1: {
+//     type: String
+//   },
+//   seed_2: {
+//     type: String
+//   },
+//   seed_3: {
+//     type: String
+//   },
+//   seed_4: {
+//     type: String
+//   }
+// });
 
-Games.schema = new SimpleSchema({
-  name: {
-    type: String
-  },
-  creator:{
-    type: String
-  },
-  players: {
-    type: playersSchema
-  },
-  createdAt: {
-    type: Date,
-    optional: true,
-    autoValue: function(){
-      return new Date();
-    }
-  }
-});
+// playersSchema = new SimpleSchema({
+//   playerId: {
+//     type: String
+//   },
+//   playerName: {
+//     type: String
+//   },
+//   Score: {
+//     type: Number
+//   },
+//   rerollCount: {
+//     type: Number
+//   },
+//   lockIn: {
+//     type: Boolean
+//   },
+//   teams: {
+//     type: teamSeedSchema
+//   }
+// });
+
+// Games.schema = new SimpleSchema({
+//   name: {
+//     type: String
+//   },
+//   creator:{
+//     type: String
+//   },
+//   players: {
+//     type: Array
+//   },
+//   players.$.playerId:{
+//     type: String
+//   },
+//   started: {
+//     type: Boolean
+//   },
+//   createdAt: {
+//     type: Date,
+//     optional: true,
+//     autoValue: function(){
+//       return new Date();
+//     }
+//   }
+// });
 
 
 
-Games.attachSchema(Games.schema);
+// Games.attachSchema(Games.schema);

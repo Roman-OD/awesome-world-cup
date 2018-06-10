@@ -19,7 +19,7 @@
                         {{user.username}}
                       </div>
                       <div class="col-xs-6">
-                        <button id="{{user.username}}" class="btn btn-primary add-user">Toggle User</button>
+                        <button id="{{user._id}}" class="btn btn-primary add-user">Toggle User</button>
                       </div>
                     </div>
 
@@ -39,7 +39,7 @@
                 <div class="col-xs-6">
                   {{#each player in players}}
                     <div class="col-xs-12">
-                      {{player}}
+                      {{getName player}}
                     </div>
                   {{/each}}
                 </div>
