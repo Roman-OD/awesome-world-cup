@@ -13,10 +13,15 @@ Template.Games.onCreated(function(){
     this.subscribe('games.all');
   })
 
-  assignTeams.call(function(err, resp){
-    if(err)
-      console.log(err);
-  });
+  // assignTeams.call(function(err, resp){
+  //   if(err)
+  //     console.log(err);
+  // });
+
+fetch('https://raw.githubusercontent.com/openfootball/world-cup.json/master/2018/worldcup.json')
+    .then(res => res.text())
+    .then(body => console.log(body));
+    
 });
 
 Template.Games.helpers({

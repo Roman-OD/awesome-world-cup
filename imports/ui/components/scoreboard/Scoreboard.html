@@ -1,0 +1,32 @@
+<template name="Scoreboard">
+	<div class="row">
+                <div class="col">
+                    <table class="table table-striped">
+                        <thead class="">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Score</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each user in users}}
+                        <tr>
+                            
+                                <th scope="row">1</th>
+                                <td>{{user.username}}</td>
+                                <td>score</td>
+                            
+                        </tr>
+                        {{/each}}
+                       <!--  <tr>
+                            <th scope="row">2</th>
+                            <td>Kevin Hicher</td>
+                            <td>kevin.hicher@metixmedical.co.uk</td>
+                        </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+</template>

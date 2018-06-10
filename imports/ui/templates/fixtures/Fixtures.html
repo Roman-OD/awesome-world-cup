@@ -1,3 +1,10 @@
 <template name="Fixtures">
-  <h3>fixtures</h3>
+  {{#each matchDay in rounds}}
+  	<div class='col-12'>
+  		{{matchDay.name}} |
+  		{{#each match in matchDay.matches}}
+  			{{match.team1.name}} vs {{match.team2.name}} |
+  		{{/each}}
+  	</div>
+  {{/each}}
 </template>
