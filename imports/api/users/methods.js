@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { ValidatedMethod} from 'meteor/mdg:validated-method';
+import { Users } from './users.js';
  import SimpleSchema from 'simpl-schema';
 
 export const addUser = new ValidatedMethod({
@@ -21,6 +22,21 @@ export const addUser = new ValidatedMethod({
     return newUserId;
   }
 });
+
+export const checkUser = new ValidatedMethod({
+  name: 'user.check',
+  validate: new SimpleSchema({
+    username: {type: String}
+  }).validator(),
+  run({username}){
+    if(Users.find({'username': username}).count()>0)
+      return true
+    else
+      return false
+  }
+});
+
+
 
 // export const loginUser = new ValidatedMethod({
 //   name: 'users.login',
