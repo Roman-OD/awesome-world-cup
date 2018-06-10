@@ -89,3 +89,7 @@
 .main-layout {
   margin-top: 50px;
 }
+
+#sign-in, #sign-up {
+  width: 100%;
+}
