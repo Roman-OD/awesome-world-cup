@@ -12,6 +12,7 @@ import '/imports/ui/templates/games/Games.js';
 import '/imports/ui/templates/fixtures/Fixtures.js';
 import '/imports/ui/templates/scoreboard/Scoreboard.js';
 import '/imports/ui/templates/404/NotFound.js';
+import '/imports/ui/templates/games/TeamSelection.js';
 
 if(Meteor.isClient){
   Accounts.onLogout(function(){
@@ -55,6 +56,13 @@ FlowRouter.route('/games', {
   name: 'games',
   action(){
     BlazeLayout.render('MainLayout', {main: 'Games'});
+  }
+});
+
+FlowRouter.route('/games/:id', {
+  name: 'games',
+  action(){
+    BlazeLayout.render('MainLayout', {main: 'TeamSelection'});
   }
 });
 

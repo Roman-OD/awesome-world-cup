@@ -18,6 +18,17 @@ Template.Roulette.onRendered(() => {
     }
   }
   $('div.roulette').roulette(option);
+  $('.stop').click(function(){
+		// var stopImageNumber = $('.stopImageNumber').val();
+		// if(stopImageNumber == "") {
+		// 	stopImageNumber = null;
+		// }
+		$('div.roulette').roulette('stop');
+	});
+	$('.stop').attr('disabled', 'true');
+	$('.start').click(function(){
+		$('div.roulette').roulette('start');
+	});
 });
 
 (function($) {
