@@ -1,27 +1,23 @@
 import { Meteor } from 'meteor/meteor';
-import { Template } from 'meteor/templating';
 import { Users } from '/imports/api/users/users.js';
-import { ReactiveVar } from 'meteor/reactive-var';
 import { createNewGame } from '/imports/api/games/methods.js';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import './NewGame.html';
 
-import './NewGameModal.html';
 
-Template.NewGameModal.onCreated(function() {
+Template.NewGame.onCreated(function(){
   this.players = new ReactiveVar([]);
-
-  assignTeams.call(function(err, resp){
-    if(err)
-      console.log(err);
-  });
-
-  
+  this.autorun(() => {
+    this.subscribe('users.all');
+    this.subscribe('games.all');
+  })
 });
 
-Template.NewGameModal.helpers({
+Template.NewGame.helpers({
   users: () => {
     return Users.find({}).fetch();
   },
-  players: () => {
+   players: () => {
     return Template.instance().players.get();
   },
   getName: (player)=>{
@@ -36,8 +32,10 @@ Template.NewGameModal.helpers({
   }
 });
 
-Template.NewGameModal.events({
+
+Template.NewGame.events({
   'click .add-user': (event) => {
+  	event.preventDefault();
     let user = event.target.id;
     let players = Template.instance().players.get();
     if(players.indexOf(user)==-1){
@@ -53,6 +51,7 @@ Template.NewGameModal.events({
       
   },
   'click #create-game-button': (event) => {
+  	event.preventDefault();
     let confirmedPlayers = [];
     for(var i = 0; i < Template.instance().players.get().length; i++){
       let player = Users.find({_id:Template.instance().players.get()[i]}).fetch()[0];
@@ -74,7 +73,7 @@ Template.NewGameModal.events({
     }
     console.log(confirmedPlayers);
     const game = {
-      name: $('#game-name-field').val(),
+      name: $('#game-name').val(),
       creator: Meteor.user()._id,
       players: confirmedPlayers,
       started: false
@@ -82,8 +81,8 @@ Template.NewGameModal.events({
     createNewGame.call(game, function(err, resp){
       if(err)
         console.log(err);
-      else
-        console.log('game id: ' + resp);
+      else 
+      	FlowRouter.go('/games/'+resp);      	
     })
 
   }

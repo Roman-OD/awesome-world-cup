@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Games } from '/imports/api/games/games.js';
-
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import { assignTeams } from '/imports/api/games/methods.js';
 
 import './Games.html';
@@ -24,6 +24,9 @@ Template.Games.helpers({
     return Games.find({'creator': Meteor.userId()}).fetch();
   },
   noCreatorGames: ()=>{
+    console.log(Meteor.userId());
+    console.log(Games.find({'creator': Meteor.userId()}).fetch());
+    console.log(Games.find({'creator': Meteor.userId()}).count());
     if (Games.find({'creator': Meteor.userId()}).count() > 0)
       return false;
     else
@@ -46,13 +49,12 @@ Template.Games.helpers({
     }
     console.log(playersLookup);
     return playersLookup;
-    
+
   }
 });
 
 Template.Games.events({
   'click #create-new-game': (event) => {
-    console.log('opening modal');
-    Modal.show('NewGameModal');
+    FlowRouter.go('/new-game');
   }
 })

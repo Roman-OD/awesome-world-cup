@@ -1,5 +1,4 @@
 <template name="MainLayout">
-  <div id="content-wrapper">
     {{#if authInProcess}}
       <div id="content">
         <div class="centered col-xs-12">
@@ -8,12 +7,11 @@
         </div>
       </div>
     {{else}}
-      {{> Header}}
-      <div id="content">
-        <main class="main-layout">
-          {{> Template.dynamic template=main}}
-        </main>
-      </div>
+        {{> Header}}
+        <div id="container">
+            <main class="main-layout">
+              {{> Template.dynamic template=main}}
+            </main>
+        </div>
     {{/if}}
-  </div>
 </template>

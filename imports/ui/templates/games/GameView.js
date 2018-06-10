@@ -1,3 +1,3 @@
 import { Meteor } from 'meteor/meteor'
 
-import './GameView/html';
+import './GameView.html';

@@ -9,6 +9,8 @@ import '/imports/ui/layouts/LoginLayout.js';
 import '/imports/ui/templates/login/Login.js';
 import '/imports/ui/templates/home/Home.js';
 import '/imports/ui/templates/games/Games.js';
+import '/imports/ui/templates/games/GameView.js';
+import '/imports/ui/templates/games/NewGame.js';
 import '/imports/ui/templates/fixtures/Fixtures.js';
 import '/imports/ui/templates/scoreboard/Scoreboard.js';
 import '/imports/ui/templates/404/NotFound.js';
@@ -47,9 +49,9 @@ FlowRouter.route('/login', {
 FlowRouter.route('/', {
   name: 'home',
   action() {
-    BlazeLayout.render('MainLayout', {main: 'Home'});
+    BlazeLayout.render('MainLayout', {main: 'Games'});
   }
-});
+})
 
 FlowRouter.route('/games', {
   name: 'games',
@@ -57,6 +59,20 @@ FlowRouter.route('/games', {
     BlazeLayout.render('MainLayout', {main: 'Games'});
   }
 });
+
+FlowRouter.route('/games/:id', {
+  name: 'game-room',
+  action(){
+    BlazeLayout.render('MainLayout', {main: 'GameView'});
+  }
+});
+
+FlowRouter.route('/new-game', {
+    name: 'new-game',
+    action() {
+        BlazeLayout.render('MainLayout', {main: 'NewGame'});
+    }
+})
 
 FlowRouter.route('/fixtures', {
   name: 'fixtures',

@@ -57,7 +57,7 @@ export const assignTeams = new ValidatedMethod({
     console.log('\n');
     console.log(playerPool);
     console.log('\n');
-
+    
     
   }
 });

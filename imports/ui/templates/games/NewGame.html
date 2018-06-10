@@ -1,0 +1,70 @@
+<template name="NewGame">
+    <div class="container">
+        <h1>Create New Game</h1>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="game-name" class="form-control" id="game-name" aria-describedby="gameNameHelp" placeholder="Enter game name">
+                <small id="gameNameHelp" class="form-text text-muted">The name of your game room</small>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label>Players</label>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-dark float-right">Manage Players</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped">
+                        <thead class="">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each user in users}}
+                        <tr>
+                            
+                                <th scope="row">1</th>
+                                <td>{{user.username}}</td>
+                                <td>player@email.com</td>
+                                <td><button id="{{user._id}}" class="btn btn-primary add-user">Toggle User</button></td>
+                            
+                        </tr>
+                        {{/each}}
+                       <!--  <tr>
+                            <th scope="row">2</th>
+                            <td>Kevin Hicher</td>
+                            <td>kevin.hicher@metixmedical.co.uk</td>
+                        </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {{#if noPlayers}}
+                No players selected
+            {{else}}
+            <div>
+                <div class="list-group">
+                    {{#each player in players}}
+                    <div class="list-group-item list-group-item-action">
+                        <label>{{getName player}}<span> - player@email.com</span></label>
+                        <button type="button" class="btn btn-danger float-right">Danger</button>
+                    </div>
+                    {{/each}}
+                    <!--  <div class="list-group-item list-group-item-action">
+                        <label>Kevin Hicher <span> - kevin.hicher@metixmedical.co.uk</span></label>
+                        <button type="button" class="btn btn-danger float-right">Danger</button>
+                    </div>  -->
+                </div>
+            </div>
+            <button id="create-game-button" class="btn btn-primary">Create Game</button>
+            {{/if}}
+           
+        </form>
+    </div>
+</template>
