@@ -4,7 +4,13 @@ import { Template } from 'meteor/templating';
 import './MyGames.html'
 
 Template.MyGames.helpers({
-    userId: () => {
-        return Meteor.userId()
+    helperName: () => {
+        return ''
+    }
+})
+
+Template.MyGames.events({
+    'click .gameDetailBtn' : (event) => {
+        FlowRouter.go('/games/detail/123')
     }
 })

@@ -11,6 +11,7 @@ import '/imports/ui/templates/home/Home.js';
 import '/imports/ui/templates/games/Games.js';
 import '/imports/ui/templates/games/NewGame.js';
 import '/imports/ui/templates/games/MyGames.js';
+import '/imports/ui/templates/games/GameDetail.js';
 import '/imports/ui/templates/fixtures/Fixtures.js';
 import '/imports/ui/templates/scoreboard/Scoreboard.js';
 import '/imports/ui/templates/404/NotFound.js';
@@ -67,9 +68,19 @@ FlowRouter.route('/games', {
 });
 
 /**
+ * Returns the creation form for players to create new games
+ */
+FlowRouter.route('/new-game', {
+    name: 'new-game',
+    action() {
+        BlazeLayout.render('MainLayout', {main: 'NewGame'});
+    }
+})
+
+/**
  * Returns the list of games a user is a part of (master and player)
  */
-FlowRouter.route('/games/:gameId', {
+FlowRouter.route('/games/:userId', {
     name: 'myGames',
     action(){
         BlazeLayout.render('MainLayout', {main: 'MyGames'});
@@ -77,12 +88,12 @@ FlowRouter.route('/games/:gameId', {
 })
 
 /**
- * Returns the creation form for players to create new games
+ * Returns detailed information for a particular game
  */
-FlowRouter.route('/new-game', {
-    name: 'new-game',
-    action() {
-        BlazeLayout.render('MainLayout', {main: 'NewGame'});
+FlowRouter.route('/games/detail/:gameId', {
+    name: 'game-detail',
+    action(){
+        BlazeLayout.render('MainLayout', {main: 'GameDetail'});
     }
 })
 

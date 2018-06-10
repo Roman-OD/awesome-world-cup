@@ -19,13 +19,13 @@
                 </div>
             </div>
             <div class="form-group">
-            {{#each player in getPlayers}}
-                <div class="list-group">
-                    <div class="list-group-item list-group-item-action">
-                        <label>{{player.name}} <span class="text-secondary"><em> - {{player.email}}</em></span></label>
-                        <button id="removePlayerBtn" type="button" class="btn btn-danger float-right"><i class="fas fa-trash"></i></button>
+                {{#each player in getPlayers}}
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action">
+                            <label>{{player.name}} <span class="text-secondary"><em> - {{player.email}}</em></span></label>
+                            <button id="removePlayerBtn" type="button" class="btn btn-danger float-right"><i class="fas fa-trash"></i></button>
+                        </div>
                     </div>
-                </div>
                 {{/each}}
             </div>
             <div class="form-group">
@@ -34,5 +34,5 @@
         </form>
     </div>
 
-    {{ >AddPlayer }}
+    {{>AddPlayer}}
 </template>

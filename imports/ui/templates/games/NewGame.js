@@ -1,5 +1,5 @@
 import './NewGame.html';
-import './AddPlayer.js'
+import './modals/AddPlayer.js'
 import { ReactiveVar } from 'meteor/reactive-var'
 
 Template.NewGame.onCreated(function(){
