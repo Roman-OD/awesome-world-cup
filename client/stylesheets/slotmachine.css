@@ -1,4 +1,4 @@
-#plane {
+#roulette {
   width: 100%;
   position: relative;
   background-size: contain;
@@ -7,7 +7,7 @@
   border: none !important;
 }
 
-#plane .content {
+#roulette .content {
   width: 100%;
   float: left;
   font-size: 50px;
@@ -16,7 +16,7 @@
   text-align: center;
 }
 
-#plane .content, footer .content{
+#roulette .content, footer .content{
   font-size: 70px;
   font-weight: 300;
   line-height: 150px;
