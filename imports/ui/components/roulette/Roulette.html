@@ -1,25 +1,19 @@
 <template name="Roulette">
-  <div id="plane" class="row">
+  <div id="roulette">
     <div class="col">
       <div class="card">
         <div class="card-header">
-          Pick a team
+          <span>Pick a team</span>
+          <button id="roll" type="button" class="btn btn-primary pull-right" style="border-radius: 100%; height: 70px;">Roll <i class="fas fa-dice"></i></button>
         </div>
         <div class="card-body">
           <div class="well content">
             <div id="teamMachine" class="slotMachine">
-              <div class="text-center"><img height="100px" src="/img/flags/lg/ad.png"> England</div>
-              <div class="text-center"><img height="100px" src="/img/flags/lg/ad.png"> France</div>
-              <div class="text-center"><img height="100px" src="/img/flags/lg/ad.png"> Mexico</div>
-              <div class="text-center"><img height="100px" src="/img/flags/lg/ad.png"> Spain</div>
-              <div class="text-center"><img height="100px" src="/img/flags/lg/ad.png"> Brasil</div>
-              <div class="text-center"><img height="100px" src="/img/flags/lg/ad.png"> Germany</div>
+              {{#each team in teams}}
+              <div class="text-center"><img height="100px" src="/img/flags/lg/{{team.iso2}}.png"> {{team.name}}</div>
+              {{/each}}
             </div>
           </div>
-        </div>
-        <div class="card-footer">
-          <button id="shuffle" type="button" class="btn btn-primary">Shuffle</button>
-          <button id="stop" type="button" class="btn btn-secondary">Stop</button>
         </div>
       </div>
     </div>
