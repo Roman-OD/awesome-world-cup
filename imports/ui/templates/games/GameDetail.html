@@ -1,103 +1,24 @@
 <template name="GameDetail">
     <div class="container">
         <h1>Detail of Game {{gameId}}</h1>
+
+        <ul class="nav nav-pills mt-5">
+            <li class="nav-item" data-template="GameLobby" role="presentation" >
+                <a class="nav-link active" href="#">Game Lobby</a>
+            </li>
+            <li class="nav-item" data-template="Leaderboard" role="presentation" >
+                <a class="nav-link" href="#">Leaderboard</a>
+            </li>
+            <li class="nav-item" data-template="UpcomingMatches" role="presentation" >
+                <a class="nav-link" href="#">Upcoming matches</a>
+            </li>
+            <li class="nav-item" data-template="Players" role="presentation" >
+                <a class="nav-link" href="#">Players</a>
+            </li>
+        </ul>
         <hr/>
-        <div class="row mt-5 mb-4">
-            <div class="col">
-                <h2>Players</h2>
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addPlayerModal">
-                    Add Player
-                </button>
-            </div>
-        </div>
-        {{#each player in getPlayers}}
-            <div class="list-group">
-                <div class="list-group-item list-group-item-action">
-                    <label class="col-7">{{player.name}} <span class="text-secondary"><em> - {{player.email}}</em></span></label>
-                    <span class="col-3 {{getStatusClass player.status}}">{{player.status}}</span>
-                    <div class="col-2 float-right">
-                        <button type="button" class="btn btn-danger removePlayerBtn float-right" data-toggle="modal"
-                                data-target="#removePlayerModal"><i class="fas fa-trash"></i></button>
-                        {{#if showEmailBtn player.status}}
-                            <button type="button" class="btn btn-secondary sendEmailBtn float-right" data-toggle="modal"
-                                    data-target="#emailPlayerModal"><i class="fas fa-envelope"></i></button>
-                        {{/if}}
-                    </div>
-                </div>
-            </div>
-        {{/each}}
-        <div class="row mt-5">
-            <div class="col">
-                <h2>Game Lobby</h2>
-            </div>
-        </div>
-        <div class="row">
-          {{> TeamSelection}}
-        </div>
-        <div class="row">
-            {{#each player in getPlayers}}
-            <div class="col-6 mt-4">
-                <div class="card">
-                    <h6 class="card-header">{{player.name}} <span class="float-right {{getStatusClass player.status}}">{{player.status}}</span></h6>
-                    <div class="card-body">
-                        <h5 class="card-title">Drafted Teams</h5>
-                        <ul class="list-group list-group-flush">
-                            {{#each team in player.teams}}
-                                <li class="list-group-item d-flex align-items-center">
-                                    <img src="/img/flags/xs/{{team.icon}}" class="img-responsive mr-2 xs-flag" alt="">
-                                    <span class="">{{team.name}}</span>
-                                </li>
-                            {{/each}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            {{/each}}
-        </div>
-
-        <div class="row mt-5">
-            <div class="col">
-                <h2>Leaderboard</h2>
-                <table class="table table-striped mt-4 mb-4">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Points</th>
-                        <th scope="col">In Play</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark Jigo <span class="text-success"><i class="fas fa-angle-double-up"></i></span></td>
-                        <td>100</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob Mens <span class="text-secondary"><i class="fas fa-angle-double-right"></i></span></td>
-                        <td>80</td>
-                        <td>30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry Bird <span class="text-danger"><i class="fas fa-angle-double-down"></i></span></td>
-                        <td>60</td>
-                        <td>60</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-
+        <div class="mt-2 mb-5">
+            {{> Template.dynamic template=tab data=tabData}}
         </div>
     </div>
-
-    {{>AddPlayer}}
-    {{>RemovePlayer}}
-    {{>EmailPlayer}}
 </template>

@@ -1,10 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
-import './modals/AddPlayer.js'
-import './modals/RemovePlayer.js'
-import './modals/EmailPlayer.js'
-import './TeamSelection.js'
+import './detail/GameLobby.js'
+import './detail/Leaderboard.js'
+import './detail/Players.js'
 
 import './GameDetail.html'
 
@@ -18,30 +17,36 @@ Template.GameDetail.onCreated(function(){
             teams: [{name: 'Mexico', icon: "mx.png"}]}
     ]
     this.players = new ReactiveVar(playerList)
+    this.currentTab = new ReactiveVar( "GameLobby")
 })
 
 Template.GameDetail.helpers({
     gameId: () => {
         return FlowRouter.getParam("gameId")
     },
-    getPlayers: function () {
-        return Template.instance().players.get()
+    tab: function() {
+        return Template.instance().currentTab.get()
     },
-    getStatusClass: function (status) {
-        if(status==='Locked-in'){
-            return 'text-success'
-        }else if (status==='Selecting') {
-            return 'text-secondary'
-        } else {
-            return 'text-warning'
+    tabData: function() {
+        var tab = Template.instance().currentTab.get()
+        var data = {
+            "players": [],
+            "leaderboard": [],
+            "upcoming-matches": [],
+            "game-lobby": []
         }
-    },
-    showEmailBtn: function (status) {
-       return status==='Pending Invitation' ? true : false
+        return data[tab];
     }
-
 })
 
 Template.GameDetail.events({
+    'click .nav-pills li': function( event, template ) {
+        let currentTab = $(event.target).closest("li")
+        let tabRef = $(event.target).closest("a")
 
+        tabRef.addClass("active")
+        $( ".nav-pills a" ).not(tabRef).removeClass("active")
+
+        template.currentTab.set(currentTab.data("template"))
+    }
 })

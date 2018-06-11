@@ -5,8 +5,8 @@ import { FlowRouter } from 'meteor/kadira:flow-router'
 import { createNewGame } from '/imports/api/games/methods.js'
 
 import './NewGame.html';
-import './modals/AddPlayer.js'
-import './modals/RemovePlayer.js'
+import './detail/modals/AddPlayer.js'
+import './detail/modals/RemovePlayer.js'
 
 
 Template.NewGame.onCreated(function(){
