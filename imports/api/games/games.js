@@ -23,34 +23,34 @@ Games.publicFields = {
   createdAt: 1,
 }
 
-playersSchema = new SimpleSchema({
-  playerId: {
-    type: String
-  },
-  Score: {
-    type: Number
-  }
-});
+// playersSchema = new SimpleSchema({
+//   playerId: {
+//     type: String
+//   },
+//   Score: {
+//     type: Number
+//   }
+// });
 
-Games.schema = new SimpleSchema({
-  name: {
-    type: String
-  },
-  creator:{
-    type: String
-  },
-  players: {
-    type: playersSchema
-  },
-  createdAt: {
-    type: Date,
-    optional: true,
-    autoValue: function(){
-      return new Date();
-    }
-  }
-});
+// Games.schema = new SimpleSchema({
+//   name: {
+//     type: String
+//   },
+//   creator:{
+//     type: String
+//   },
+//   players: {
+//     type: playersSchema
+//   },
+//   createdAt: {
+//     type: Date,
+//     optional: true,
+//     autoValue: function(){
+//       return new Date();
+//     }
+//   }
+// });
 
 
 
-Games.attachSchema(Games.schema);
+// Games.attachSchema(Games.schema);
