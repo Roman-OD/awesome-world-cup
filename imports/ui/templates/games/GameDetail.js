@@ -4,6 +4,7 @@ import { Template } from 'meteor/templating';
 import './detail/GameLobby.js'
 import './detail/Leaderboard.js'
 import './detail/Players.js'
+import './detail/UpcomingMatches.js'
 
 import './GameDetail.html'
 
