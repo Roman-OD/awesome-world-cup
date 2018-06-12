@@ -1,0 +1,32 @@
+<template name="Players">
+    <div class="row">
+        <div class="col">
+            <h2 class="mb-4">Players</h2>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addPlayerModal">
+                Add Player
+            </button>
+        </div>
+    </div>
+    {{#each player in getPlayers}}
+        <div class="list-group">
+            <div class="list-group-item list-group-item-action">
+                <label class="col-7">{{player.name}} <span class="text-secondary"><em> - {{player.email}}</em></span></label>
+                <span class="col-3 {{getStatusClass player.status}}">{{player.status}}</span>
+                <div class="col-2 float-right">
+                    <button type="button" class="btn btn-danger removePlayerBtn float-right" data-toggle="modal"
+                            data-target="#removePlayerModal"><i class="fas fa-trash"></i></button>
+                    {{#if showEmailBtn player.status}}
+                        <button type="button" class="btn btn-secondary sendEmailBtn float-right" data-toggle="modal"
+                                data-target="#emailPlayerModal"><i class="fas fa-envelope"></i></button>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    {{/each}}
+
+    {{>AddPlayer}}
+    {{>RemovePlayer}}
+    {{>EmailPlayer}}
+</template>
