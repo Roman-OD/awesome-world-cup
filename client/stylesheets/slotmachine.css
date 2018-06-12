@@ -1,5 +1,4 @@
 #roulette {
-  width: 100%;
   position: relative;
   background-size: contain;
   background-repeat: no-repeat;
@@ -17,9 +16,9 @@
 }
 
 #roulette .content, footer .content{
-  font-size: 70px;
+  font-size: 40px;
   font-weight: 300;
-  line-height: 150px;
+  line-height: 50px;
 }
 
 .badge {
@@ -29,8 +28,7 @@
   background-color: rgb(0, 175, 225);
 }
 
-#teamMachine {
-  margin-top: 20px;
+#teamMachine1, #teamMachine2, #teamMachine3, #teamMachine4 {
   height: 150px;
   overflow: hidden;
   display: inline-block;
