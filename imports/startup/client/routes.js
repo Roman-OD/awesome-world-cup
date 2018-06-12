@@ -12,10 +12,10 @@ import '/imports/ui/templates/games/Games.js';
 import '/imports/ui/templates/games/NewGame.js';
 import '/imports/ui/templates/games/MyGames.js';
 import '/imports/ui/templates/games/GameDetail.js';
+import '/imports/ui/templates/matches/MatchDetail.js';
 import '/imports/ui/templates/fixtures/Fixtures.js';
 import '/imports/ui/templates/scoreboard/Scoreboard.js';
 import '/imports/ui/templates/404/NotFound.js';
-import '/imports/ui/templates/games/TeamSelection.js';
 
 if(Meteor.isClient){
   Accounts.onLogout(function(){
@@ -95,6 +95,16 @@ FlowRouter.route('/games/detail/:gameId', {
     name: 'game-detail',
     action(){
         BlazeLayout.render('MainLayout', {main: 'GameDetail'});
+    }
+})
+
+/**
+ * Returns detailed information for a particular match
+ */
+FlowRouter.route('/match/detail/:matchId', {
+    name: 'match-detail',
+    action(){
+        BlazeLayout.render('MainLayout', {main: 'MatchDetail'});
     }
 })
 

@@ -5,24 +5,26 @@
         </div>
     </div>
     <div class="row">
+            {{#each match in getMatches}}
             <div class="col-4">
                 <div class="card">
                     <div class="card-header">
-                        Group Stage - Matchday 1 of 3
+                        {{match.stage}}
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <img src="/img/flags/xs/mx.png" class="img-responsive mr-1 xs-flag" alt="">
-                            <span class="match-nation">Mexico</span>
+                            <img src="/img/flags/xs/{{match.homeFlag}}" class="img-responsive mr-1 xs-flag" alt="">
+                            <span class="match-nation">{{match.homeTeam}}</span>
                             <span>vs</span>
-                            <img src="/img/flags/xs/mx.png" class="img-responsive ml-2 mr-1 xs-flag" alt="">
-                            <span class="match-nation">Mexico</span>
+                            <img src="/img/flags/xs/{{match.awayFlag}}" class="img-responsive ml-2 mr-1 xs-flag" alt="">
+                            <span class="match-nation">{{match.awayTeam}}</span>
                         </div>
-                        <p class="text-secondary mb-0 mt-2">Ekaterinburg Arena</p>
-                        <p class="text-secondary">Thursday 14 of June, 16:00</p>
-                        <button type="button" class="btn btn-primary matchDetailBtn">Match Detail</button>
+                        <p class="text-secondary mb-0 mt-2">{{match.stadium}}</p>
+                        <p class="text-secondary">{{match.date}}</p>
+                        <a href="/match/detail/{{match.id}}" class="btn btn-primary">Match Detail</a>
                     </div>
                 </div>
             </div>
+            {{/each}}
     </div>
 </template>

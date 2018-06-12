@@ -103,6 +103,14 @@
   height: 15px;
 }
 
+.sm-flag {
+  width: 100px;
+}
+
 .match-nation {
   font-size:18px;
+}
+
+.match-nation-lg {
+  font-size:24px;
 }
