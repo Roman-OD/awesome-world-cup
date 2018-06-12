@@ -1,25 +1,21 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import { Games } from '/imports/api/games/games.js';
 
 import '../TeamSelection.js'
 
 import './GameLobby.html'
 
 Template.GameLobby.onCreated(function(){
-    const playerList = [
-        {name: 'Roman ODowd', email: 'roman.odowd@metixmedical.co.uk', status: 'Locked-in',
-            teams: [{name: 'Belgium', icon: "be.png", 'seed': 1}, {name: 'Germany', icon: 'de.png'}]},
-        {name: 'Kevin Hicher', email: 'kevin.hicher@metixmedical.co.uk', status: 'Selecting',
-            teams: [{name: 'France', icon: "fr.png"}]},
-        {name: 'Pablo Perez', email: 'pablo@metixmedical.co.uk', status: 'Pending Invitation',
-            teams: [{name: 'Mexico', icon: "mx.png"}]}
-    ]
-    this.players = new ReactiveVar(playerList)
+    
 })
 
 Template.GameLobby.helpers({
+    getGame: function() {
+        return Games.find({}).fetch()[0];
+    },
     getPlayers: function () {
-        return Template.instance().players.get()
+        return Games.find({}).fetch()[0].players;
     },
     getStatusClass: function (status) {
         if(status==='Locked-in'){
@@ -29,5 +25,17 @@ Template.GameLobby.helpers({
         } else {
             return 'text-warning'
         }
+    },
+    allReady: function(){
+       let players = Games.find({}).fetch()[0].players;
+       let readyCount = 0;
+       for(var i = 0; i < players.length;i++){
+            if(players[i].status == "Locked-in")
+                readyCount++;
+       }
+       if(readyCount==players.length)
+            return true;
+        else
+            return false;
     }
 })

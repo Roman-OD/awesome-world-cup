@@ -12,13 +12,15 @@
                 </tr>
                 </thead>
                 <tbody>
+                {{#each player in getPlayers}}
                 <tr>
                     <th scope="row">1</th>
-                    <td>Mark Jigo <span class="text-success"><i class="fas fa-angle-double-up"></i></span></td>
-                    <td>100</td>
-                    <td>50</td>
+                    <td>{{player.name}}<span class="text-success"><i class="fas fa-angle-double-up"></i></span></td>
+                    <td>{{player.score}}</td>
+                    <td>0</td>
                 </tr>
-                <tr>
+                {{/each}}
+             <!--    <tr>
                     <th scope="row">2</th>
                     <td>Jacob Mens <span class="text-secondary"><i class="fas fa-angle-double-right"></i></span></td>
                     <td>80</td>
@@ -29,7 +31,7 @@
                     <td>Larry Bird <span class="text-danger"><i class="fas fa-angle-double-down"></i></span></td>
                     <td>60</td>
                     <td>60</td>
-                </tr>
+                </tr> -->
                 </tbody>
             </table>
         </div>

@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import { Games } from '/imports/api/games/games.js';
 
 import './detail/GameLobby.js'
 import './detail/Leaderboard.js'
@@ -9,6 +10,12 @@ import './detail/UpcomingMatches.js'
 import './GameDetail.html'
 
 Template.GameDetail.onCreated(function(){
+
+    this.autorun(() => {
+        this.subscribe('users.all');
+        this.subscribe('games.single', FlowRouter.getParam("gameId"));
+    });
+
     const playerList = [
         {name: 'Roman ODowd', email: 'roman.odowd@metixmedical.co.uk', status: 'Locked-in',
             teams: [{name: 'Belgium', icon: "be.png", 'seed': 1}, {name: 'Germany', icon: 'de.png'}]},
@@ -22,8 +29,8 @@ Template.GameDetail.onCreated(function(){
 })
 
 Template.GameDetail.helpers({
-    gameId: () => {
-        return FlowRouter.getParam("gameId")
+    gameName: () => {
+        return Games.find({}).fetch()[0].name;
     },
     tab: function() {
         return Template.instance().currentTab.get()
@@ -37,7 +44,11 @@ Template.GameDetail.helpers({
             "game-lobby": []
         }
         return data[tab];
+    },
+    gameReady: ()=>{
+        return Games.find({}).fetch()[0].lockedIn;
     }
+
 })
 
 Template.GameDetail.events({

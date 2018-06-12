@@ -11,3 +11,7 @@ Meteor.publish('games.all', function(){
 Meteor.publish('games.byCreator', function(creator){
   return Games.find({'creator': creator}, Games.publicFields);
 });
+
+Meteor.publish('games.single', function(gameId){
+	return Games.find({_id:gameId});
+});

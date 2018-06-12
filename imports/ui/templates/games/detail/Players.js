@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import { Games } from '/imports/api/games/games.js';
 
 import './modals/AddPlayer.js'
 import './modals/RemovePlayer.js'
@@ -21,7 +22,7 @@ Template.Players.onCreated(function(){
 
 Template.Players.helpers({
     getPlayers: function () {
-        return Template.instance().players.get()
+        return Games.find({}).fetch()[0].players;
     },
     showEmailBtn: function (status) {
         return status==='Pending Invitation' ? true : false

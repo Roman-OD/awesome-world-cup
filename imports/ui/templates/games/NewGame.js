@@ -54,15 +54,32 @@ Template.NewGame.events({
           // let player = Users.find({"username":Template.instance().data.players.get()[i].username}).fetch()[0];
           formattedPlayer = {
             name: Template.instance().data.players.get()[i].name,
+            status: "selecting",
             score: 0,
             rerollCount: 0,
             lockedIn: false,
-            teams: {
-              seed_1: "unassigned",
-              seed_2: "unassigned",
-              seed_3: "unassigned",
-              seed_4: "unassigned"
-            }
+            teams: [
+                {   
+                    name: "unassigned",
+                    seed: "",
+                    eliminated: false
+                },
+                {   
+                    name: "unassigned",
+                    seed: "",
+                    eliminated: false
+                },
+                {   
+                    name: "unassigned",
+                    seed: "",
+                    eliminated: false
+                },
+                {   
+                    name: "unassigned",
+                    seed: "",
+                    eliminated: false
+                }
+            ]
           }
           confirmedPlayers.push(formattedPlayer);
         }
@@ -72,6 +89,7 @@ Template.NewGame.events({
         let game = {
             name,
             creator: Meteor.user().username,
+            lockedIn: false,
             players : confirmedPlayers
         }
 

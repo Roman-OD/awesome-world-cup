@@ -1,11 +1,12 @@
 <template name="GameDetail">
     <div class="container">
-        <h1>Detail of Game {{gameId}}</h1>
+        <h1>{{gameName}} Dashboard</h1>
 
         <ul class="nav nav-pills mt-5">
             <li class="nav-item" data-template="GameLobby" role="presentation" >
                 <a class="nav-link active" href="#">Game Lobby</a>
             </li>
+            <!-- {{#if gameReady}} -->
             <li class="nav-item" data-template="Leaderboard" role="presentation" >
                 <a class="nav-link" href="#">Leaderboard</a>
             </li>
@@ -15,6 +16,7 @@
             <li class="nav-item" data-template="Players" role="presentation" >
                 <a class="nav-link" href="#">Players</a>
             </li>
+            <!-- {{/if}} -->
         </ul>
         <hr/>
         <div class="mt-2 mb-5">
