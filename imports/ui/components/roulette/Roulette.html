@@ -1,17 +1,101 @@
 <template name="Roulette">
-  <div id="roulette">
+  <div id="roulette" class="col">
     <div class="col">
       <div class="card">
         <div class="card-header">
-          <span>Pick a team</span>
-          <button id="roll" type="button" class="btn btn-primary pull-right" style="border-radius: 100%; height: 70px;">Roll <i class="fas fa-dice"></i></button>
+          <div class="col-2">
+            <button id="roll" type="button" class="btn btn-primary pull-right" style="width: 100%; height: 100%;"><img src="/img/icons8-slot-machine-50.png"></button>
+          </div>
         </div>
         <div class="card-body">
-          <div class="well content">
-            <div id="teamMachine" class="slotMachine">
-              {{#each team in teams}}
-              <div class="text-center"><img height="100px" src="/img/flags/lg/{{team.iso2}}.png"> {{team.name}}</div>
-              {{/each}}
+          <div class="row">
+            <div class="col-3 well content">
+              <div id="teamMachine1" class="slotMachine">
+                <div id="default-tile-1" class="text-center">
+                  <div width="100%">
+                    Seed 1
+                  </div>
+                  <div widht="100%">
+                    <img height="100px" src="/img/Placeholder_flag.svg">
+                  </div>
+                </div>
+                {{#each team in teams 1}}
+                <div class="text-center">
+                  <div width="100%">
+                    {{team.name}}
+                  </div>
+                  <div widht="100%">
+                    <img height="100px" src="{{team.flag}}">
+                  </div>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            <div class="col-3 well content">
+              <div id="teamMachine2" class="slotMachine">
+                <div id="default-tile-2" class="text-center">
+                  <div width="100%">
+                    Seed 2
+                  </div>
+                  <div widht="100%">
+                    <img height="100px" src="/img/Placeholder_flag.svg">
+                  </div>
+                </div>
+                {{#each team in teams 2}}
+                <div class="text-center">
+                  <div width="100%">
+                    {{team.name}}
+                  </div>
+                  <div widht="100%">
+                    <img height="100px" src="{{team.flag}}">
+                  </div>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            <div class="col-3 well content">
+              <div id="teamMachine3" class="slotMachine">
+                <div id="default-tile-3" class="text-center">
+                  <div width="100%">
+                    Seed 3
+                  </div>
+                  <div widht="100%">
+                    <img height="100px" src="/img/Placeholder_flag.svg">
+                  </div>
+                </div>
+                {{#each team in teams 3}}
+                <div class="text-center">
+                  <div width="100%">
+                    {{team.name}}
+                  </div>
+                  <div widht="100%">
+                    <img height="100px" src="{{team.flag}}">
+                  </div>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            <div class="col-3 well content">              
+              <div id="teamMachine4" class="slotMachine">
+                <div id="default-tile-4" class="text-center">
+                  <div width="100%">
+                    Seed 4
+                  </div>
+                  <div widht="100%">
+                    <img height="100px" src="/img/Placeholder_flag.svg">
+                  </div>
+                </div>
+                {{#each team in teams 4}}
+                <div class="text-center">
+                  <div width="100%">
+                    {{team.name}}
+                  </div>
+                  <div widht="100%">
+                    <img height="100px" src="{{team.flag}}">
+                  </div>
+                </div>
+                {{/each}}
+              </div>
             </div>
           </div>
         </div>
@@ -19,9 +103,6 @@
     </div>
     <div class="col">
       <div class="card">
-        <div class="card-header">
-          Game #ID
-        </div>
         <div class="card-body">
           <h5 class="card-title">Drafted Teams</h5>
           <ul class="list-group list-group-flush">
