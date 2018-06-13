@@ -20,7 +20,7 @@
                   </div>
                 </div>
                 {{#each team in teams 1}}
-                <div class="text-center">
+                <div class="text-center" data-teamid="{{team._id}}">
                   <div width="100%">
                     {{team.name}}
                   </div>
@@ -42,7 +42,7 @@
                   </div>
                 </div>
                 {{#each team in teams 2}}
-                <div class="text-center">
+                <div class="text-center" data-teamid="{{team._id}}">
                   <div width="100%">
                     {{team.name}}
                   </div>
@@ -64,7 +64,7 @@
                   </div>
                 </div>
                 {{#each team in teams 3}}
-                <div class="text-center">
+                <div class="text-center" data-teamid="{{team._id}}">
                   <div width="100%">
                     {{team.name}}
                   </div>
@@ -75,7 +75,7 @@
                 {{/each}}
               </div>
             </div>
-            <div class="col-3 well content">              
+            <div class="col-3 well content">
               <div id="teamMachine4" class="slotMachine">
                 <div id="default-tile-4" class="text-center">
                   <div width="100%">
@@ -86,7 +86,7 @@
                   </div>
                 </div>
                 {{#each team in teams 4}}
-                <div class="text-center">
+                <div class="text-center" data-teamid="{{team._id}}">
                   <div width="100%">
                     {{team.name}}
                   </div>
@@ -107,20 +107,20 @@
           <h5 class="card-title">Drafted Teams</h5>
           <ul class="list-group list-group-flush">
             <li class="list-group-item d-flex align-items-center">
-                <img src="/img/flags/xs/ad.png" class="img-responsive mr-2 xs-flag" alt="">
-                <span class="">Brasil</span>
+                <img id="seed-1-flag" src="" class="img-responsive mr-2 xs-flag" alt="">
+                <span id="seed-1-name" class=""></span>
             </li>
             <li class="list-group-item d-flex align-items-center">
-                <img src="/img/flags/xs/ad.png" class="img-responsive mr-2 xs-flag" alt="">
-                <span class="">France</span>
+                <img id="seed-2-flag" src="" class="img-responsive mr-2 xs-flag" alt="">
+                <span id="seed-2-name" class=""></span>
             </li>
             <li class="list-group-item d-flex align-items-center">
-                <img src="/img/flags/xs/ad.png" class="img-responsive mr-2 xs-flag" alt="">
-                <span class="">England</span>
+                <img id="seed-3-flag" src="" class="img-responsive mr-2 xs-flag" alt="">
+                <span id="seed-3-name" class=""></span>
             </li>
             <li class="list-group-item d-flex align-items-center">
-                <img src="/img/flags/xs/ad.png" class="img-responsive mr-2 xs-flag" alt="">
-                <span class="">Spain</span>
+                <img id="seed-4-flag" src="" class="img-responsive mr-2 xs-flag" alt="">
+                <span id="seed-4-name" class=""></span>
             </li>
           </ul>
         </div>

@@ -3,6 +3,7 @@ import '/node_modules/jquery-slotmachine/dist/slotmachine.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Teams } from '/imports/catalogs/catalogs.js';
+import { Games } from '/imports/api/games/games.js';
 
 import './Roulette.html';
 
@@ -10,7 +11,7 @@ Template.Roulette.onCreated(function () {
   this.subscribe('groups.all');
   this.subscribe('teams.all');
   this.selectedTeams = new ReactiveDict();
-  this.machines = new ReactiveDict();
+  this.machineCount = 4;
 });
 
 Template.Roulette.onRendered(() => {
@@ -24,7 +25,7 @@ Template.Roulette.onRendered(() => {
           delay: 100,
           randomize() {
             // returns a number between 1 and 7
-            return Math.floor(Math.random() * 7) + 1;
+            return Math.floor(Math.random() * 8) + 1;
           }
         });
         const teamMachine2 = document.querySelector('#teamMachine2');
@@ -62,17 +63,42 @@ Template.Roulette.helpers({
   },
   isReady(machineIndex) {
     return false;
+  },
+  selectedTeam(seedIndex) {
+    const teamIndex = Template.instance().selectedTeams.get(seedIndex);
   }
 });
 
 Template.Roulette.events({
   'click #roll': (event, instance) => {
     instance.machine1.shuffle(5, function() {
+      const teamId = this.tiles[this.visibleTile].dataset.teamid;
+      setSelectedTeam(1, teamId);
       instance.machine2.shuffle(5, function() {
+        const teamId = this.tiles[this.visibleTile].dataset.teamid;
+        setSelectedTeam(2, teamId);
         instance.machine3.shuffle(5, function() {
-          instance.machine4.shuffle(5);
+          const teamId = this.tiles[this.visibleTile].dataset.teamid;
+          setSelectedTeam(3, teamId);
+          instance.machine4.shuffle(5, function() {
+            const teamId = this.tiles[this.visibleTile].dataset.teamid;
+            setSelectedTeam(4, teamId);
+          });
         });
       });
     });
   },
+});
+
+function setSelectedTeam(seedIndex, teamId) {
+  const selectedTeam = Teams.findOne(teamId);
+  $(`#seed-${seedIndex}-flag`).attr('src', selectedTeam.flag);
+  $(`#seed-${seedIndex}-name`).text(selectedTeam.name);
+}
+
+Template.Roulette.onDestroyed(() => {
+  Template.instance().machine1.destroy();
+  Template.instance().machine2.destroy();
+  Template.instance().machine3.destroy();
+  Template.instance().machine4.destroy();
 });

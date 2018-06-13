@@ -11,9 +11,9 @@ class GamesCollection extends Mongo.Collection{
 export const Games = new GamesCollection('Games');
 
 Games.deny({
-    insert() {return true;},
-    update() {return true;},
-    remove() {return true;},
+    insert() {return false;},
+    update() {return false;},
+    remove() {return false;},
 });
 
 Games.publicFields = {
