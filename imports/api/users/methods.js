@@ -8,16 +8,13 @@ export const addUser = new ValidatedMethod({
   name: 'users.add',
   validate: new SimpleSchema({
     username: {type: String},
-    password: {type: String}
+    email: {type: String},
+    password: {type: String},
   }).validator(),
-  run({ username, password }){
-    const doc = {
-                  user: {
-                    username: username,
-                    password: password
-                  }
-                };
-    const newUserId = Accounts.createUser(doc.user);
+  run({ username, email, password }){
+
+    const newUserId = Accounts.createUser({ username, email, password });
+    Users.update(newUserId, { $set: {'profile.invitations': [] }});
     console.log(newUserId);
     return newUserId;
   }
@@ -29,13 +26,19 @@ export const checkUser = new ValidatedMethod({
     username: {type: String}
   }).validator(),
   run({username}){
-    if(Users.find({'username': username}).count()>0)
-      return true
-    else
-      return false
+    return (Users.find({'username': username}).count() > 0);
   }
 });
 
+export const updateInvitations = new ValidatedMethod({
+ name: 'user.update.invitations',
+  validate: new SimpleSchema({
+    username: {type: String}
+  }).validator(),
+  run({username}){
+    // invitaiton logic goes here...
+  }
+});
 
 
 // export const loginUser = new ValidatedMethod({

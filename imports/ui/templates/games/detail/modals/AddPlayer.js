@@ -21,7 +21,7 @@ Template.AddPlayer.events({
 
         let player = {
                         name,
-                        email: 'player@email.com',
+                        email,
                         status: 'Pending Invitation'
                     }
         
@@ -29,19 +29,20 @@ Template.AddPlayer.events({
         checkUser.call({username: name}, function(err, resp){   
             if(resp) {
             console.log(resp);
-                if(resp==true){
+               if (resp==true) {
                     const confirmedPlayers = parentData.data.players.get();
                     var duplicate = false;
                     console.log(confirmedPlayers);
                     for(var i = 0;i<confirmedPlayers.length;i++){
-                        console.log(confirmedPlayers[i].name);
-                        console.log(player.name);
+                        console.log(confirmedPlayers[i].email);
+                        console.log(player.email);
                         if(confirmedPlayers[i].name==player.name)
                             duplicate = true;
                     }
                     if(!duplicate){
                         confirmedPlayers.push(player);
                         parentData.data.players.set(confirmedPlayers);
+                        // update invitations
                         // Clear form
                         target.name.value = ''
                         target.email.value = ''
@@ -54,12 +55,6 @@ Template.AddPlayer.events({
                     console.log("player not found in system");
                 }
             }
-
         })
-
-
-
-
-       
     }
-})
+});

@@ -51,10 +51,13 @@ Template.NewGameModal.events({
   'click #create-game-button': (event) => {
     let confirmedPlayers = [];
     for(var i = 0; i < Template.instance().players.get().length; i++){
-      let player = Users.find({"username":Template.instance().players.get()[i]}).fetch()[0];
+      // let player = Users.find({"emails.[0].address":Template.instance().players.get()[i].email}).fetch()[0];
+      let player = Users.find({"username":Template.instance().players.get()[i].name}).fetch()[0];
+
       formattedPlayer = {
         id: player._id,
         name: player.username,
+        email: player.email,
         score: 0,
         rerollCount: 0,
         lockedIn: false,
