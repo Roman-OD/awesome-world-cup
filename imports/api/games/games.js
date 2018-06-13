@@ -16,12 +16,12 @@ Games.deny({
     remove() {return false;},
 });
 
-Games.publicFields = {
-  name: 1,
-  creator: 1,
-  players: 1,
-  createdAt: 1,
-}
+// Games.publicFields = {
+//   name: 1,
+//   creator: 1,
+//   players: 1,
+//   createdAt: 1,
+// }
 
 // playersSchema = new SimpleSchema({
 //   playerId: {

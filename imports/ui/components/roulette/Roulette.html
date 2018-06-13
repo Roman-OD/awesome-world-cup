@@ -1,132 +1,128 @@
 <template name="Roulette">
   <div id="roulette" class="col">
-    <div class="col">
-      <div class="card">
-        <div class="card-header">
-          <div class="col-2">
-            <button id="roll" type="button" class="btn btn-primary pull-right" style="width: 100%; height: 100%;"><img src="/img/icons8-slot-machine-50.png"></button>
-          </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="col-2">
+          <button id="roll" type="button" class="btn btn-primary pull-right" style="width: 100%; height: 100%;">Roll</button>
         </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-3 well content">
-              <div id="teamMachine1" class="slotMachine">
-                <div id="default-tile-1" class="text-center">
-                  <div width="100%">
-                    Seed 1
-                  </div>
-                  <div widht="100%">
-                    <img height="100px" src="/img/Placeholder_flag.svg">
-                  </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3 well content">
+            <div id="teamMachine1" class="slotMachine">
+              <div class="text-center">
+                <div width="100%">
+                  Seed 1
                 </div>
-                {{#each team in teams 1}}
-                <div class="text-center" data-teamid="{{team._id}}">
-                  <div width="100%">
-                    {{team.name}}
-                  </div>
-                  <div widht="100%">
-                    <img height="100px" src="{{team.flag}}">
-                  </div>
+                <div widht="100%">
+                  <img height="100px" src="/img/Placeholder_flag.svg">
                 </div>
-                {{/each}}
               </div>
+              {{#each team in teams 1}}
+              <div class="text-center" data-teamid="{{team._id}}">
+                <div width="100%">
+                  {{team.name}}
+                </div>
+                <div widht="100%">
+                  <img height="100px" src="{{team.flag}}">
+                </div>
+              </div>
+              {{/each}}
             </div>
-            <div class="col-3 well content">
-              <div id="teamMachine2" class="slotMachine">
-                <div id="default-tile-2" class="text-center">
-                  <div width="100%">
-                    Seed 2
-                  </div>
-                  <div widht="100%">
-                    <img height="100px" src="/img/Placeholder_flag.svg">
-                  </div>
+          </div>
+          <div class="col-3 well content">
+            <div id="teamMachine2" class="slotMachine">
+              <div class="text-center">
+                <div width="100%">
+                  Seed 2
                 </div>
-                {{#each team in teams 2}}
-                <div class="text-center" data-teamid="{{team._id}}">
-                  <div width="100%">
-                    {{team.name}}
-                  </div>
-                  <div widht="100%">
-                    <img height="100px" src="{{team.flag}}">
-                  </div>
+                <div widht="100%">
+                  <img height="100px" src="/img/Placeholder_flag.svg">
                 </div>
-                {{/each}}
               </div>
+              {{#each team in teams 2}}
+              <div class="text-center" data-teamid="{{team._id}}">
+                <div width="100%">
+                  {{team.name}}
+                </div>
+                <div widht="100%">
+                  <img height="100px" src="{{team.flag}}">
+                </div>
+              </div>
+              {{/each}}
             </div>
-            <div class="col-3 well content">
-              <div id="teamMachine3" class="slotMachine">
-                <div id="default-tile-3" class="text-center">
-                  <div width="100%">
-                    Seed 3
-                  </div>
-                  <div widht="100%">
-                    <img height="100px" src="/img/Placeholder_flag.svg">
-                  </div>
+          </div>
+          <div class="col-3 well content">
+            <div id="teamMachine3" class="slotMachine">
+              <div class="text-center">
+                <div width="100%">
+                  Seed 3
                 </div>
-                {{#each team in teams 3}}
-                <div class="text-center" data-teamid="{{team._id}}">
-                  <div width="100%">
-                    {{team.name}}
-                  </div>
-                  <div widht="100%">
-                    <img height="100px" src="{{team.flag}}">
-                  </div>
+                <div widht="100%">
+                  <img height="100px" src="/img/Placeholder_flag.svg">
                 </div>
-                {{/each}}
               </div>
+              {{#each team in teams 3}}
+              <div class="text-center" data-teamid="{{team._id}}">
+                <div width="100%">
+                  {{team.name}}
+                </div>
+                <div widht="100%">
+                  <img height="100px" src="{{team.flag}}">
+                </div>
+              </div>
+              {{/each}}
             </div>
-            <div class="col-3 well content">
-              <div id="teamMachine4" class="slotMachine">
-                <div id="default-tile-4" class="text-center">
-                  <div width="100%">
-                    Seed 4
-                  </div>
-                  <div widht="100%">
-                    <img height="100px" src="/img/Placeholder_flag.svg">
-                  </div>
+          </div>
+          <div class="col-3 well content">
+            <div id="teamMachine4" class="slotMachine">
+              <div class="text-center">
+                <div width="100%">
+                  Seed 4
                 </div>
-                {{#each team in teams 4}}
-                <div class="text-center" data-teamid="{{team._id}}">
-                  <div width="100%">
-                    {{team.name}}
-                  </div>
-                  <div widht="100%">
-                    <img height="100px" src="{{team.flag}}">
-                  </div>
+                <div widht="100%">
+                  <img height="100px" src="/img/Placeholder_flag.svg">
                 </div>
-                {{/each}}
               </div>
+              {{#each team in teams 4}}
+              <div class="text-center" data-teamid="{{team._id}}">
+                <div width="100%">
+                  {{team.name}}
+                </div>
+                <div widht="100%">
+                  <img height="100px" src="{{team.flag}}">
+                </div>
+              </div>
+              {{/each}}
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Drafted Teams</h5>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex align-items-center">
-                <img id="seed-1-flag" src="" class="img-responsive mr-2 xs-flag" alt="">
-                <span id="seed-1-name" class=""></span>
-            </li>
-            <li class="list-group-item d-flex align-items-center">
-                <img id="seed-2-flag" src="" class="img-responsive mr-2 xs-flag" alt="">
-                <span id="seed-2-name" class=""></span>
-            </li>
-            <li class="list-group-item d-flex align-items-center">
-                <img id="seed-3-flag" src="" class="img-responsive mr-2 xs-flag" alt="">
-                <span id="seed-3-name" class=""></span>
-            </li>
-            <li class="list-group-item d-flex align-items-center">
-                <img id="seed-4-flag" src="" class="img-responsive mr-2 xs-flag" alt="">
-                <span id="seed-4-name" class=""></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-footer">
-          <button id="submit-teams" type="button" class="btn btn-primary">Submit teams</button>
-        </div>
+    <div id="drafted-teams-card" class="card">
+      <div class="card-body">
+        <h5 class="card-title">Drafted Teams</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex align-items-center">
+              <img id="seed-1-flag" src="" class="img-responsive mr-2 xs-flag" alt="">
+              <span id="seed-1-name" class=""></span>
+          </li>
+          <li class="list-group-item d-flex align-items-center">
+              <img id="seed-2-flag" src="" class="img-responsive mr-2 xs-flag" alt="">
+              <span id="seed-2-name" class=""></span>
+          </li>
+          <li class="list-group-item d-flex align-items-center">
+              <img id="seed-3-flag" src="" class="img-responsive mr-2 xs-flag" alt="">
+              <span id="seed-3-name" class=""></span>
+          </li>
+          <li class="list-group-item d-flex align-items-center">
+              <img id="seed-4-flag" src="" class="img-responsive mr-2 xs-flag" alt="">
+              <span id="seed-4-name" class=""></span>
+          </li>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <button id="submit-teams" type="button" class="btn btn-primary" disabled>Submit teams</button>
       </div>
     </div>
   </div>

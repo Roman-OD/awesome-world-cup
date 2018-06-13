@@ -2,7 +2,7 @@ import { $ } from 'meteor/jquery';
 import '/node_modules/jquery-slotmachine/dist/slotmachine.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import { assignTeam } from '/imports/api/games/methods.js';
+import { assignTeam, updatePlayerStatus } from '/imports/api/games/methods.js';
 import { Teams } from '/imports/catalogs/catalogs.js';
 import { Games } from '/imports/api/games/games.js';
 
@@ -12,15 +12,14 @@ Template.Roulette.onCreated(function () {
   this.subscribe('groups.all');
   this.subscribe('teams.all');
   this.selectedTeams = new ReactiveDict();
-  this.machineCount = 4;
-
+  this.rollCount = 0;
 });
 
 Template.Roulette.onRendered(() => {
   const instance = Template.instance();
   Tracker.autorun(() => {
     if (instance.subscriptionsReady()) {
-      $( document ).ready(function() {
+      $(document).ready(function() {
         const teamMachine1 = document.querySelector('#teamMachine1');
         instance.machine1 = new SlotMachine(teamMachine1, {
           active: 0,
@@ -68,7 +67,7 @@ Template.Roulette.helpers({
   },
   selectedTeam(seedIndex) {
     const teamIndex = Template.instance().selectedTeams.get(seedIndex);
-  }
+  },
 });
 
 Template.Roulette.events({
@@ -76,41 +75,62 @@ Template.Roulette.events({
     instance.machine1.shuffle(5, function() {
       const teamId = this.tiles[this.visibleTile].dataset.teamid;
       const team = Teams.findOne(teamId);
-      assignSelectedTeam(team);
+      assignSelectedTeam(team, 'seed1');
       setSelectedTeam(1, teamId);
       instance.machine2.shuffle(5, function() {
         const teamId = this.tiles[this.visibleTile].dataset.teamid;
+        const team = Teams.findOne(teamId);
+        assignSelectedTeam(team, 'seed2');
         setSelectedTeam(2, teamId);
         instance.machine3.shuffle(5, function() {
           const teamId = this.tiles[this.visibleTile].dataset.teamid;
+          const team = Teams.findOne(teamId);
+          assignSelectedTeam(team, 'seed3');
           setSelectedTeam(3, teamId);
           instance.machine4.shuffle(5, function() {
             const teamId = this.tiles[this.visibleTile].dataset.teamid;
+            const team = Teams.findOne(teamId);
+            assignSelectedTeam(team, 'seed4');
             setSelectedTeam(4, teamId);
+            $('#submit-teams').attr('disabled', false);
+            if (instance.rollCount === 2) {
+              $('#roll').attr('disabled', true);
+            } else {
+              instance.rollCount ++;
+            }
           });
         });
       });
     });
   },
+  'click #submit-teams': () => {
+    updatePlayerStatus.call({
+      gameId: FlowRouter.getParam('gameId'),
+      playerName: Meteor.user().username,
+    }, (error, resp) => {
+      if (error) {
+        console.log(error);
+      }
+    });
+  }
 });
 
 function setSelectedTeam(seedIndex, teamId) {
   const selectedTeam = Teams.findOne(teamId);
   $(`#seed-${seedIndex}-flag`).attr('src', selectedTeam.flag);
-  $(`#seed-${seedIndex}-name`).text(selectedTeam.name);
+  $(`#seed-${seedIndex}-name`).text(`${selectedTeam.name} - Group ${selectedTeam.group.toUpperCase()}`);
 }
 
-function assignSelectedTeam(team) {
-  console.log(team);
+function assignSelectedTeam(team, seed) {
   assignTeam.call({
     gameId: FlowRouter.getParam('gameId'),
     playerName: Meteor.user().username,
     team,
+    seed
   }, (error, resp) => {
     if (resp) {
     }
   });
-  console.log(Games.find({}).fetch());
 }
 
 Template.Roulette.onDestroyed(() => {

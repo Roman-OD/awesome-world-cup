@@ -24,7 +24,27 @@ Template.GameLobby.helpers({
             return 'text-warning'
         }
     },
-
+    isLockedIn: function() {
+      const game = Games.find({_id: FlowRouter.getParam('gameId')}).fetch()[0];
+      if (game) {
+        const player = game.players.find((player) => { return player.name === Meteor.user().username; });
+        if (player.status === 'lockedIn') {
+          return true;
+        }
+        return false;
+      }
+      return false;
+    },
+    teams: function() {
+      const game = Games.find({_id: FlowRouter.getParam('gameId')}).fetch()[0];
+      if (game) {
+        const player = game.players.find((player) => { return player.name === Meteor.user().username; });
+        return [player.seed1, player.seed2, player.seed3, player.seed4];
+      }
+    },
+    toUpperCase: function(value) {
+      return value.toUpperCase();
+    }
     // allReady: function(){
     //    let players = Games.find({}).fetch()[0].players;
     //    let readyCount = 0;

@@ -4,9 +4,12 @@
             <h2 class="mb-4">Game Lobby</h2>
         </div>
     </div>
+
+    {{#unless isLockedIn}}
     <div class="row">
         {{> TeamSelection}}
     </div>
+    {{/unless}}
 
     <div class="row">
         {{#each player in game.players}}
@@ -16,10 +19,10 @@
                     <div class="card-body">
                         <h5 class="card-title">Drafted Teams</h5>
                         <ul class="list-group list-group-flush">
-                            {{#each team in game.player.teams}}
+                            {{#each team in teams}}
                                 <li class="list-group-item d-flex align-items-center">
-                                    <img src="/img/flags/xs/{{team.icon}}" class="img-responsive mr-2 xs-flag" alt="">
-                                    <span class="">{{team.name}}</span>
+                                    <img src="{{team.flag}}" class="img-responsive mr-2 xs-flag" alt="">
+                                    <span class="">{{team.name}} - Group {{toUpperCase team.group}}</span>
                                 </li>
                             {{/each}}
                         </ul>

@@ -52,10 +52,25 @@ export const startGame = new ValidatedMethod({
 export const assignTeam = new ValidatedMethod({
   name: 'Games.assignTeam',
   validate: null,
-  run({gameId, playerName, team}) {
-    console.log(Games.find({_id:gameId, 'players.$.name': playerName}).fetch());
+  run({gameId, playerName, team, seed}) {
+    const setModifier = {$set: {}};
+    setModifier.$set[`players.$.${seed}`] = team;
     return Games.update(
-      {_id:gameId, 'players.$.name': playerName},
-      {$set: {'players.$.seed1': team}});
+      {_id: gameId, 'players.name': playerName},
+      setModifier,
+      false, true);
+  }
+});
+
+export const updatePlayerStatus = new ValidatedMethod({
+  name: 'Games.updatePlayerStatus',
+  validate: null,
+  run({gameId, playerName}) {
+    const setModifier = {$set: {}};
+    setModifier.$set['players.$.status'] = 'lockedIn';
+    return Games.update(
+      {_id: gameId, 'players.name': playerName},
+      setModifier,
+      false, true);
   }
 });
