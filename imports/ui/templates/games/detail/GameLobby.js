@@ -39,3 +39,9 @@ Template.GameLobby.helpers({
             return false;
     }
 })
+
+Template.GameLobby.events({
+    'click #startGame': (event) => {
+        console.log("starting game");
+    }
+})
