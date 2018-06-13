@@ -18,7 +18,7 @@ Template.GameLobby.helpers({
     getStatusClass: function (status) {
         if(status==='locked-in'){
             return 'text-success'
-        }else if (status==='Selecting') {
+        }else if (status==='selecting') {
             return 'text-secondary'
         } else {
             return 'text-warning'
