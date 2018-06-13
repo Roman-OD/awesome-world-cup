@@ -2,6 +2,7 @@ import { $ } from 'meteor/jquery';
 import '/node_modules/jquery-slotmachine/dist/slotmachine.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
+import { assignTeam } from '/imports/api/games/methods.js';
 import { Teams } from '/imports/catalogs/catalogs.js';
 import { Games } from '/imports/api/games/games.js';
 
@@ -12,6 +13,7 @@ Template.Roulette.onCreated(function () {
   this.subscribe('teams.all');
   this.selectedTeams = new ReactiveDict();
   this.machineCount = 4;
+
 });
 
 Template.Roulette.onRendered(() => {
@@ -73,6 +75,8 @@ Template.Roulette.events({
   'click #roll': (event, instance) => {
     instance.machine1.shuffle(5, function() {
       const teamId = this.tiles[this.visibleTile].dataset.teamid;
+      const team = Teams.findOne(teamId);
+      assignSelectedTeam(team);
       setSelectedTeam(1, teamId);
       instance.machine2.shuffle(5, function() {
         const teamId = this.tiles[this.visibleTile].dataset.teamid;
@@ -94,6 +98,19 @@ function setSelectedTeam(seedIndex, teamId) {
   const selectedTeam = Teams.findOne(teamId);
   $(`#seed-${seedIndex}-flag`).attr('src', selectedTeam.flag);
   $(`#seed-${seedIndex}-name`).text(selectedTeam.name);
+}
+
+function assignSelectedTeam(team) {
+  console.log(team);
+  assignTeam.call({
+    gameId: FlowRouter.getParam('gameId'),
+    playerName: Meteor.user().username,
+    team,
+  }, (error, resp) => {
+    if (resp) {
+    }
+  });
+  console.log(Games.find({}).fetch());
 }
 
 Template.Roulette.onDestroyed(() => {

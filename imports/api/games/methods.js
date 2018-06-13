@@ -47,4 +47,14 @@ export const startGame = new ValidatedMethod({
   run({gameID}){
     Games.update({_id: gameID}, {$set: {'lockedIn': true}});
   }
-})
+});
+
+export const assignTeam = new ValidatedMethod({
+  name: 'Games.assignTeam',
+  validate: null,
+  run({gameId, playerName, team}) {
+    return Games.update(
+      {_id:gameId, 'players.$.name': playerName},
+      {$push: {'players.$.teams': team}});
+  }
+});
