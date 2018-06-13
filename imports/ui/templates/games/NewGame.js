@@ -11,7 +11,7 @@ import './detail/modals/RemovePlayer.js'
 
 Template.NewGame.onCreated(function(){
     const playerList = [
-            {name: Meteor.user().username, email: "player@email.com"}
+            {name: Meteor.user().username, email: Meteor.user().emails[0].address}
         // {name: 'Roman ODowd', email: 'roman.odowd@metixmedical.co.uk'},
         // {name: 'Kevin Hicher', email: 'kevin.hicher@metixmedical.co.uk'}
         ]
@@ -55,6 +55,7 @@ Template.NewGame.events({
           formattedPlayer = {
             name: Template.instance().data.players.get()[i].name,
             status: "locked-in",
+            email: Template.instance().data.players.get()[i].email,
             score: 0,
             rerollCount: 0,
             lockedIn: false,

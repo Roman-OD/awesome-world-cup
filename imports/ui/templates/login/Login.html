@@ -9,8 +9,12 @@
     </div>
     <div class="panel-body">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Please sign {{#if signingUp}} up {{else}} in {{/if}}</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
+      {{#if signingUp}}
+        <input type="text" id="email" class="form-control" placeholder="Enter your email" required="" autofocus="">
+      {{/if}}
+      
       <input type="text" id="username" class="form-control" placeholder="Enter your username" required="" autofocus="">
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="password" class="form-control" placeholder="Enter your password" required="">
@@ -20,12 +24,21 @@
         </label>
       </div>
       <div class="row">
+        {{#if signingUp}}
+        <span class="col-12">
+          <a id="login-link" href="" class="pull-right" style="color: white">Back to sign in?</a>
+        </span>
+        {{else}}
         <div class="col">
           <button id="sign-in" class="btn btn-lg btn-primary">Sign in</button>
         </div>
+        {{/if}}
         <div class="col">
           <button id="sign-up" class="btn btn-lg btn-success">Sign up</button>
         </div>
+        {{#if signingUp}}
+        
+        {{/if}}
       </div>
       <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
     </div>

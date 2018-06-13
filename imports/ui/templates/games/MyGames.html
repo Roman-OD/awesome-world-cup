@@ -30,6 +30,37 @@
                 {{/if}}
             </div>
         </div>
+       <!--  <div class="row mt-5">
+            <div class="row mt-5">
+                <h1>My Invites</h1>
+                 {{#if noInvitations}}
+                  <div class=col-12>No game invitations</div>
+
+                 {{else}}
+                <table class="table table-striped mt-4 mb-4">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Creator</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">CreatedAt</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {{#each game in invites}}
+                    <tr>
+                        <td>{{game.name}}</td>
+                        <td>{{game.creator}}</td>
+                        <td><button type="button" id="{{game._id}}" class="btn btn-primary gameDetailBtn">Accept invitation</button></td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+                {{/if}}
+            </div>
+        </div>
+ -->
 
 
         <!-- <div class="row">
