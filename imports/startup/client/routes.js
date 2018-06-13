@@ -8,7 +8,7 @@ import '/imports/ui/layouts/LoginLayout.js';
 
 import '/imports/ui/templates/login/Login.js';
 import '/imports/ui/templates/home/Home.js';
-import '/imports/ui/templates/games/Games.js';
+// import '/imports/ui/templates/games/Games.js';
 import '/imports/ui/templates/games/NewGame.js';
 import '/imports/ui/templates/games/MyGames.js';
 import '/imports/ui/templates/games/GameDetail.js';
@@ -57,16 +57,6 @@ FlowRouter.route('/', {
     BlazeLayout.render('MainLayout', {main: 'Home'});
   }
 })
-
-/**
- * Deprecated: consider removing
- */
-FlowRouter.route('/games', {
-  name: 'games',
-  action(){
-    BlazeLayout.render('MainLayout', {main: 'Games'});
-  }
-});
 
 /**
  * Returns the creation form for players to create new games

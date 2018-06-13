@@ -7,32 +7,30 @@
     <div class="row">
         {{> TeamSelection}}
     </div>
-        <div class="row">
-            {{#each player in getPlayers}}
-                <div class="col-6">
-                    <div class="card">
-                        <h6 class="card-header">{{player.name}} <span class="float-right {{getStatusClass player.status}}">{{player.status}}</span></h6>
-                        <div class="card-body">
-                            <h5 class="card-title">Drafted Teams</h5>
-                            <ul class="list-group list-group-flush">
-                                {{#each team in player.teams}}
-                                    <li class="list-group-item d-flex align-items-center">
-                                        <img src="/img/flags/xs/{{team.icon}}" class="img-responsive mr-2 xs-flag" alt="">
-                                        <span class="">{{team.name}}</span>
-                                    </li>
-                                {{/each}}
-                            </ul>
-                        </div>
+
+    <div class="row">
+        {{#each player in game.players}}
+            <div class="col-6">
+                <div class="card">
+                    <h6 class="card-header">{{player.name}} <span class="float-right {{getStatusClass player.status}}">{{player.status}}</span></h6>
+                    <div class="card-body">
+                        <h5 class="card-title">Drafted Teams</h5>
+                        <ul class="list-group list-group-flush">
+                            {{#each team in game.player.teams}}
+                                <li class="list-group-item d-flex align-items-center">
+                                    <img src="/img/flags/xs/{{team.icon}}" class="img-responsive mr-2 xs-flag" alt="">
+                                    <span class="">{{team.name}}</span>
+                                </li>
+                            {{/each}}
+                        </ul>
                     </div>
                 </div>
-            {{/each}}
-            <!--  {{#if gameReady}}
-             {{else}}   
-                {{#if allReady}}
-                     <button id="startGame" class="btn btn-primary float-right">Lock-In Game</button>
-                {{else}}
-                <h6>Waiting for players to lock-in team selections</h6>
-                {{/if}}
-            {{/if}} -->
-        </div>
+            </div>
+        {{/each}}
+        <!-- {{#if allReady}}
+             <button type="submit" class="btn btn-primary float-right">Lock-In Game</button>
+        {{else}}
+        <h6>Waiting for players to lock-in team selections</h6>
+        {{/if}} -->
+    </div>
 </template>
