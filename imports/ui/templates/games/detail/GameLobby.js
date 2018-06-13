@@ -7,15 +7,12 @@ import '../TeamSelection.js'
 import './GameLobby.html'
 
 Template.GameLobby.onCreated(function(){
-    
+    this.subscribe('games.all');
 })
 
 Template.GameLobby.helpers({
-    getGame: function() {
+    game: function() {
         return Games.find({}).fetch()[0];
-    },
-    getPlayers: function () {
-        return Games.find({}).fetch()[0].players;
     },
     getStatusClass: function (status) {
         if(status==='Locked-in'){
@@ -26,16 +23,16 @@ Template.GameLobby.helpers({
             return 'text-warning'
         }
     },
-    allReady: function(){
-       let players = Games.find({}).fetch()[0].players;
-       let readyCount = 0;
-       for(var i = 0; i < players.length;i++){
-            if(players[i].status == "Locked-in")
-                readyCount++;
-       }
-       if(readyCount==players.length)
-            return true;
-        else
-            return false;
-    }
+    // allReady: function(){
+    //    let players = Games.find({}).fetch()[0].players;
+    //    let readyCount = 0;
+    //    for(var i = 0; i < players.length;i++){
+    //         if(players[i].status == "Locked-in")
+    //             readyCount++;
+    //    }
+    //    if(readyCount==players.length)
+    //         return true;
+    //     else
+    //         return false;
+    // }
 })
