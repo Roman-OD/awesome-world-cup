@@ -1,4 +1,6 @@
+import { Meteor } from 'meteor/meteor'
 import { checkUser } from '/imports/api/users/methods.js'
+import { Users } from '/imports/api/users/users.js'
 import './AddPlayer.html'
 
 Template.AddPlayer.onCreated(function(){
@@ -15,7 +17,10 @@ Template.AddPlayer.events({
         const name = target.name.value
         const email = target.email.value
 
+        const user = Users.find({'username':name}).fetch()[0];
+
         let player = {
+                        id: user._id,
                         name,
                         email: 'player@email.com',
                         status: 'Pending Invitation'

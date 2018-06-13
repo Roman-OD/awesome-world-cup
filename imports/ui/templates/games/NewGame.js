@@ -11,7 +11,7 @@ import './detail/modals/RemovePlayer.js'
 
 Template.NewGame.onCreated(function(){
     const playerList = [
-            {name: Meteor.user().username, email: "player@email.com"}
+            {id: Meteor.userId(), name: Meteor.user().username, email: "player@email.com"}
         // {name: 'Roman ODowd', email: 'roman.odowd@metixmedical.co.uk'},
         // {name: 'Kevin Hicher', email: 'kevin.hicher@metixmedical.co.uk'}
         ]
@@ -54,7 +54,7 @@ Template.NewGame.events({
           // let player = Users.find({"username":Template.instance().data.players.get()[i].username}).fetch()[0];
           formattedPlayer = {
             name: Template.instance().data.players.get()[i].name,
-            playerId: Template.instance().data.players.get()[i]._id,
+            playerId: Template.instance().data.players.get()[i].id,
             status: "locked-in",
             score: 0,
             rerollCount: 0,
