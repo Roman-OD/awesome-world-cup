@@ -17,6 +17,7 @@ ex.
 event scores:
 
 play = 1 point
+lose = 0 points
 draw = 2 points
 win = 4 points
 
