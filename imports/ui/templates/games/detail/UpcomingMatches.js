@@ -1,9 +1,10 @@
 import fetch from 'node-fetch';
 import './UpcomingMatches.html'
-import { Matches } from '/imports/catalogs/catalogs.js'
+import { Matches, Teams } from '/imports/catalogs/catalogs.js'
 
 Template.UpcomingMatches.onCreated(function(){
     this.subscribe('matches.all')
+    this.subscribe('teams.all')
 })
 
 Template.UpcomingMatches.helpers({
@@ -14,7 +15,6 @@ Template.UpcomingMatches.helpers({
         legDateFilter.setDate(legDateFilter.getDate()+3)
         if(matchList) {
             matchMap = matchList.filter((leg) => {
-                console.log(leg)
                 for(match of leg.matches){
                     let matchDate = new Date(match.date)
                     if(matchDate > legDateFilter) {
@@ -24,6 +24,14 @@ Template.UpcomingMatches.helpers({
                 }
             })
         }
+        console.log(matchMap)
         return matchMap
+    },
+    getFlagURL : function(code) {
+        let team = Teams.find({fifaCode : code}).fetch()
+        return team[0].flag
+    },
+    getMatchDayDate : function(matchDay) {
+        return matchDay.matches[0].date
     }
 })

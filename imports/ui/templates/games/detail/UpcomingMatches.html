@@ -1,40 +1,30 @@
 <template name="UpcomingMatches">
-    <div class="row">
-        <div class="col">
-            <h2 class="mb-4">Upcoming Matches</h2>
-        </div>
-    </div>
     {{#each matchDay in getMatchDays}}
-    <div class="card">
-        <div class="card-header"> 
-            <h5>{{matchDay.name}} - {{match.date}}</h5>
-        </div>
-            <div class="card-body">
-               
-                <div class="row"> 
-                    {{#each match in matchDay.matches}}  
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header">
-                                    {{match.group}}
-                                </div>
-                                <div class="card-body">
-                                    <div class="">
-                                        <img src="/img/flags/xs/{{match.homeFlag}}" class="img-responsive mr-1 xs-flag" alt="">
-                                        <span class="match-nation">{{match.team1.name}}</span>
-                                        <span>vs</span>
-                                        <img src="/img/flags/xs/{{match.awayFlag}}" class="img-responsive ml-2 mr-1 xs-flag" alt="">
-                                        <span class="match-nation">{{match.team2.name}}</span>
-                                    </div>
-                                    <p class="text-secondary mb-0 mt-2">{{match.stadium.name}}</p>
-                                    <p class="text-secondary"> - {{match.time}}</p>
-                                    <a href="/match/detail/{{match.id}}" class="btn btn-primary">Match Detail</a>
-                                </div>
-                            </div>
+        <h3 class="mt-4">{{matchDay.name}} <em>- {{getMatchDayDate matchDay}}</em></h3>
+        <div class="row">
+            {{#each match in matchDay.matches}}
+                <div class="col-4">
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            {{match.group}}
                         </div>
-                    {{/each}}
+                        <div class="card-body">
+                            <div class="">
+                                <img src="{{getFlagURL match.team1.code}}" class="img-responsive mr-1 xs-flag" alt="">
+                                <span class="match-nation">{{match.team1.name}}</span>
+                                <span>vs</span>
+                                <img src="{{getFlagURL match.team2.code}}" class="img-responsive ml-2 mr-1 xs-flag"
+                                     alt="">
+                                <span class="match-nation">{{match.team2.name}}</span>
+                            </div>
+                            <p class="text-secondary mb-0 mt-2">{{match.stadium.name}}</p>
+                            <p class="text-secondary">Kickoff at {{match.time}}</p>
+                            <a href="/match/detail/{{match.id}}" class="btn btn-primary">Match Detail</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-    </div>
+            {{/each}}
+        </div>
+
     {{/each}}
 </template>
