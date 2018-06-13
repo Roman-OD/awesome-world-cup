@@ -54,6 +54,7 @@ Template.NewGame.events({
           // let player = Users.find({"username":Template.instance().data.players.get()[i].username}).fetch()[0];
           formattedPlayer = {
             name: Template.instance().data.players.get()[i].name,
+            playerId: Template.instance().data.players.get()[i]._id,
             status: "selecting",
             score: 0,
             rerollCount: 0,
