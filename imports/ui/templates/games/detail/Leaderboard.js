@@ -6,6 +6,6 @@ import './Leaderboard.html'
 
 Template.Leaderboard.helpers({
  	getPlayers: function () {
-        return Games.find({}).fetch()[0].players;
+        return Games.find({}).fetch()[0].players.sort(function(a, b){return b-a});;
 	}
 })

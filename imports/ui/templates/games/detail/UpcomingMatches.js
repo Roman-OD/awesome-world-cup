@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 import './UpcomingMatches.html'
 
 Template.UpcomingMatches.onCreated(function(){

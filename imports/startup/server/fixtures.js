@@ -1,5 +1,7 @@
 import { Groups } from '/imports/catalogs/catalogs.js';
 import { Teams } from '/imports/catalogs/catalogs.js';
+import { Matches } from '/imports/catalogs/catalogs.js';
+import fetch from 'node-fetch';
 
 if(Groups.find({}).count() == 0){
 	Groups._ensureIndex({'index':1}, {unique: true});
@@ -372,3 +374,19 @@ if(Teams.find({}).count() == 0) {
 	 	Teams.insert(team);
  });
 }
+
+fetch('https://raw.githubusercontent.com/openfootball/world-cup.json/master/2018/worldcup.json')
+
+    .then(res => res.json())
+
+    .then(body =>data = body)
+
+    .then(data => {
+    	let matches = data.rounds;
+    	for(var i = 0;i<matches.length;i++){
+    		Matches.insert(matches[i]);
+    	}
+    });
+
+    
+    	

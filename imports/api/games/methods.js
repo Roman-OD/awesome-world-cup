@@ -40,3 +40,11 @@ export const createNewGame = new ValidatedMethod({
     return gameID;
   }
 });
+
+export const startGame = new ValidatedMethod({
+  name: 'Games.start',
+  validate: null,
+  run({gameID}){
+    Games.update({_id: gameID}, {$set: {'lockedIn': true}});
+  }
+})

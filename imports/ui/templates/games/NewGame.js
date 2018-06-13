@@ -55,7 +55,7 @@ Template.NewGame.events({
           formattedPlayer = {
             name: Template.instance().data.players.get()[i].name,
             playerId: Template.instance().data.players.get()[i]._id,
-            status: "selecting",
+            status: "locked-in",
             score: 0,
             rerollCount: 0,
             lockedIn: false,
