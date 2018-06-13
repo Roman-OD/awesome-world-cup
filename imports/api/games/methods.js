@@ -53,8 +53,9 @@ export const assignTeam = new ValidatedMethod({
   name: 'Games.assignTeam',
   validate: null,
   run({gameId, playerName, team}) {
+    console.log(Games.find({_id:gameId, 'players.$.name': playerName}).fetch());
     return Games.update(
       {_id:gameId, 'players.$.name': playerName},
-      {$push: {'players.$.teams': team}});
+      {$set: {'players.$.seed1': team}});
   }
 });
