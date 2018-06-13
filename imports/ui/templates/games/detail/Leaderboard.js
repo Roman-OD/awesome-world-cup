@@ -4,8 +4,21 @@ import { Games } from '/imports/api/games/games.js';
 
 import './Leaderboard.html'
 
+Template.Leaderboard.onCreated(function(){
+
+	this.players = new ReactiveVar([]);
+	this.autorun(() => {
+		const game = Games.find({_id: FlowRouter.getParam("gameId")}).fetch()[0];
+		console.log(game);
+		if(game){
+			const players = game.players.sort(function(a,b){return a.score - b.score})
+			this.players.set(players);
+		}
+	})
+})
+
 Template.Leaderboard.helpers({
  	getPlayers: function () {
-        return Games.find({}).fetch()[0].players.sort(function(a, b){return b-a});;
+        return Template.instance().players.get();
 	}
 })
