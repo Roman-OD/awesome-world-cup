@@ -28,7 +28,7 @@ Template.GameLobby.helpers({
       const game = Games.find({_id: FlowRouter.getParam('gameId')}).fetch()[0];
       if (game) {
         const player = game.players.find((player) => { return player.name === Meteor.user().username; });
-        if (player.status === 'lockedIn') {
+        if (player.status === 'locked-in') {
           return true;
         }
         return false;
@@ -39,8 +39,12 @@ Template.GameLobby.helpers({
       const game = Games.find({_id: FlowRouter.getParam('gameId')}).fetch()[0];
       if (game) {
         const player = game.players.find((player) => { return player.name === Meteor.user().username; });
-        return [player.seed1, player.seed2, player.seed3, player.seed4];
+        if (player.seed1 && player.seed2 && player.seed3 && player.seed4) {
+          return [player.seed1, player.seed2, player.seed3, player.seed4];
+        }
+        return false;
       }
+      return false;
     },
     toUpperCase: function(value) {
       return value.toUpperCase();

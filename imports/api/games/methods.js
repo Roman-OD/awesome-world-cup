@@ -67,7 +67,7 @@ export const updatePlayerStatus = new ValidatedMethod({
   validate: null,
   run({gameId, playerName}) {
     const setModifier = {$set: {}};
-    setModifier.$set['players.$.status'] = 'lockedIn';
+    setModifier.$set['players.$.status'] = 'locked-in';
     return Games.update(
       {_id: gameId, 'players.name': playerName},
       setModifier,

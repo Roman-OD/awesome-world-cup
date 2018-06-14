@@ -19,12 +19,14 @@
                     <div class="card-body">
                         <h5 class="card-title">Drafted Teams</h5>
                         <ul class="list-group list-group-flush">
+                            {{#if teams}}
                             {{#each team in teams}}
                                 <li class="list-group-item d-flex align-items-center">
                                     <img src="{{team.flag}}" class="img-responsive mr-2 xs-flag" alt="">
                                     <span class="">{{team.name}} - Group {{toUpperCase team.group}}</span>
                                 </li>
                             {{/each}}
+                            {{/if}}
                         </ul>
                     </div>
                 </div>

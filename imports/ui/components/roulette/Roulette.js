@@ -34,7 +34,7 @@ Template.Roulette.onRendered(() => {
           active: 0,
           delay: 100,
           randomize() {
-            return Math.floor(Math.random() * 7) + 1;
+            return Math.floor(Math.random() * 8) + 1;
           }
         });
         const teamMachine3 = document.querySelector('#teamMachine3');
@@ -42,7 +42,7 @@ Template.Roulette.onRendered(() => {
           active: 0,
           delay: 100,
           randomize() {
-            return Math.floor(Math.random() * 7) + 1;
+            return Math.floor(Math.random() * 8) + 1;
           }
         });
         const teamMachine4 = document.querySelector('#teamMachine4');
@@ -50,7 +50,7 @@ Template.Roulette.onRendered(() => {
           active: 0,
           delay: 100,
           randomize() {
-            return Math.floor(Math.random() * 7) + 1;
+            return Math.floor(Math.random() * 8) + 1;
           }
         });
       });
