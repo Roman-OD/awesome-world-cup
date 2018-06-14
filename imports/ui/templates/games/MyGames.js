@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Games } from '/imports/api/games/games.js'
+import { Games } from '/imports/api/games/games.js';
 
 import './MyGames.html'
 
@@ -12,23 +12,29 @@ Template.MyGames.onCreated(function(){
 });
 
 Template.MyGames.helpers({
-    games: () => {
-         return Games.find({'players.name': Meteor.user().username}).fetch();
-    },
-    noGames: ()=>{
-    	console.log(Games.find({'players.name': Meteor.user().username}).fetch());
-    if (Games.find({'players.name': Meteor.user().username}).count() > 0)
-      return false;
-    else
-      return true;
+  games() {
+    // return Games.find({'players': { $elemMatch: {email: Meteor.user().emails[0].address} } }).fetch();
+    return Games.find({'players': { $elemMatch: {name: Meteor.user().username} } }).fetch();
+
   },
+  noGames() {
+    // return (Games.find({'players': { $elemMatch: {email: Meteor.user().emails[0].address} } }).count() === 0)
+    return Games.find({'players': { $elemMatch: {name: Meteor.user().username} } }).count() === 0;
+
+  },
+  noInvitations() {
+    if (Meteor.user().profile.invitations)
+      return ( Meteor.user().profile.invitations.length === 0 );
+  },
+  invitations() {
+    return Meteor.user().profile.invitations;
+  }
 })
 
 Template.MyGames.events({
     'click .gameDetailBtn' : (event) => {
     	event.preventDefault();
     	const gameId = event.currentTarget.id;
-    	console.log(gameId);
-        FlowRouter.go('/games/detail/' + gameId);
+      FlowRouter.go('/games/detail/' + gameId);
     }
 })
