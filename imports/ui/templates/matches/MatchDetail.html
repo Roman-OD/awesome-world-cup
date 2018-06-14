@@ -1,4 +1,5 @@
 <template name="MatchDetail">
+    {{#if Template.subscriptionsReady}}
     <div class="container">
         <div class="row">
             <div class="col">
@@ -8,19 +9,20 @@
         <div class="row">
             <div class="card col-12 pl-0 pr-0">
                 <div class="card-header text-center">
-                    Group Stage - Group A - Matchday 1 of 3
+                    {{matchInfo.group}}
                 </div>
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div>
-                            <img src="/img/flags/lg/mx.png" class="img-responsive mr-1 sm-flag" alt="">
-                            <span class="match-nation-lg">Mexico</span>
+                            <img src="{{getFlagURL matchInfo.team1.code}}" class="img-responsive mr-1 sm-flag" alt="">
+                            <span class="match-nation-lg">{{matchInfo.team1.name}}</span>
                             <span class="ml-5 mr-5 text-secondary match-nation-lg">vs</span>
-                            <img src="/img/flags/lg/de.png" class="img-responsive mr-1 sm-flag" alt="">
-                            <span class="match-nation-lg">Germany</span>
+                            <img src="{{getFlagURL matchInfo.team2.code}}" class="img-responsive mr-1 sm-flag" alt="">
+                            <span class="match-nation-lg">{{matchInfo.team2.name}}</span>
                         </div>
                     </div>
-                    <p class="text-secondary text-center mt-4">Ekaterinburg Arena</p>
+                    <p class="text-secondary text-center mt-4">{{matchInfo.stadium.name}}</p>
+                    <p class="text-secondary text-center mt-4">{{matchInfo.date}} at {{matchInfo.time}}</p>
                 </div>
             </div>
         </div>
@@ -31,23 +33,23 @@
                     <h5 class="card-title text-center mt-2">Win Probability</h5>
                     <div class="row justify-content-center">
                         <div class="col text-center">
-                            <p>Mexico: 45%</p>
+                            <p>{{matchInfo.team1.name}}: 25%</p>
                         </div>
                         <div class="col text-center">
-                            <p>Draw: 30%</p>
+                            <p>Draw: 50%</p>
                         </div>
                         <div class="col text-center">
-                            <p>Germany: 25%</p>
+                            <p>{{matchInfo.team2.name}}: 25%</p>
                         </div>
                     </div>
                     <div class="progress">
-                        <div class="progress-bar-striped bg-success" role="progressbar" style="width: 45%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar-striped" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar-striped" role="progressbar" style="width: 45%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar-striped" role="progressbar" style="width: 30%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <hr/>
                     <h5 class="card-title text-center mt-5">Standings</h5>
-                    <p class="text-secondary text-center">Group A</p>
+                    <p class="text-secondary text-center">{{matchInfo.group}}</p>
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -63,66 +65,27 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">
-                                <img src="/img/flags/xs/mx.png" class="img-responsive mr-1 xs-flag" alt="">
-                                <span>Mexico</span>
-                            </th>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <img src="/img/flags/xs/de.png" class="img-responsive mr-1 xs-flag" alt="">
-                                <span>Germany</span>
-                            </th>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <img src="/img/flags/xs/sk.png" class="img-responsive mr-1 xs-flag" alt="">
-                                <span>South Korea</span>
-                            </th>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <img src="/img/flags/xs/se.png" class="img-responsive mr-1 xs-flag" alt="">
-                                <span>Sweden</span>
-                            </th>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
+                        {{#each entry in groupStandings}}
+                            <tr>
+                                <th scope="row">
+                                    <img src="{{getFlagURL entry.team.code}}" class="img-responsive mr-1 xs-flag" alt="">
+                                    <span>{{entry.team.name}}</span>
+                                </th>
+                                <td>{{entry.played}}</td>
+                                <td>{{entry.won}}</td>
+                                <td>{{entry.drawn}}</td>
+                                <td>{{entry.lost}}</td>
+                                <td>{{entry.goals_for}}</td>
+                                <td>{{entry.goals_against}}</td>
+                                <td>{{goal_difference entry.won entry.lost}}</td>
+                                <td>{{entry.pts}}</td>
+                            </tr>
+                        {{/each}}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    {{/if}}
 </template>
