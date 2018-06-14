@@ -1,4 +1,5 @@
 <template name="Roulette">
+  {{#if Template.subscriptionsReady}}
   <div id="roulette" class="col">
     <div class="card">
       <div class="card-header">
@@ -8,7 +9,31 @@
       </div>
       <div class="card-body">
         <div class="row">
+          {{#each machine in machines}}
           <div class="col-3 well content">
+            <div id="{{machine.name}}" class="slotMachine">
+              <div class="text-center">
+                <div width="100%">
+                  Seed 1
+                </div>
+                <div widht="100%">
+                  <img height="100px" src="/img/Placeholder_flag.svg">
+                </div>
+              </div>
+              {{#each team in teams machine.index}}
+              <div class="text-center" data-teamid="{{team._id}}">
+                <div width="100%">
+                  {{team.name}}
+                </div>
+                <div widht="100%">
+                  <img height="100px" src="{{team.flag}}">
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          {{/each}}
+          <!-- <div class="col-3 well content">
             <div id="teamMachine1" class="slotMachine">
               <div class="text-center">
                 <div width="100%">
@@ -95,7 +120,7 @@
               </div>
               {{/each}}
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -126,4 +151,5 @@
       </div>
     </div>
   </div>
+  {{/if}}
 </template>

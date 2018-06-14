@@ -49,6 +49,14 @@ export const startGame = new ValidatedMethod({
   }
 });
 
+export const addPlayerToGame = new ValidatedMethod({
+  name: 'Games.addPlayerToGame',
+  validate: null,
+  run({gameId, player}) {
+    Games.update({_id: gameId}, {$push: {players: player}});
+  }
+});
+
 export const assignTeam = new ValidatedMethod({
   name: 'Games.assignTeam',
   validate: null,

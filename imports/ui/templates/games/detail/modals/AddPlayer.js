@@ -24,9 +24,9 @@ Template.AddPlayer.events({
                         email,
                         status: 'Pending Invitation'
                     }
-        
+
         const parentData = Template.parentData(2);
-        checkUser.call({username: name}, function(err, resp){   
+        checkUser.call({username: name}, function(err, resp){
             if(resp) {
             console.log(resp);
                if (resp==true) {
@@ -46,11 +46,11 @@ Template.AddPlayer.events({
                         // Clear form
                         target.name.value = ''
                         target.email.value = ''
-                        $('#addPlayerModal').modal('hide')
+                        $('#addPlayerToGameModal').modal('hide')
                     } else {
                         console.log("player already in list");
                     }
-                
+
                 } else {
                     console.log("player not found in system");
                 }

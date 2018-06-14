@@ -11,8 +11,29 @@ import './Roulette.html';
 Template.Roulette.onCreated(function () {
   this.subscribe('groups.all');
   this.subscribe('teams.all');
-  this.selectedTeams = new ReactiveDict();
   this.rollCount = 0;
+  this.machines = new ReactiveVar([
+    {
+      index:1,
+      name: 'machine1',
+      status: 'active'
+    },
+    {
+      index:2,
+      name: 'machine2',
+      status: 'active'
+    },
+    {
+      index:3,
+      name: 'machine3',
+      status: 'active'
+    },
+    {
+      index:4,
+      name: 'machine4',
+      status: 'active'
+    },
+  ]);
 });
 
 Template.Roulette.onRendered(() => {
@@ -20,38 +41,16 @@ Template.Roulette.onRendered(() => {
   Tracker.autorun(() => {
     if (instance.subscriptionsReady()) {
       $(document).ready(function() {
-        const teamMachine1 = document.querySelector('#teamMachine1');
-        instance.machine1 = new SlotMachine(teamMachine1, {
-          active: 0,
-          delay: 100,
-          randomize() {
-            // returns a number between 1 and 7
-            return Math.floor(Math.random() * 8) + 1;
-          }
-        });
-        const teamMachine2 = document.querySelector('#teamMachine2');
-        instance.machine2 = new SlotMachine(teamMachine2, {
-          active: 0,
-          delay: 100,
-          randomize() {
-            return Math.floor(Math.random() * 8) + 1;
-          }
-        });
-        const teamMachine3 = document.querySelector('#teamMachine3');
-        instance.machine3 = new SlotMachine(teamMachine3, {
-          active: 0,
-          delay: 100,
-          randomize() {
-            return Math.floor(Math.random() * 8) + 1;
-          }
-        });
-        const teamMachine4 = document.querySelector('#teamMachine4');
-        instance.machine4 = new SlotMachine(teamMachine4, {
-          active: 0,
-          delay: 100,
-          randomize() {
-            return Math.floor(Math.random() * 8) + 1;
-          }
+        instance.machines.get().forEach((machine) => {
+          const machineName = machine.name;
+          instance[machineName] = new SlotMachine(document.querySelector(`#${machineName}`), {
+            active: 0,
+            delay: 100,
+            randomize() {
+              // returns a number between 1 and 7
+              return Math.floor(Math.random() * 8) + 1;
+            }
+          });
         });
       });
     }
@@ -65,8 +64,8 @@ Template.Roulette.helpers({
   isReady(machineIndex) {
     return false;
   },
-  selectedTeam(seedIndex) {
-    const teamIndex = Template.instance().selectedTeams.get(seedIndex);
+  machines() {
+    return Template.instance().machines.get();
   },
 });
 

@@ -1,4 +1,5 @@
 <template name="UpcomingMatches">
+  {{#if Template.subscriptionsReady}}
     {{#each matchDay in getMatchDays}}
         <h3 class="mt-4">{{matchDay.name}} <em>- {{getMatchDayDate matchDay}}</em></h3>
         <div class="row">
@@ -27,4 +28,5 @@
         </div>
 
     {{/each}}
+    {{/if}}
 </template>

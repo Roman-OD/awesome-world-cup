@@ -26,6 +26,7 @@ export const checkUser = new ValidatedMethod({
     username: {type: String}
   }).validator(),
   run({username}){
+    console.log(username);
     return (Users.find({'username': username}).count() > 0);
   }
 });

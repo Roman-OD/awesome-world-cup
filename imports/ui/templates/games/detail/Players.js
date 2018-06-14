@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Games } from '/imports/api/games/games.js';
 
-import './modals/AddPlayer.js'
+import './modals/AddPlayerToGame.js'
 import './modals/RemovePlayer.js'
 import './modals/EmailPlayer.js'
 
@@ -36,4 +36,4 @@ Template.Players.helpers({
             return 'text-warning'
         }
     }
-})
+});

@@ -1,4 +1,5 @@
 <template name="GameLobby">
+  {{#if Template.subscriptionsReady}}
     <div class="row">
         <div class="col">
             <h2 class="mb-4">Game Lobby</h2>
@@ -46,4 +47,5 @@
         <h6>Waiting for players to lock-in team selections</h6>
         {{/if}} -->
     </div>
+    {{/if}}
 </template>
