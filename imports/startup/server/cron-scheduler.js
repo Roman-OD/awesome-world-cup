@@ -6,6 +6,7 @@ import fetch from 'node-fetch';
 
 Meteor.startup(() => {
 	if (Meteor.isServer) {
+		let seedScores = [0,125,150,175,200];
 		new CronJob('0 59 23 * * *', Meteor.bindEnvironment(() => {
 			fetch('https://raw.githubusercontent.com/openfootball/world-cup.json/master/2018/worldcup.json')
 			.then(res => res.json())
@@ -34,17 +35,18 @@ Meteor.startup(() => {
 			                Games.find({}).fetch().forEach((game) => {
 			   				  game.players.forEach((player) => {
 			  					const seeds = [player.seed1, player.seed2, player.seed3, player.seed4];
-
-			  					seeds.forEach((seed) => {
-			  					  if (seed.name === team1) {
-			  					  	const score = player.score += seed.seed * team1EventScore;
-			  					  	Games.update({ _id: game._id, 'players.name': player.name}, {$set: { 'players.$.score': score } }, false, true);
-			  					  } 
-			  					  if (seed.name === team2) {
-			  					  	const score = player.score += seed.seed * team2EventScore;
-			  					  	Games.update({ _id: game._id, 'players.name': player.name}, {$set: { 'players.$.score': score } }, false, true);
-			  					  }
-			  					}); 
+			  					if(seeds[0]){
+				  					seeds.forEach((seed) => {
+				  					  if (seed.name === team1) {
+				  					  	const score = player.score += seedScores[seed.seed] * team1EventScore;
+				  					  	Games.update({ _id: game._id, 'players.name': player.name}, {$set: { 'players.$.score': score } }, false, true);
+				  					  } 
+				  					  if (seed.name === team2) {
+				  					  	const score = player.score += seedScores[seed.seed] * team2EventScore;
+				  					  	Games.update({ _id: game._id, 'players.name': player.name}, {$set: { 'players.$.score': score } }, false, true);
+				  					  }
+				  					});
+			  					} 
 			   				  });
 			                });
    						}
