@@ -7,7 +7,7 @@ import fetch from 'node-fetch';
 Meteor.startup(() => {
 	if (Meteor.isServer) {
 		let seedScores = [50,125,150,175,200];
-		new CronJob('0 0 23 * * *', Meteor.bindEnvironment(() => {
+		new CronJob('0 30 23 * * *', Meteor.bindEnvironment(() => {
 			fetch('https://raw.githubusercontent.com/openfootball/world-cup.json/master/2018/worldcup.json')
 			.then(res => res.json())
 			.then(body =>data = body)
@@ -47,7 +47,7 @@ Meteor.startup(() => {
 				  					  }
 				  					  if (seed.name === team2.name) {
 				  					  	const score = ((seedScores[seed.seed] * team2EventScore) + (score2 * seedScores[0]));
-				  					  	Games.update({ _id: game._id, 'players.name': player.name}, {$set: { 'players.$.score': score } }, false, true);
+				  					  	Games.update({ _id: game._id, 'players.name': player.name}, {$inc: { 'players.$.score': score } }, false, true);
 				  					  }
 				  					});
 			  					}

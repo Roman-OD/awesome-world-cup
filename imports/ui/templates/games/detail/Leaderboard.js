@@ -11,7 +11,7 @@ Template.Leaderboard.onCreated(function(){
 		const game = Games.find({_id: FlowRouter.getParam("gameId")}).fetch()[0];
 		console.log(game);
 		if(game){
-			const players = game.players.sort(function(a,b){return a.score - b.score})
+			const players = game.players.sort(function(a,b){return b.score - a.score})
 			this.players.set(players);
 		}
 	})
