@@ -14,7 +14,7 @@
 
     <div class="row">
         {{#each player in game.players}}
-            <div class="col-6">
+            <div class="col-md-6 col-xs-12">
                 <div class="card">
                     <h6 class="card-header">{{player.name}} <span class="float-right {{getStatusClass player.status}}">{{player.status}}</span></h6>
                     <div class="card-body">

@@ -11,13 +11,15 @@ Template.UpcomingMatches.helpers({
     getMatchDays: function() {
         let matchList = Matches.find({}).fetch()
         let legDateFilter = new Date()
+        let yesterday = new Date()
+        yesterday.setDate(yesterday.getDate()-1)
         let matchMap = []
         legDateFilter.setDate(legDateFilter.getDate()+3)
         if(matchList) {
             matchMap = matchList.filter((leg) => {
                 for(match of leg.matches){
                     let matchDate = new Date(match.date)
-                    if(matchDate > legDateFilter) {
+                    if(matchDate > legDateFilter || matchDate < yesterday) {
                         return false
                     }
                     return true
