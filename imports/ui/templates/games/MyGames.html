@@ -1,71 +1,24 @@
 <template name="MyGames">
     <div class="container">
-         <div class="row mt-5">
-            <div class="row mt-5">
+         <div class="mt-5">
+            <div class="mt-5">
                 <h1>My Games</h1>
                  {{#if noGames}}
-         		<div class=col-12>No games to display - Why not create one?</div>
-
+         		    <div class=col-12>No games to display - Why not create one?</div>
                  {{else}}
-                <table class="table table-striped mt-4 mb-4">
-                    <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Creator</th>
-                        <th scope="col">Details</th>
-                        <!-- <th scope="col">CreatedAt</th> -->
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    {{#each game in games}}
-                    <tr>
-                        <td>{{game.name}}</td>
-                        <td>{{game.creator}}</td>
-                        <td><button type="button" id="{{game._id}}" class="btn btn-primary gameDetailBtn">Go to game detail</button></td>
-                    </tr>
-                    {{/each}}
-                    </tbody>
-                </table>
+                     <div class="row">
+                     {{#each game in games}}
+                     <div class="col-xs-12 col-md-5 card mb-2 ml-4 mr-2">
+                         <div class="card-body">
+                             <h5 class="card-title">{{game.name}}</h5>
+                             <p class="card-text">Created by: {{game.creator}}</p>
+                             <a href="#" id="{{game._id}}" class="btn btn-primary gameDetailBtn">Go to game detail</a>
+                         </div>
+                     </div>
+                     {{/each}}
+                     </div>
                 {{/if}}
             </div>
         </div>
-       <!--  <div class="row mt-5">
-            <div class="row mt-5">
-                <h1>My Invites</h1>
-                 {{#if noInvitations}}
-                  <div class=col-12>No game invitations</div>
-
-                 {{else}}
-                <table class="table table-striped mt-4 mb-4">
-                    <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Creator</th>
-                        <th scope="col">Details</th>
-                        <th scope="col">CreatedAt</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    {{#each game in invites}}
-                    <tr>
-                        <td>{{game.name}}</td>
-                        <td>{{game.creator}}</td>
-                        <td><button type="button" id="{{game._id}}" class="btn btn-primary gameDetailBtn">Accept invitation</button></td>
-                    </tr>
-                    {{/each}}
-                    </tbody>
-                </table>
-                {{/if}}
-            </div>
-        </div>
- -->
-
-
-        <!-- <div class="row">
-          {{> Roulette}}
-        </div> -->
-
     </div>
 </template>

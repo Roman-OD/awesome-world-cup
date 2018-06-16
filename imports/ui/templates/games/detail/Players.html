@@ -12,16 +12,16 @@
     {{#each player in getPlayers}}
         <div class="list-group">
             <div class="list-group-item list-group-item-action">
-                <label class="col-7">{{player.name}} <span class="text-secondary"><em> - {{player.email}}</em></span></label>
-                <span class="col-3 {{getStatusClass player.status}}">{{player.status}}</span>
-                <div class="col-2 float-right">
-                    <button type="button" class="btn btn-danger removePlayerBtn float-right" data-toggle="modal"
-                            data-target="#removePlayerModal"><i class="fas fa-trash"></i></button>
-                    {{#if showEmailBtn player.status}}
-                        <button type="button" class="btn btn-secondary sendEmailBtn float-right" data-toggle="modal"
-                                data-target="#emailPlayerModal"><i class="fas fa-envelope"></i></button>
-                    {{/if}}
-                </div>
+                <label class="col-6">{{player.name}} <span class="text-secondary"></span></label>
+                <span class="col-5 float-right text-right {{getStatusClass player.status}}">{{player.status}}</span>
+                <!--<div class="col-2 float-right">-->
+                    <!--<button type="button" class="btn btn-danger removePlayerBtn float-right" data-toggle="modal"-->
+                            <!--data-target="#removePlayerModal"><i class="fas fa-trash"></i></button>-->
+                    <!--{{#if showEmailBtn player.status}}-->
+                        <!--<button type="button" class="btn btn-secondary sendEmailBtn float-right" data-toggle="modal"-->
+                                <!--data-target="#emailPlayerModal"><i class="fas fa-envelope"></i></button>-->
+                    <!--{{/if}}-->
+                <!--</div>-->
             </div>
         </div>
     {{/each}}

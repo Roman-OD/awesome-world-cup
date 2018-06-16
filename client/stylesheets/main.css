@@ -19,12 +19,8 @@
 }
 
 #login-heading {
-  text-align: center;
   background: rgba(0, 0, 0, 0.5);
   color: #f1f1f1;
-  /*border-style: none;*/
-  /*border-width: 1px;*/
-  /*border-color: white;*/
 }
 
 
@@ -113,4 +109,12 @@
 
 .match-nation-lg {
   font-size:24px;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  #login-panel {
+    width: 90%;
+    top: 20%;
+    left: 5%;
+  }
 }
