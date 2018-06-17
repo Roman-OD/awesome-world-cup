@@ -54,5 +54,10 @@ Template.MatchDetail.helpers({
     },
     goal_difference : function (goals_for, goals_against) {
         return goals_for - goals_against
+    },
+    getScore : function(score) {
+        let result
+        score ? result = score : result = '-'
+        return result
     }
 })

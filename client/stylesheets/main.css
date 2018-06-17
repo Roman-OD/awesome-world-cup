@@ -111,10 +111,24 @@
   font-size:24px;
 }
 
+.score{
+  padding-top: 1.5rem;
+  font-size:24px;
+}
+
+.standings-item {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   #login-panel {
     width: 90%;
     top: 20%;
     left: 5%;
+  }
+
+  .score{
+    padding-top: 0rem;
   }
 }
