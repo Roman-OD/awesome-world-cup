@@ -9,7 +9,6 @@ Template.Leaderboard.onCreated(function(){
 	this.players = new ReactiveVar([]);
 	this.autorun(() => {
 		const game = Games.find({_id: FlowRouter.getParam("gameId")}).fetch()[0];
-		console.log(game);
 		if(game){
 			const players = game.players.sort(function(a,b){return b.score - a.score})
 			this.players.set(players);
@@ -20,5 +19,8 @@ Template.Leaderboard.onCreated(function(){
 Template.Leaderboard.helpers({
  	getPlayers: function () {
         return Template.instance().players.get();
+	},
+	formatIndex: function(index){
+		return ++index;
 	}
 })

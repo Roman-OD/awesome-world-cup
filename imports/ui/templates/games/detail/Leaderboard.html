@@ -14,7 +14,7 @@
                 <tbody>
                 {{#each player in getPlayers}}
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{{formatIndex @index}}</th>
                     <td>{{player.name}}</td>
                     <td>{{player.score}}</td>
                 </tr>
