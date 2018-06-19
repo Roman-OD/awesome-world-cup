@@ -108,6 +108,17 @@ Template.MatchDetail.events({
   }
 });
 
+Template.MatchDetail.onRendered(function() {
+  // re-initialise the selected bets
+  $('#bettings-modal').on('hide.bs.modal', () => {
+    const selectedBets = this.selectedBets.get()
+    for (bet in selectedBets) {
+      selectedBets[bet] = false;
+    }
+    this.selectedBets.set(selectedBets);
+  });
+});
+
 function updateSelectedBets(instance, bet) {
   const selectedBets = instance.selectedBets.get();
   if (selectedBets[bet] === true) {
