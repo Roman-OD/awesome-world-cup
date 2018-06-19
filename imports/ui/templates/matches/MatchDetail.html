@@ -40,13 +40,13 @@
           <h5 class="card-title text-center mt-2">Win Probability</h5>
           <div class="row justify-content-center">
             <div class="col text-center">
-              <p>{{matchInfo.team1.name}}: 25%</p>
+              <p>{{matchInfo.team1.name}}: {{odds 'team1'}}</p>
             </div>
             <div class="col text-center">
-              <p>Draw: 50%</p>
+              <p>Draw: {{odds 'draw'}}</p>
             </div>
             <div class="col text-center">
-              <p>{{matchInfo.team2.name}}: 25%</p>
+              <p>{{matchInfo.team2.name}}: {{odds 'team2'}}</p>
             </div>
           </div>
           <div class="progress">
@@ -111,13 +111,13 @@
           <h5 class="card-title text-center mt-2">Win Probability</h5>
           <div class="row justify-content-center">
             <div class="col text-center">
-              <p>{{matchInfo.team1.name}}: 25%</p>
+              <p>{{matchInfo.team1.name}}: {{odds 'team1'}}</p>
             </div>
             <div class="col text-center">
-              <p>Draw: 50%</p>
+              <p>Draw: {{odds 'draw'}}</p>
             </div>
             <div class="col text-center">
-              <p>{{matchInfo.team2.name}}: 25%</p>
+              <p>{{matchInfo.team2.name}}: {{odds 'team2'}}</p>
             </div>
           </div>
           <div class="progress">
@@ -129,12 +129,39 @@
           <div id="betting-buttons" class="row">
             <div class="col">
               <button type="button" name="button" class="btn {{buttonState 'team1'}}" data-bet="team1">{{matchInfo.team1.name}} (W)</button>
+              {{#if isReadyToBet 'team1'}}
+              <div class="input-group stake-input">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Your stake:</span>
+                </div>
+                <input type="text" class="form-control" id="stake-team1" data-bet="team1">
+              </div>
+              <span class="float-right">Potential payout: {{potentialPayout 'team1'}} pts</span>
+              {{/if}}
             </div>
             <div class="col">
               <button type="button" name="button" class="btn {{buttonState 'draw'}}" data-bet="draw">Draw</button>
+              {{#if isReadyToBet 'draw'}}
+              <div class="input-group stake-input">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Your stake:</span>
+                </div>
+                <input type="text" class="form-control" id="stake-draw" data-bet="draw">
+              </div>
+              <span class="float-right">Potential payout: {{potentialPayout 'draw'}} pts</span>
+              {{/if}}
             </div>
             <div class="col">
               <button type="button" name="button" class="btn {{buttonState 'team2'}}" data-bet="team2">{{matchInfo.team2.name}} (W)</button>
+              {{#if isReadyToBet 'team2'}}
+              <div class="input-group stake-input">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Your stake:</span>
+                </div>
+                <input type="text" class="form-control" id="stake-team2" data-bet="team2">
+              </div>
+              <span class="float-right">Potential payout: {{potentialPayout 'team2'}} pts</span>
+              {{/if}}
             </div>
           </div>
         </div>

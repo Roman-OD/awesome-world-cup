@@ -140,3 +140,8 @@
 .grey-footer {
   background-color: rgba(0, 0, 0, 0.03);
 }
+
+.stake-input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

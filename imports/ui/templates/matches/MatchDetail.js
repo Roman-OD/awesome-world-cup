@@ -16,10 +16,11 @@ Template.MatchDetail.onCreated(function(){
 
   this.standings = new ReactiveVar([])
   this.group = new ReactiveVar('')
+  // TODO: fetch the odds from the DB
   this.selectedBets = new ReactiveVar({
-    team1: false,
-    team2: false,
-    draw: false
+    team1: {selected: false, stake: 0, odds: 1.5},
+    team2: {selected: false, stake: 0, odds: 2},
+    draw: {selected: false, stake: 0, odds: 3.5},
   });
 
 })
@@ -31,6 +32,7 @@ Template.MatchDetail.helpers({
   matchInfo: function() {
     let matchId = parseInt(FlowRouter.getParam("matchId"))
     let matches = Matches.find({matches : {$elemMatch: {num: matchId}}}).fetch()
+    console.log(matches);
     let matchInfo = ''
     if(matches){
       matches.filter((leg) => {
@@ -77,7 +79,7 @@ Template.MatchDetail.helpers({
   },
   buttonState: function(bet) {
     const selectedBets = Template.instance().selectedBets.get();
-    if (selectedBets[bet] === true) {
+    if (selectedBets[bet].selected === true) {
       return 'btn-success';
     } else {
       return 'btn-secondary';
@@ -87,11 +89,20 @@ Template.MatchDetail.helpers({
     const selectedBets = Template.instance().selectedBets.get();
     let isReadyToSubmit = false;
     for (bet in selectedBets) {
-      if (selectedBets[bet]) {
+      if (selectedBets[bet].selected) {
         isReadyToSubmit = true;
       }
     }
     return isReadyToSubmit;
+  },
+  isReadyToBet: function(bet) {
+    return Template.instance().selectedBets.get()[bet].selected === true;
+  },
+  potentialPayout: function(bet) {
+    return Template.instance().selectedBets.get()[bet].stake;
+  },
+  odds: function(bet) {
+    return Template.instance().selectedBets.get()[bet].odds;
   }
 });
 
@@ -105,6 +116,17 @@ Template.MatchDetail.events({
   },
   'click #submit-bets': (event, instance) => {
     submitSelectedBets(instance);
+  },
+  'keyup input': (event, instance) => {
+    const bet = $(event.currentTarget).data('bet');
+    const stake = $(event.currentTarget).val().trim();
+    const selectedBets = instance.selectedBets.get();
+    if (stake) {
+      selectedBets[bet].stake = getPotentialPayout(stake, selectedBets[bet].odds)
+    }  else {
+      selectedBets[bet].stake = 0;
+    }
+    instance.selectedBets.set(selectedBets);
   }
 });
 
@@ -113,18 +135,23 @@ Template.MatchDetail.onRendered(function() {
   $('#bettings-modal').on('hide.bs.modal', () => {
     const selectedBets = this.selectedBets.get()
     for (bet in selectedBets) {
-      selectedBets[bet] = false;
+      selectedBets[bet].selected = false;
     }
     this.selectedBets.set(selectedBets);
   });
 });
 
+function getPotentialPayout(stake, odds) {
+  return Math.round((stake * odds) + parseInt(stake));
+}
+
 function updateSelectedBets(instance, bet) {
   const selectedBets = instance.selectedBets.get();
-  if (selectedBets[bet] === true) {
-    selectedBets[bet] = false;
+  if (selectedBets[bet].selected === true) {
+    selectedBets[bet].selected = false;
+    selectedBets[bet].stake = 0;
   } else {
-    selectedBets[bet] = true;
+    selectedBets[bet].selected = true;
   }
   instance.selectedBets.set(selectedBets);
 }
