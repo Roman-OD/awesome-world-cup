@@ -24,8 +24,9 @@ Template.GameDetail.onCreated(function(){
     {name: 'Pablo Perez', email: 'pablo@metixmedical.co.uk', status: 'Pending Invitation',
     teams: [{name: 'Mexico', icon: "mx.png"}]}
   ]
-  this.players = new ReactiveVar(playerList)
-  this.currentTab = new ReactiveVar( "GameLobby")
+  this.players = new ReactiveVar(playerList);
+  this.currentTab = new ReactiveVar( "GameLobby");
+
 });
 
 Template.GameDetail.helpers({
@@ -36,12 +37,12 @@ Template.GameDetail.helpers({
     return Template.instance().currentTab.get()
   },
   tabData: function() {
-    var tab = Template.instance().currentTab.get()
-    var data = {
-      "players": [],
-      "leaderboard": [],
-      "upcoming-matches": [],
-      "game-lobby": []
+    const tab = Template.instance().currentTab.get()
+    const data = {
+      "Players": [],
+      "Leaderboard": [],
+      "UpcomingMatches": {game: Games.find({}).fetch()[0]},
+      "GameLobby": [],
     }
     return data[tab];
   },

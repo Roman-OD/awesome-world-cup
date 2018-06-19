@@ -132,3 +132,7 @@
     padding-top: 0rem;
   }
 }
+
+#betting-buttons button {
+  width: 100%;
+}

@@ -1,97 +1,147 @@
 <template name="MatchDetail">
-    {{#if Template.subscriptionsReady}}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h3 class="mb-4">Detail of Match {{matchId}}</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="card col-12 pl-0 pr-0">
-                <div class="card-header text-center">
-                    {{matchInfo.group}}
-                </div>
-                <div class="card-body">
-                    <div class="row justify-content-center">
-                            <div class="col-xs-12 col-md-3 text-center">
-                                <img src="{{getFlagURL matchInfo.team1.code}}" class="img-responsive mr-1 sm-flag" alt="">
-                                <div class="match-nation-lg mt-1">{{matchInfo.team1.name}}</div>
-                            </div>
-                            <span class="col-xs-12 text-center score">{{getScore matchInfo.score1}}</span>
-                            <span class="col-xs-12 col-md-2 text-center text-secondary score">vs</span>
-                            <span class="col-xs-12 text-center score">{{getScore matchInfo.score2}}</span>
-                            <div class="col-xs-12 col-md-3 text-center">
-                                <img src="{{getFlagURL matchInfo.team2.code}}" class="img-responsive mr-1 sm-flag" alt="">
-                                <div class="match-nation-lg mt-1">{{matchInfo.team2.name}}</div>
-                            </div>
-                    </div>
-                    <p class="text-secondary text-center mt-4">{{matchInfo.stadium.name}}</p>
-                    <p class="text-secondary text-center mt-4">{{matchInfo.date}} at {{matchInfo.time}}</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-2">
-            <div class="card col-12 pl-0 pr-0">
-                <div class="card-body">
-                    <h5 class="card-title text-center mt-2">Win Probability</h5>
-                    <div class="row justify-content-center">
-                        <div class="col text-center">
-                            <p>{{matchInfo.team1.name}}: 25%</p>
-                        </div>
-                        <div class="col text-center">
-                            <p>Draw: 50%</p>
-                        </div>
-                        <div class="col text-center">
-                            <p>{{matchInfo.team2.name}}: 25%</p>
-                        </div>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar-striped" role="progressbar" style="width: 45%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar-striped" role="progressbar" style="width: 30%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <hr/>
-                    <h5 class="card-title text-center mt-5">Standings</h5>
-                    <p class="text-secondary text-center">{{matchInfo.group}}</p>
-                    <table class="table table-striped table-responsive-sm">
-                        <thead>
-                        <tr>
-                            <th scope="col">Team</th>
-                            <th scope="col">MP</th>
-                            <th scope="col">W</th>
-                            <th scope="col">D</th>
-                            <th scope="col">L</th>
-                            <th scope="col">GF</th>
-                            <th scope="col">GA</th>
-                            <th scope="col">GD</th>
-                            <th scope="col">Pts</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {{#each entry in groupStandings}}
-                            <tr>
-                                <th scope="row">
-                                    <div class="standings-item">
-                                    <img src="{{getFlagURL entry.team.code}}" class="img-responsive mr-1 xs-flag" alt="">
-                                    {{entry.team.name}}
-                                    </div>
-                                </th>
-                                <td>{{entry.played}}</td>
-                                <td>{{entry.won}}</td>
-                                <td>{{entry.drawn}}</td>
-                                <td>{{entry.lost}}</td>
-                                <td>{{entry.goals_for}}</td>
-                                <td>{{entry.goals_against}}</td>
-                                <td>{{goal_difference entry.won entry.lost}}</td>
-                                <td>{{entry.pts}}</td>
-                            </tr>
-                        {{/each}}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+  {{#if Template.subscriptionsReady}}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h3 class="mb-4">Detail of Match {{matchId}}</h3>
+      </div>
+      <div class="col">
+        <button id="bettings" type="button" name="button" class="btn btn-lg btn-primary float-right">Bettings</button>
+      </div>
     </div>
-    {{/if}}
+    <div class="row">
+      <div class="card col-12 pl-0 pr-0">
+        <div class="card-header text-center">
+          {{matchInfo.group}}
+        </div>
+        <div class="card-body">
+          <div class="row justify-content-center">
+            <div class="col-xs-12 col-md-3 text-center">
+              <img src="{{getFlagURL matchInfo.team1.code}}" class="img-responsive mr-1 sm-flag" alt="">
+              <div class="match-nation-lg mt-1">{{matchInfo.team1.name}}</div>
+            </div>
+            <span class="col-xs-12 text-center score">{{getScore matchInfo.score1}}</span>
+            <span class="col-xs-12 col-md-2 text-center text-secondary score">vs</span>
+            <span class="col-xs-12 text-center score">{{getScore matchInfo.score2}}</span>
+            <div class="col-xs-12 col-md-3 text-center">
+              <img src="{{getFlagURL matchInfo.team2.code}}" class="img-responsive mr-1 sm-flag" alt="">
+              <div class="match-nation-lg mt-1">{{matchInfo.team2.name}}</div>
+            </div>
+          </div>
+          <p class="text-secondary text-center mt-4">{{matchInfo.stadium.name}}</p>
+          <p class="text-secondary text-center mt-4">{{matchInfo.date}} at {{matchInfo.time}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="card col-12 pl-0 pr-0">
+        <div class="card-body">
+          <h5 class="card-title text-center mt-2">Win Probability</h5>
+          <div class="row justify-content-center">
+            <div class="col text-center">
+              <p>{{matchInfo.team1.name}}: 25%</p>
+            </div>
+            <div class="col text-center">
+              <p>Draw: 50%</p>
+            </div>
+            <div class="col text-center">
+              <p>{{matchInfo.team2.name}}: 25%</p>
+            </div>
+          </div>
+          <div class="progress">
+            <div class="progress-bar-striped" role="progressbar" style="width: 45%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar-striped" role="progressbar" style="width: 30%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <hr/>
+          <h5 class="card-title text-center mt-5">Standings</h5>
+          <p class="text-secondary text-center">{{matchInfo.group}}</p>
+          <table class="table table-striped table-responsive-sm">
+            <thead>
+              <tr>
+                <th scope="col">Team</th>
+                <th scope="col">MP</th>
+                <th scope="col">W</th>
+                <th scope="col">D</th>
+                <th scope="col">L</th>
+                <th scope="col">GF</th>
+                <th scope="col">GA</th>
+                <th scope="col">GD</th>
+                <th scope="col">Pts</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each entry in groupStandings}}
+              <tr>
+                <th scope="row">
+                  <div class="standings-item">
+                    <img src="{{getFlagURL entry.team.code}}" class="img-responsive mr-1 xs-flag" alt="">
+                    {{entry.team.name}}
+                  </div>
+                </th>
+                <td>{{entry.played}}</td>
+                <td>{{entry.won}}</td>
+                <td>{{entry.drawn}}</td>
+                <td>{{entry.lost}}</td>
+                <td>{{entry.goals_for}}</td>
+                <td>{{entry.goals_against}}</td>
+                <td>{{goal_difference entry.won entry.lost}}</td>
+                <td>{{entry.pts}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+
+  <div id="bettings-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Your points: {{player.score}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5 class="card-title text-center mt-2">Win Probability</h5>
+          <div class="row justify-content-center">
+            <div class="col text-center">
+              <p>{{matchInfo.team1.name}}: 25%</p>
+            </div>
+            <div class="col text-center">
+              <p>Draw: 50%</p>
+            </div>
+            <div class="col text-center">
+              <p>{{matchInfo.team2.name}}: 25%</p>
+            </div>
+          </div>
+          <div class="progress">
+            <div class="progress-bar-striped" role="progressbar" style="width: 45%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar-striped" role="progressbar" style="width: 30%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <hr/>
+          <div id="betting-buttons" class="row">
+            <div class="col">
+              <button type="button" name="button" class="btn {{buttonState 'team1'}}" data-bet="team1">{{matchInfo.team1.name}} (W)</button>
+            </div>
+            <div class="col">
+              <button type="button" name="button" class="btn {{buttonState 'draw'}}" data-bet="draw">Draw</button>
+            </div>
+            <div class="col">
+              <button type="button" name="button" class="btn {{buttonState 'team2'}}" data-bet="team2">{{matchInfo.team2.name}} (W)</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="submit-bets" type="button" class="btn btn-primary btn-lg">Place bet</button>
+      </div>
+      </div>
+    </div>
+  </div>
 </template>
