@@ -18,9 +18,9 @@ Template.MatchDetail.onCreated(function(){
   this.group = new ReactiveVar('')
   // TODO: fetch the odds from the DB
   this.selectedBets = new ReactiveVar({
-    team1: {selected: false, stake: 0, odds: 1.5},
-    team2: {selected: false, stake: 0, odds: 2},
-    draw: {selected: false, stake: 0, odds: 3.5},
+    team1: {selected: false, stake: 0, odds: '8/13'},
+    team2: {selected: false, stake: 0, odds: '14/5'},
+    draw: {selected: false, stake: 0, odds: '23/4'},
   });
 
 })
@@ -89,7 +89,7 @@ Template.MatchDetail.helpers({
     const selectedBets = Template.instance().selectedBets.get();
     let isReadyToSubmit = false;
     for (bet in selectedBets) {
-      if (selectedBets[bet].selected) {
+      if (selectedBets[bet].stake != 0) {
         isReadyToSubmit = true;
       }
     }
@@ -142,7 +142,8 @@ Template.MatchDetail.onRendered(function() {
 });
 
 function getPotentialPayout(stake, odds) {
-  return Math.round((stake * odds) + parseInt(stake));
+  const [numerator, denominator] = odds.split(/[/]/);
+  return Math.round((stake * numerator / denominator) + parseInt(stake));
 }
 
 function updateSelectedBets(instance, bet) {
