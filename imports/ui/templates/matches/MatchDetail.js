@@ -82,6 +82,16 @@ Template.MatchDetail.helpers({
     } else {
       return 'btn-secondary';
     }
+  },
+  isReadyToSubmit: function() {
+    const selectedBets = Template.instance().selectedBets.get();
+    let isReadyToSubmit = false;
+    for (bet in selectedBets) {
+      if (selectedBets[bet]) {
+        isReadyToSubmit = true;
+      }
+    }
+    return isReadyToSubmit;
   }
 });
 

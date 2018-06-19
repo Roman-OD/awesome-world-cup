@@ -138,9 +138,11 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer">
+        {{#if isReadyToSubmit}}
+        <div class="modal-footer grey-footer">
           <button id="submit-bets" type="button" class="btn btn-primary btn-lg">Place bet</button>
-      </div>
+        </div>
+        {{/if}}
       </div>
     </div>
   </div>
