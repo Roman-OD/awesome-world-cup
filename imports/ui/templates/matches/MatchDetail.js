@@ -1,7 +1,7 @@
 import './MatchDetail.html';
 import './Bettings.js';
 
-import { Matches, Teams } from '/imports/catalogs/catalogs.js';
+import { Matches, Teams, Odds } from '/imports/catalogs/catalogs.js';
 import { Games } from '/imports/api/games/games.js';
 import { updateBettings } from '/imports/api/games/methods.js';
 
@@ -14,15 +14,18 @@ Template.MatchDetail.onCreated(function(){
   this.subscribe('matches.all')
   this.subscribe('teams.all')
   this.subscribe('games.single', FlowRouter.getQueryParam('gameId'))
+  this.subscribe('odds.all')
 
   this.standings = new ReactiveVar([])
   this.group = new ReactiveVar('')
   // TODO: fetch the odds from the DB
-  this.selectedBets = new ReactiveVar({
-    team1: { selected: false, stake: 0, odds: '8/13', potentialPayout: 0 },
-    team2: { selected: false, stake: 0, odds: '14/5', potentialPayout: 0 },
-    draw: { selected: false, stake: 0, odds: '23/4', potentialPayout: 0 },
-  });
+
+  // this.selectedBets = new ReactiveVar({
+  //   team1: { selected: false, stake: 0, odds: '8/13', potentialPayout: 0 },
+  //   team2: { selected: false, stake: 0, odds: '14/5', potentialPayout: 0 },
+  //   draw: { selected: false, stake: 0, odds: '23/4', potentialPayout: 0 },
+  // });
+  this.selectedBets = new ReactiveVar({});
   this.playerScore = new ReactiveVar(null);
 
   const handle = Tracker.autorun(() => {
@@ -32,6 +35,16 @@ Template.MatchDetail.onCreated(function(){
       this.initialScore = player.score;
       this.playerScore.set(player.score);
       // handle.stop();
+    }
+    const matchOdds = Odds.find({"gameId": parseInt(FlowRouter.getParam("matchId"))}).fetch()[0];
+    if(matchOdds){
+      const odds = {
+          team1: { selected: false, stake: 0, odds: matchOdds.team1, potentialPayout: 0 },
+          team2: { selected: false, stake: 0, odds: matchOdds.team2, potentialPayout: 0 },
+          draw: { selected: false, stake: 0, odds: matchOdds.draw, potentialPayout: 0 },
+      }
+      this.selectedBets.set(odds);
+      console.log(this.selectedBets.get());
     }
   })
 })

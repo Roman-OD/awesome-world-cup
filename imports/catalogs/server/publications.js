@@ -1,4 +1,4 @@
-import { Teams, Groups, Matches } from '../catalogs.js';
+import { Teams, Groups, Matches, Odds } from '../catalogs.js';
 
 Meteor.publish('groups.all', function() {
   return Groups.find({});
@@ -11,3 +11,11 @@ Meteor.publish('teams.all', function() {
 Meteor.publish('matches.all', function () {
   return Matches.find({})
 })
+
+Meteor.publish('odds.all', function(){
+  return Odds.find({})
+});
+
+Meteor.publish('odds.single', function(matchId){
+	return Odds.find({gameId:matchId})
+});

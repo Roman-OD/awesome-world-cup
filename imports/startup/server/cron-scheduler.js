@@ -62,7 +62,7 @@ Meteor.startup(() => {
 													const bets = player.selectedBets;
 													if(bets){
 														bets.forEach((bet) => {
-															if(bet.matchId === game.num){
+															if(bet.matchId === match.num){
 																if(bet[outcome].selected === true)
 																	Games.update({ _id: game._id, 'players.name': player.name}, {$inc: { 'players.$.score': bet[outcome].potentialPayout } }, false, true);
 															}
