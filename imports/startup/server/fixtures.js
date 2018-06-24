@@ -389,6 +389,9 @@ if (Matches.find({}).count() === 0) {
 }
 
 if(Odds.find({}).count() == 0){
+	Odds.insert({"gameId": 30, "team1": "9/10", "draw": "33/20", "team2": "15/1"});
+	Odds.insert({"gameId": 31, "team1": "49/20", "draw": "49/20", "team2": "5/4"});
+	Odds.insert({"gameId": 32, "team1": "12/5", "draw": "23/10", "team2": "13/5"});
 	Odds.insert({"gameId": 33, "team1": "31/20", "draw": "11/5", "team2": "21/10"});
 	Odds.insert({"gameId": 34, "team1": "18/5", "draw": "13/5", "team2": "22/25"});
 	Odds.insert({"gameId": 35, "team1": "5/1", "draw": "27/10", "team2": "7/10"});

@@ -60,7 +60,7 @@ Meteor.startup(() => {
 								  					});
 							  					}
 													const bets = player.selectedBets;
-													if(bets){
+													if(bets.length > 0){
 														bets.forEach((bet) => {
 															if(bet.matchId === match.num){
 																if(bet[outcome].selected === true)
