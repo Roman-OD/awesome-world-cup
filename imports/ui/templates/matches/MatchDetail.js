@@ -155,7 +155,8 @@ Template.MatchDetail.helpers({
     let now = new Date();
     console.log(now);
     let matchHours = match.time.split(":");
-    let matchTime = new Date(match.date).setHours(matchHours[0], 0, 0, 0);
+    const offset = match.timezone.split('+')[1] - 1;
+    let matchTime = new Date(match.date).setHours(matchHours[0]-offset, 0, 0, 0);
     console.log(matchTime);
     if(now > matchTime)
       return false;
