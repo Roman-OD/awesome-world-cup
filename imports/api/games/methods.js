@@ -90,8 +90,8 @@ export const updateBettings = new ValidatedMethod({
     const setModifier = {$set: {}};
     const game = Games.find({_id: gameId}).fetch()[0];
     const player = game.players.find(player => { return player.name === playerName });
-    const stake = Object.keys(selectedBets).find(bet => { return selectedBets[bet].selected === true; }).stake;
-    console.log(stake);
+    const selectedBet = Object.keys(selectedBets).find(bet => { return selectedBets[bet].selected === true; });
+    const stake = selectedBets[selectedBet].stake;
     if (!player.selectedBets) {
       player.selectedBets = [];
       player.selectedBets.push(selectedBets);
@@ -100,7 +100,7 @@ export const updateBettings = new ValidatedMethod({
     } else {
       const existingBet = player.selectedBets.filter(bet => { return bet.matchId === selectedBets.matchId });
       if (existingBet.length > 0) {
-        console.log('player already betted on this match');
+        throw new Meteor.Error('You have already bet on this match!');
       } else {
         player.selectedBets.push(selectedBets);
         Games.update({_id: gameId, 'players.name': playerName}, {$set: {'players.$': player}});

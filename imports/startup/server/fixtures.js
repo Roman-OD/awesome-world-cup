@@ -1,7 +1,4 @@
-import { Groups } from '/imports/catalogs/catalogs.js';
-import { Teams } from '/imports/catalogs/catalogs.js';
-import { Matches } from '/imports/catalogs/catalogs.js';
-import { Odds } from '/imports/calalogs/calalog.js';
+import { Groups, Teams, Matches, Odds } from '/imports/catalogs/catalogs.js';
 import fetch from 'node-fetch';
 
 if(Groups.find({}).count() == 0){
