@@ -134,7 +134,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Your stake:</span>
                 </div>
-                <input type="text" class="form-control" id="stake-team1" data-bet="team1" pattern="[0-9]">
+                <input type="number" class="form-control" id="stake-team1" data-bet="team1" pattern="[0-9]">
               </div>
               <span class="float-right">Potential payout: {{potentialPayout 'team1'}} pts</span>
               {{/if}}
@@ -146,7 +146,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Your stake:</span>
                 </div>
-                <input type="text" class="form-control" id="stake-draw" data-bet="draw">
+                <input type="number" class="form-control" id="stake-draw" data-bet="draw">
               </div>
               <span class="float-right">Potential payout: {{potentialPayout 'draw'}} pts</span>
               {{/if}}
@@ -158,7 +158,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Your stake:</span>
                 </div>
-                <input type="text" class="form-control" id="stake-team2" data-bet="team2">
+                <input type="number" class="form-control" id="stake-team2" data-bet="team2">
               </div>
               <span class="float-right">Potential payout: {{potentialPayout 'team2'}} pts</span>
               {{/if}}

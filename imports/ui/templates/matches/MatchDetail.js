@@ -31,7 +31,7 @@ Template.MatchDetail.onCreated(function(){
       player = game.players.find(player => { return player.name === Meteor.user().username; });
       this.initialScore = player.score;
       this.playerScore.set(player.score);
-      handle.stop();
+      // handle.stop();
     }
   })
 })
