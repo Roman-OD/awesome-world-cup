@@ -28,14 +28,16 @@ Template.MatchDetail.onCreated(function(){
   this.selectedBets = new ReactiveVar({});
   this.playerScore = new ReactiveVar(null);
 
-  const handle = Tracker.autorun(() => {
+  Tracker.autorun((computation) => {
     const game = Games.findOne();
     if (game) {
       player = game.players.find(player => { return player.name === Meteor.user().username; });
       this.initialScore = player.score;
       this.playerScore.set(player.score);
-      // handle.stop();
+      computation.stop();
     }
+  });
+  Tracker.autorun((computation) => {
     const matchOdds = Odds.find({"gameId": parseInt(FlowRouter.getParam("matchId"))}).fetch()[0];
     if(matchOdds){
       const odds = {
@@ -45,8 +47,9 @@ Template.MatchDetail.onCreated(function(){
       }
       this.selectedBets.set(odds);
       console.log(this.selectedBets.get());
+      computation.stop();
     }
-  })
+  });
 })
 
 Template.MatchDetail.helpers({
@@ -208,6 +211,7 @@ function updateScore(instance) {
 
 function updateSelectedBets(instance, bet) {
   const selectedBets = instance.selectedBets.get();
+  console.log(selectedBets);
   if (selectedBets[bet].selected === true) {
     resetBet(selectedBets[bet]);
   } else {
