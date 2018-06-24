@@ -6,7 +6,11 @@
         <h3 class="mb-4">Detail of Match {{matchId}}</h3>
       </div>
       <div class="col">
+        {{#if existingBet}}
+        <h4 class="float-right">You have already bet {{existingBet.stake}} points on this match.</h4>
+        {{else}}
         <button id="bettings" type="button" name="button" class="btn btn-lg btn-primary float-right">Bettings</button>
+        {{/if}}
       </div>
     </div>
     <div class="row">

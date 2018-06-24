@@ -28,14 +28,16 @@ Template.MatchDetail.onCreated(function(){
   this.selectedBets = new ReactiveVar({});
   this.playerScore = new ReactiveVar(null);
 
-  const handle = Tracker.autorun(() => {
+  Tracker.autorun((computation) => {
     const game = Games.findOne();
     if (game) {
       player = game.players.find(player => { return player.name === Meteor.user().username; });
       this.initialScore = player.score;
       this.playerScore.set(player.score);
-      // handle.stop();
+      computation.stop();
     }
+  });
+  Tracker.autorun((computation) => {
     const matchOdds = Odds.find({"gameId": parseInt(FlowRouter.getParam("matchId"))}).fetch()[0];
     if(matchOdds){
       const odds = {
@@ -45,8 +47,9 @@ Template.MatchDetail.onCreated(function(){
       }
       this.selectedBets.set(odds);
       console.log(this.selectedBets.get());
+      computation.stop();
     }
-  })
+  });
 })
 
 Template.MatchDetail.helpers({
@@ -130,7 +133,21 @@ Template.MatchDetail.helpers({
   },
   odds: function(bet) {
     return Template.instance().selectedBets.get()[bet].odds;
-  }
+  },
+  existingBet: function() {
+    const game = Games.findOne();
+    if (game) {
+      const player = game.players.find(player => { return player.name === Meteor.user().username; });
+      const existingBet = player.selectedBets.filter(bet => { return bet.matchId === parseInt(FlowRouter.getParam("matchId")); });
+      if (existingBet.length > 0) {
+        const selectedBet = Object.keys(existingBet[0]).find(bet => { return existingBet[0][bet].selected === true; });
+        const betDetails = existingBet[0][selectedBet];
+        return betDetails;
+      } else {
+        return false;
+      }
+    }
+  },
 });
 
 Template.MatchDetail.events({
@@ -181,16 +198,25 @@ function updateScore(instance) {
   const selectedBets = instance.selectedBets.get();
   const selectedBet = Object.keys(selectedBets).find(bet => { return selectedBets[bet].selected === true });
   const newScore = instance.initialScore - selectedBets[selectedBet].stake;
-  instance.playerScore.set(newScore);
+  if (newScore < 0) {
+    if ($('#submit-bets').prop('disabled') === false) {
+      $('#submit-bets').attr('disabled', true);
+      Bert.alert("You don't have enough points !", 'danger', 'growl-bottom-right');
+    }
+  } else {
+    $('#submit-bets').attr('disabled', false);
+    instance.playerScore.set(newScore);
+  }
 }
 
 function updateSelectedBets(instance, bet) {
   const selectedBets = instance.selectedBets.get();
+  console.log(selectedBets);
   if (selectedBets[bet].selected === true) {
     resetBet(selectedBets[bet]);
   } else {
     for (key in selectedBets) {
-      if (key == bet) {
+      if (key === bet) {
         selectedBets[key].selected = true;
       } else {
         resetBet(selectedBets[key]);
@@ -217,7 +243,9 @@ function submitSelectedBets(instance) {
     selectedBets,
   }, (err, resp) => {
     if (err) {
-      console.log(err);
+      Bert.alert(err.reason, 'danger', 'growl-bottom-right');
+    } else {
+      $('#bettings-modal').modal('hide');
     }
-  })
+  });
 }
