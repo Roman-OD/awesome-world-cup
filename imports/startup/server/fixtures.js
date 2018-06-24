@@ -1,6 +1,7 @@
 import { Groups } from '/imports/catalogs/catalogs.js';
 import { Teams } from '/imports/catalogs/catalogs.js';
 import { Matches } from '/imports/catalogs/catalogs.js';
+import { Odds } from '/imports/calalogs/calalog.js';
 import fetch from 'node-fetch';
 
 if(Groups.find({}).count() == 0){
@@ -388,4 +389,23 @@ if (Matches.find({}).count() === 0) {
 			Matches.insert(matches[i]);
 		}
 	});
+}
+
+if(Odds.find({}).count() == 0){
+	Odds.insert({"gameId": 33, "team1": "31/20", "draw": "11/5", "team2": "21/10"});
+	Odds.insert({"gameId": 34, "team1": "18/5", "draw": "13/5", "team2": "22/25"});
+	Odds.insert({"gameId": 35, "team1": "5/1", "draw": "27/10", "team2": "7/10"});
+	Odds.insert({"gameId": 36, "team1": "7/20", "draw": "4/1", "team2": "21/2"});
+	Odds.insert({"gameId": 37, "team1": "7/2", "draw": "33/20", "team2": "27/20"});
+	Odds.insert({"gameId": 38, "team1": "41/20", "draw": "12/5", "team2": "6/4"});
+	Odds.insert({"gameId": 39, "team1": "21/4", "draw": "33/10", "team2": "11/20"});
+	Odds.insert({"gameId": 40, "team1": "5/2", "draw": "12/5", "team2": "5/4"});
+	Odds.insert({"gameId": 41, "team1": "6/1", "draw": "33/10", "team2": "13/25"});
+	Odds.insert({"gameId": 42, "team1": "4/5", "draw": "43/20", "team2": "19/4"});
+	Odds.insert({"gameId": 43, "team1": "13/1", "draw": "43/20", "team2": "1/5"});
+	Odds.insert({"gameId": 44, "team1": "7/5", "draw": "23/10", "team2": "11/5"});
+	Odds.insert({"gameId": 45, "team1": "17/10", "draw": "43/20", "team2": "17/10"});
+	Odds.insert({"gameId": 46, "team1": "18/5", "draw": "13/5", "team2": "3/4"});
+	Odds.insert({"gameId": 47, "team1": "12/5", "draw": "23/10", "team2": "6/5"});
+	Odds.insert({"gameId": 48, "team1": "13/5", "draw": "47/20", "team2": "11/10"});
 }
