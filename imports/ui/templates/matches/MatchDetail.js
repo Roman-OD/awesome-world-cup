@@ -46,7 +46,6 @@ Template.MatchDetail.onCreated(function(){
           draw: { selected: false, stake: 0, odds: matchOdds.draw, potentialPayout: 0 },
       }
       this.selectedBets.set(odds);
-      console.log(this.selectedBets.get());
       computation.stop();
     }
   });
@@ -59,7 +58,7 @@ Template.MatchDetail.helpers({
   matchInfo: function() {
     let matchId = parseInt(FlowRouter.getParam("matchId"))
     let matches = Matches.find({matches : {$elemMatch: {num: matchId}}}).fetch()
-    console.log(matches);
+    // console.log(matches);
     let matchInfo = ''
     if(matches){
       matches.filter((leg) => {
@@ -148,6 +147,21 @@ Template.MatchDetail.helpers({
       }
     }
   },
+  notStarted: function() {
+    let matchId = parseInt(FlowRouter.getParam("matchId"))
+    let matchDay = Matches.find({matches : {$elemMatch: {num: matchId}}}).fetch()[0];
+    let match = matchDay.matches.find((match) => {return match.num === matchId});
+    console.log(match);
+    let now = new Date();
+    console.log(now);
+    let matchHours = match.time.split(":");
+    let matchTime = new Date(match.date).setHours(matchHours[0], 0, 0, 0);
+    console.log(matchTime);
+    if(now > matchTime)
+      return false;
+    else
+      return true;
+  }
 });
 
 Template.MatchDetail.events({

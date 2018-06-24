@@ -9,7 +9,11 @@
         {{#if existingBet}}
         <h4 class="float-right">You have already bet {{existingBet.stake}} points on this match.</h4>
         {{else}}
-        <button id="bettings" type="button" name="button" class="btn btn-lg btn-primary float-right">Bettings</button>
+          {{#if notStarted}}
+          <button id="bettings" type="button" name="button" class="btn btn-lg btn-primary float-right">Bettings</button>
+          {{else}}
+            <h4>The game has already started, unable to place bets.</h4>
+          {{/if}}
         {{/if}}
       </div>
     </div>
