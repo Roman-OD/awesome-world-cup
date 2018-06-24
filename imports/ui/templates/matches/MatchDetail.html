@@ -102,7 +102,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Your points: {{player.score}}</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Your score: {{playerScore}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -134,7 +134,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Your stake:</span>
                 </div>
-                <input type="text" class="form-control" id="stake-team1" data-bet="team1">
+                <input type="text" class="form-control" id="stake-team1" data-bet="team1" pattern="[0-9]">
               </div>
               <span class="float-right">Potential payout: {{potentialPayout 'team1'}} pts</span>
               {{/if}}

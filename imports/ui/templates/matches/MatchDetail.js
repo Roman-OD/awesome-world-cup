@@ -3,6 +3,7 @@ import './Bettings.js';
 
 import { Matches, Teams } from '/imports/catalogs/catalogs.js';
 import { Games } from '/imports/api/games/games.js';
+import { updateBettings } from '/imports/api/games/methods.js';
 
 Template.MatchDetail.onCreated(function(){
   fetch('https://raw.githubusercontent.com/openfootball/world-cup.json/master/2018/worldcup.standings.json')
@@ -18,11 +19,21 @@ Template.MatchDetail.onCreated(function(){
   this.group = new ReactiveVar('')
   // TODO: fetch the odds from the DB
   this.selectedBets = new ReactiveVar({
-    team1: {selected: false, stake: 0, odds: '8/13'},
-    team2: {selected: false, stake: 0, odds: '14/5'},
-    draw: {selected: false, stake: 0, odds: '23/4'},
+    team1: { selected: false, stake: 0, odds: '8/13', potentialPayout: 0 },
+    team2: { selected: false, stake: 0, odds: '14/5', potentialPayout: 0 },
+    draw: { selected: false, stake: 0, odds: '23/4', potentialPayout: 0 },
   });
+  this.playerScore = new ReactiveVar(null);
 
+  const handle = Tracker.autorun(() => {
+    const game = Games.findOne();
+    if (game) {
+      player = game.players.find(player => { return player.name === Meteor.user().username; });
+      this.initialScore = player.score;
+      this.playerScore.set(player.score);
+      handle.stop();
+    }
+  })
 })
 
 Template.MatchDetail.helpers({
@@ -77,6 +88,9 @@ Template.MatchDetail.helpers({
       return player = game.players.find(player => { return player.name === Meteor.user().username; });
     }
   },
+  playerScore: function() {
+    return Template.instance().playerScore.get();
+  },
   buttonState: function(bet) {
     const selectedBets = Template.instance().selectedBets.get();
     if (selectedBets[bet].selected === true) {
@@ -99,7 +113,7 @@ Template.MatchDetail.helpers({
     return Template.instance().selectedBets.get()[bet].selected === true;
   },
   potentialPayout: function(bet) {
-    return Template.instance().selectedBets.get()[bet].stake;
+    return Template.instance().selectedBets.get()[bet].potentialPayout;
   },
   odds: function(bet) {
     return Template.instance().selectedBets.get()[bet].odds;
@@ -122,9 +136,13 @@ Template.MatchDetail.events({
     const stake = $(event.currentTarget).val().trim();
     const selectedBets = instance.selectedBets.get();
     if (stake) {
-      selectedBets[bet].stake = getPotentialPayout(stake, selectedBets[bet].odds)
-    }  else {
+      selectedBets[bet].stake = parseInt(stake);
+      selectedBets[bet].potentialPayout = getPotentialPayout(stake, selectedBets[bet].odds);
+      updateScore(instance);
+    } else {
       selectedBets[bet].stake = 0;
+      selectedBets[bet].potentialPayout = 0;
+      updateScore(instance);
     }
     instance.selectedBets.set(selectedBets);
   }
@@ -146,19 +164,47 @@ function getPotentialPayout(stake, odds) {
   return Math.round((stake * numerator / denominator) + parseInt(stake));
 }
 
+function updateScore(instance) {
+  const selectedBets = instance.selectedBets.get();
+  const selectedBet = Object.keys(selectedBets).find(bet => { return selectedBets[bet].selected === true });
+  const newScore = instance.initialScore - selectedBets[selectedBet].stake;
+  instance.playerScore.set(newScore);
+}
+
 function updateSelectedBets(instance, bet) {
   const selectedBets = instance.selectedBets.get();
   if (selectedBets[bet].selected === true) {
-    selectedBets[bet].selected = false;
-    selectedBets[bet].stake = 0;
+    resetBet(selectedBets[bet]);
   } else {
-    selectedBets[bet].selected = true;
+    for (key in selectedBets) {
+      if (key == bet) {
+        selectedBets[key].selected = true;
+      } else {
+        resetBet(selectedBets[key]);
+      }
+    }
   }
   instance.selectedBets.set(selectedBets);
+  updateScore(instance);
+}
+
+function resetBet(selectedBet) {
+  selectedBet.selected = false;
+  selectedBet.stake = 0;
+  selectedBet.potentialPayout = 0;
 }
 
 function submitSelectedBets(instance) {
   const selectedBets = instance.selectedBets.get();
+  selectedBets.matchId = parseInt(FlowRouter.getParam("matchId"));
   console.log(selectedBets);
-  // TODO: persist the bets
+  updateBettings.call({
+    gameId: FlowRouter.getQueryParam('gameId'),
+    playerName: Meteor.user().username,
+    selectedBets,
+  }, (err, resp) => {
+    if (err) {
+      console.log(err);
+    }
+  })
 }
