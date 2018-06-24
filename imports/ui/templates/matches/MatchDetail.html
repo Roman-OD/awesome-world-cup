@@ -33,7 +33,7 @@
             </div>
           </div>
           <p class="text-secondary text-center mt-4">{{matchInfo.stadium.name}}</p>
-          <p class="text-secondary text-center mt-4">{{matchInfo.date}} at {{matchInfo.time}}</p>
+          <p class="text-secondary text-center mt-4">{{matchInfo.date}} at {{convertTime matchInfo.time matchInfo.timezone}}</p>
         </div>
       </div>
     </div>

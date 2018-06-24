@@ -19,7 +19,7 @@
                                 <span class="match-nation">{{match.team2.name}}</span>
                             </div>
                             <p class="text-secondary mb-0 mt-2">{{match.stadium.name}}</p>
-                            <p class="text-secondary">Kickoff at {{match.time}}</p>
+                            <p class="text-secondary">Kickoff at {{convertTime match.time match.timezone}}</p>
                             <a href="/match/detail/{{match.num}}?gameId={{gameId}}" class="btn btn-primary">Match Detail</a>
                         </div>
                     </div>
