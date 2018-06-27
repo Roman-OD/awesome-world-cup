@@ -44,10 +44,9 @@ Meteor.startup(() => {
 			                if(team1EventScore){
 				                Games.find({}).fetch().forEach((game) => {
 							   				  game.players.forEach((player) => {
-							  					const seeds = [player.seed1, player.seed2, player.seed3, player.seed4];
-													console.log(player);
+							   				  	console.log(player.name);
+;							  					const seeds = [player.seed1, player.seed2, player.seed3, player.seed4];
 							  					if(seeds[0]){
-														console.log(player);
 								  					seeds.forEach((seed) => {
 								  					  if (seed.name === team1.name) {
 								  					  	const score = ((seedScores[seed.seed] * team1EventScore) + (score1 * seedScores[0]));
@@ -60,13 +59,15 @@ Meteor.startup(() => {
 								  					});
 							  					}
 													const bets = player.selectedBets;
-													if(bets.length > 0){
-														bets.forEach((bet) => {
-															if(bet.matchId === match.num){
-																if(bet[outcome].selected === true)
-																	Games.update({ _id: game._id, 'players.name': player.name}, {$inc: { 'players.$.score': bet[outcome].potentialPayout } }, false, true);
-															}
-														});
+													if(bets){
+														if(bets.length > 0){
+															bets.forEach((bet) => {
+																if(bet.matchId === match.num){
+																	if(bet[outcome].selected === true)
+																		Games.update({ _id: game._id, 'players.name': player.name}, {$inc: { 'players.$.score': bet[outcome].potentialPayout } }, false, true);
+																}
+															});
+														}
 													}
 							   				  });
 				                });
