@@ -45,7 +45,7 @@ Meteor.startup(() => {
 				                Games.find({}).fetch().forEach((game) => {
 							   				  game.players.forEach((player) => {
 							   				  	console.log(player.name);
-;							  					const seeds = [player.seed1, player.seed2, player.seed3, player.seed4];
+							  					const seeds = [player.seed1, player.seed2, player.seed3, player.seed4];
 							  					if(seeds[0]){
 								  					seeds.forEach((seed) => {
 								  					  if (seed.name === team1.name) {
