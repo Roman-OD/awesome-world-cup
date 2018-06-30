@@ -28,7 +28,7 @@ Meteor.startup(() => {
 			// .then(body =>data = body)
 			// .then(data => {
 				// let matchDays = data.rounds;
-				let matchDats = Matches.find({}).fetch();
+				let matchDays = Matches.find({}).fetch();
 				matchDays.forEach((matchDay) => {
 					matchDay.matches.forEach((match) => {
 
