@@ -133,6 +133,26 @@ Template.MatchDetail.helpers({
   odds: function(bet) {
     return Template.instance().selectedBets.get()[bet].odds;
   },
+  oddsAsPercentage: function(team, matchInfo) {
+      let team1 = Template.instance().selectedBets.get()['team1'].odds.split('/')
+      let percentageTeam1 = team1[0] / team1[1]
+      let team2 = Template.instance().selectedBets.get()['team2'].odds.split('/')
+      let percentageTeam2 = team2[0] / team2[1]
+      let percentageDraw = 0
+      if(matchInfo.group){
+        let draw = Template.instance().selectedBets.get()['draw'].odds.split('/')
+        percentageDraw = draw[0] / draw[1]
+      }
+
+      let denominator = percentageTeam1 + percentageTeam2 + percentageDraw
+
+      if(team === 'team1'){
+        return percentageTeam1 / denominator*100
+      }else if (team === 'team2'){
+        return percentageTeam2 / denominator*100
+      }
+      return percentageDraw / denominator*100
+  },
   existingBet: function() {
     const game = Games.findOne();
     if (game) {
@@ -151,13 +171,10 @@ Template.MatchDetail.helpers({
     let matchId = parseInt(FlowRouter.getParam("matchId"))
     let matchDay = Matches.find({matches : {$elemMatch: {num: matchId}}}).fetch()[0];
     let match = matchDay.matches.find((match) => {return match.num === matchId});
-    console.log(match);
     let now = new Date();
-    console.log(now);
     let matchHours = match.time.split(":");
     const offset = match.timezone.split('+')[1] - 1;
     let matchTime = new Date(match.date).setHours(matchHours[0]-offset, 0, 0, 0);
-    console.log(matchTime);
     if(now > matchTime)
       return false;
     else
@@ -226,7 +243,6 @@ function updateScore(instance) {
 
 function updateSelectedBets(instance, bet) {
   const selectedBets = instance.selectedBets.get();
-  console.log(selectedBets);
   if (selectedBets[bet].selected === true) {
     resetBet(selectedBets[bet]);
   } else {
@@ -251,7 +267,6 @@ function resetBet(selectedBet) {
 function submitSelectedBets(instance) {
   const selectedBets = instance.selectedBets.get();
   selectedBets.matchId = parseInt(FlowRouter.getParam("matchId"));
-  console.log(selectedBets);
   updateBettings.call({
     gameId: FlowRouter.getQueryParam('gameId'),
     playerName: Meteor.user().username,

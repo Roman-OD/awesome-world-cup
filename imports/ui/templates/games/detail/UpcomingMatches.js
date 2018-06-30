@@ -39,5 +39,10 @@ Template.UpcomingMatches.helpers({
   },
   gameId: function() {
     return Template.instance().data.game._id;
+  },
+  getMatchHeader: function(match) {
+    let leg
+    (match.group) ? leg = match.group : leg = 'Knockout'
+    return leg
   }
 })

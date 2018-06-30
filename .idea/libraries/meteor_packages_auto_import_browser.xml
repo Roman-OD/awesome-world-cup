@@ -103,6 +103,7 @@
         <item url="file://$USER_HOME$/.meteor/packages/es5-shim/4.7.3/web.browser/packages/es5-shim/es5-shim-sham.js" />
         <item url="file://$USER_HOME$/.meteor/packages/es5-shim/4.7.3/web.browser/packages/es5-shim/es5-shim-sham.min.js" />
         <item url="file://$USER_HOME$/.meteor/packages/es5-shim/4.7.3/web.browser/server.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/fortawesome_fontawesome/4.4.0_1/web.browser/upstream/css/font-awesome.css" />
         <item url="file://$USER_HOME$/.meteor/packages/geojson-utils/1.0.10/web.browser/geojson-utils.js" />
         <item url="file://$USER_HOME$/.meteor/packages/geojson-utils/1.0.10/web.browser/main.js" />
         <item url="file://$USER_HOME$/.meteor/packages/html-tools/1.0.11/web.browser/charref.js" />
@@ -182,6 +183,7 @@
         <item url="file://$USER_HOME$/.meteor/packages/server-render/0.3.1/web.browser/server-sink.js" />
         <item url="file://$USER_HOME$/.meteor/packages/server-render/0.3.1/web.browser/server.js" />
         <item url="file://$USER_HOME$/.meteor/packages/service-configuration/1.0.11/web.browser/service_configuration_common.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/session/1.1.7/web.browser/session.js" />
         <item url="file://$USER_HOME$/.meteor/packages/sha/1.0.9/web.browser/sha256.js" />
         <item url="file://$USER_HOME$/.meteor/packages/shim-common/0.1.0/web.browser/server.js" />
         <item url="file://$USER_HOME$/.meteor/packages/socket-stream-client/0.1.0/web.browser/browser.js" />
@@ -207,6 +209,8 @@
         <item url="file://$USER_HOME$/.meteor/packages/templating-tools/1.1.2/web.browser/html-scanner.js" />
         <item url="file://$USER_HOME$/.meteor/packages/templating-tools/1.1.2/web.browser/templating-tools.js" />
         <item url="file://$USER_HOME$/.meteor/packages/templating-tools/1.1.2/web.browser/throw-compile-error.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/themeteorchef_bert/2.1.3/web.browser/bert.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/themeteorchef_bert/2.1.3/web.browser/templates/bert-alert.js" />
         <item url="file://$USER_HOME$/.meteor/packages/tmeasday_check-npm-versions/0.3.2/web.browser/check-npm-versions.js" />
         <item url="file://$USER_HOME$/.meteor/packages/tracker/1.1.3/web.browser/deprecated.js" />
         <item url="file://$USER_HOME$/.meteor/packages/tracker/1.1.3/web.browser/tracker.js" />
@@ -331,6 +335,7 @@
       <root url="file://$USER_HOME$/.meteor/packages/es5-shim/4.7.3/web.browser/packages/es5-shim/es5-shim-sham.js" />
       <root url="file://$USER_HOME$/.meteor/packages/es5-shim/4.7.3/web.browser/packages/es5-shim/es5-shim-sham.min.js" />
       <root url="file://$USER_HOME$/.meteor/packages/es5-shim/4.7.3/web.browser/server.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/fortawesome_fontawesome/4.4.0_1/web.browser/upstream/css/font-awesome.css" />
       <root url="file://$USER_HOME$/.meteor/packages/geojson-utils/1.0.10/web.browser/geojson-utils.js" />
       <root url="file://$USER_HOME$/.meteor/packages/geojson-utils/1.0.10/web.browser/main.js" />
       <root url="file://$USER_HOME$/.meteor/packages/html-tools/1.0.11/web.browser/charref.js" />
@@ -410,6 +415,7 @@
       <root url="file://$USER_HOME$/.meteor/packages/server-render/0.3.1/web.browser/server-sink.js" />
       <root url="file://$USER_HOME$/.meteor/packages/server-render/0.3.1/web.browser/server.js" />
       <root url="file://$USER_HOME$/.meteor/packages/service-configuration/1.0.11/web.browser/service_configuration_common.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/session/1.1.7/web.browser/session.js" />
       <root url="file://$USER_HOME$/.meteor/packages/sha/1.0.9/web.browser/sha256.js" />
       <root url="file://$USER_HOME$/.meteor/packages/shim-common/0.1.0/web.browser/server.js" />
       <root url="file://$USER_HOME$/.meteor/packages/socket-stream-client/0.1.0/web.browser/browser.js" />
@@ -435,6 +441,8 @@
       <root url="file://$USER_HOME$/.meteor/packages/templating-tools/1.1.2/web.browser/html-scanner.js" />
       <root url="file://$USER_HOME$/.meteor/packages/templating-tools/1.1.2/web.browser/templating-tools.js" />
       <root url="file://$USER_HOME$/.meteor/packages/templating-tools/1.1.2/web.browser/throw-compile-error.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/themeteorchef_bert/2.1.3/web.browser/bert.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/themeteorchef_bert/2.1.3/web.browser/templates/bert-alert.js" />
       <root url="file://$USER_HOME$/.meteor/packages/tmeasday_check-npm-versions/0.3.2/web.browser/check-npm-versions.js" />
       <root url="file://$USER_HOME$/.meteor/packages/tracker/1.1.3/web.browser/deprecated.js" />
       <root url="file://$USER_HOME$/.meteor/packages/tracker/1.1.3/web.browser/tracker.js" />
