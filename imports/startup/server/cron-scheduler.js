@@ -1,11 +1,21 @@
 import { Meteor } from 'meteor/meteor';
 import { CronJob } from 'cron';
 import { Games } from '/imports/api/games/games.js';
+import { Matches} from '/imports/catalogs/catalogs.js';
 import fetch from 'node-fetch';
 // import moment from 'meteor/moment';
 
 Meteor.startup(() => {
 	if (Meteor.isServer) {
+
+		// test mongo logic instead of fetching
+		// let mongoMatchDays = Matches.find({}).fetch();
+		// mongoMatchDays.forEach((mongoMatchDay) => {
+		// 	mongoMatchDay.matches.forEach((mongoMatch) => {
+		// 		console.log(mongoMatch.num);
+		// 	});
+		// });
+
 
 		let seedScores = [50,125,150,175,200];
 		let outcome;
@@ -13,11 +23,12 @@ Meteor.startup(() => {
 		new CronJob('0 30 09 * * *', Meteor.bindEnvironment(() => {
 			let now = new Date();
 			let yesterday = new Date().setDate(now.getDate()-1);
-			fetch('https://raw.githubusercontent.com/openfootball/world-cup.json/master/2018/worldcup.json')
-			.then(res => res.json())
-			.then(body =>data = body)
-			.then(data => {
-				let matchDays = data.rounds;
+			// fetch('https://raw.githubusercontent.com/openfootball/world-cup.json/master/2018/worldcup.json')
+			// .then(res => res.json())
+			// .then(body =>data = body)
+			// .then(data => {
+				// let matchDays = data.rounds;
+				let matchDats = Matches.find({}).fetch();
 				matchDays.forEach((matchDay) => {
 					matchDay.matches.forEach((match) => {
 
@@ -45,6 +56,7 @@ Meteor.startup(() => {
 				                Games.find({}).fetch().forEach((game) => {
 							   				  game.players.forEach((player) => {
 							   				  	console.log(player.name);
+							   				  	console.log(`old player score: ${player.score}`);
 							  					const seeds = [player.seed1, player.seed2, player.seed3, player.seed4];
 							  					if(seeds[0]){
 								  					seeds.forEach((seed) => {
@@ -57,6 +69,7 @@ Meteor.startup(() => {
 								  					  	Games.update({ _id: game._id, 'players.name': player.name}, {$inc: { 'players.$.score': score } }, false, true);
 								  					  }
 								  					});
+								  					console.log(`new player score pre-betting: ${player.score}`);
 							  					}
 													const bets = player.selectedBets;
 													if(bets){
@@ -67,6 +80,7 @@ Meteor.startup(() => {
 																		Games.update({ _id: game._id, 'players.name': player.name}, {$inc: { 'players.$.score': bet[outcome].potentialPayout } }, false, true);
 																}
 															});
+															console.log(`new player score post-betting: ${player.score}`);
 														}
 													}
 							   				  });
@@ -75,7 +89,7 @@ Meteor.startup(() => {
    						}
 					});
 				});
-			});
+			// });
 		}), null, true, 'Europe/London');
 	}
 });

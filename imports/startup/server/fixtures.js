@@ -408,4 +408,263 @@ if(Odds.find({}).count() == 0){
 	Odds.insert({"gameId": 46, "team1": "18/5", "draw": "13/5", "team2": "3/4"});
 	Odds.insert({"gameId": 47, "team1": "12/5", "draw": "23/10", "team2": "6/5"});
 	Odds.insert({"gameId": 48, "team1": "13/5", "draw": "23/10", "team2": "21/20"});
+
+	Odds.insert({"gameId": 49, "team1": "21/10", "draw": "--", "team2": "37/20"});
+	Odds.insert({"gameId": 50, "team1": "29/20", "draw": "--", "team2": "12/5"});
+	Odds.insert({"gameId": 51, "team1": "8/3", "draw": "--", "team2": "11/2"});
+	Odds.insert({"gameId": 52, "team1": "9/10", "draw": "--", "team2": "21/5"});
+	Odds.insert({"gameId": 53, "team1": "13/25", "draw": "--", "team2": "13/2"});
+	Odds.insert({"gameId": 54, "team1": "2/5", "draw": "--", "team2": "19/2"});
+	Odds.insert({"gameId": 55, "team1": "43/20", "draw": "--", "team2": "33/20"});
+	Odds.insert({"gameId": 56, "team1": "3/1", "draw": "--", "team2": "23/20"});
 }
+
+// Matches.remove({name: "Round of 16"});
+// Matches.remove({name: "Quarter-finals"});
+// Matches.remove({name: "Semi-finals"});
+// Matches.remove({name: "Match for third place"});
+// Matches.remove({name: "Final"});
+// Matches.insert({
+//   "name": "Matchday 16",
+//   "matches": [
+//     {
+//       "num": 49,
+//       "date": "2018-06-30",
+//       "time": "21:00",
+//       "team1": {
+//         "name": "Uruguay",
+//         "code": "URU"
+//       },
+//       "team2": {
+//         "name": "Portugal",
+//         "code": "POR"
+//       },
+//       "score1": null,
+//       "score2": null,
+//       "score1i": null,
+//       "score2i": null,
+//       "score1et": null,
+//       "score2et": null,
+//       "score1p": null,
+//       "score2p": null,
+//       "knockout": true,
+//       "stadium": {
+//         "key": "fisht",
+//         "name": "Fisht Stadium"
+//       },
+//       "city": "Sochi",
+//       "timezone": "UTC+3"
+//     },
+//     {
+//       "num": 50,
+//       "date": "2018-06-30",
+//       "time": "17:00",
+//       "team1": {
+//         "name": "France",
+//         "code": "FRA"
+//       },
+//       "team2": {
+//         "name": "Argentina",
+//         "code": "ARG"
+//       },
+//       "score1": null,
+//       "score2": null,
+//       "score1i": null,
+//       "score2i": null,
+//       "score1et": null,
+//       "score2et": null,
+//       "score1p": null,
+//       "score2p": null,
+//       "knockout": true,
+//       "stadium": {
+//         "key": "kazan",
+//         "name": "Kazan Arena"
+//       },
+//       "city": "Kazan",
+//       "timezone": "UTC+3"
+//     }
+//   ]
+// });
+// Matches.insert({
+//   "name": "Matchday 17",
+//   "matches": [
+//     {
+//       "num": 51,
+//       "date": "2018-07-01",
+//       "time": "17:00",
+//       "team1": {
+//         "name": "Spain",
+//         "code": "ESP"
+//       },
+//       "team2": {
+//         "name": "Russia",
+//         "code": "RUS"
+//       },
+//       "score1": null,
+//       "score2": null,
+//       "score1i": null,
+//       "score2i": null,
+//       "score1et": null,
+//       "score2et": null,
+//       "score1p": null,
+//       "score2p": null,
+//       "knockout": true,
+//       "stadium": {
+//         "key": "luzhniki",
+//         "name": "Luzhniki Stadium"
+//       },
+//       "city": "Moscow",
+//       "timezone": "UTC+3"
+//     },
+//     {
+//       "num": 52,
+//       "date": "2018-07-01",
+//       "time": "21:00",
+//       "team1": {
+//         "name": "Croatia",
+//         "code": "CRO"
+//       },
+//       "team2": {
+//         "name": "Denmark",
+//         "code": "DEN"
+//       },
+//       "score1": null,
+//       "score2": null,
+//       "score1i": null,
+//       "score2i": null,
+//       "score1et": null,
+//       "score2et": null,
+//       "score1p": null,
+//       "score2p": null,
+//       "knockout": true,
+//       "stadium": {
+//         "key": "nizhnynovgorod",
+//         "name": "Nizhny Novgorod Stadium"
+//       },
+//       "city": "Nizhny Novgorod",
+//       "timezone": "UTC+3"
+//     }
+//   ]
+// });
+// Matches.insert({
+//   "name": "Matchday 18",
+//   "matches": [
+//     {
+//       "num": 53,
+//       "date": "2018-07-02",
+//       "time": "18:00",
+//       "team1": {
+//         "name": "Brazil",
+//         "code": "BRA"
+//       },
+//       "team2": {
+//         "name": "Mexico",
+//         "code": "MEX"
+//       },
+//       "score1": null,
+//       "score2": null,
+//       "score1i": null,
+//       "score2i": null,
+//       "score1et": null,
+//       "score2et": null,
+//       "score1p": null,
+//       "score2p": null,
+//       "knockout": true,
+//       "stadium": {
+//         "key": "samara",
+//         "name": "Samara Arena"
+//       },
+//       "city": "Samara",
+//       "timezone": "UTC+4"
+//     },
+//     {
+//       "num": 54,
+//       "date": "2018-07-02",
+//       "time": "21:00",
+//       "team1": {
+//         "name": "Belgium",
+//         "code": "BEL"
+//       },
+//       "team2": {
+//         "name": "Japan",
+//         "code": "JPN"
+//       },
+//       "score1": null,
+//       "score2": null,
+//       "score1i": null,
+//       "score2i": null,
+//       "score1et": null,
+//       "score2et": null,
+//       "score1p": null,
+//       "score2p": null,
+//       "knockout": true,
+//       "stadium": {
+//         "key": "rostov",
+//         "name": "Rostov Arena"
+//       },
+//       "city": "Rostov-on-Don",
+//       "timezone": "UTC+3"
+//     }
+//   ]
+// });
+// Matches.insert({
+//   "name": "Matchday 19",
+//   "matches": [
+//     {
+//       "num": 55,
+//       "date": "2018-07-03",
+//       "time": "17:00",
+//       "team1": {
+//         "name": "Sweden",
+//         "code": "SWE"
+//       },
+//       "team2": {
+//         "name": "Switzerland",
+//         "code": "SUI"
+//       },
+//       "score1": null,
+//       "score2": null,
+//       "score1i": null,
+//       "score2i": null,
+//       "score1et": null,
+//       "score2et": null,
+//       "score1p": null,
+//       "score2p": null,
+//       "knockout": true,
+//       "stadium": {
+//         "key": "saintpetersburg",
+//         "name": "Saint Petersburg Stadium"
+//       },
+//       "city": "Saint Petersburg",
+//       "timezone": "UTC+3"
+//     },
+//     {
+//       "num": 56,
+//       "date": "2018-07-03",
+//       "time": "21:00",
+//       "team1": {
+//         "name": "Colombia",
+//         "code": "COL"
+//       },
+//       "team2": {
+//         "name": "England",
+//         "code": "ENG"
+//       },
+//       "score1": null,
+//       "score2": null,
+//       "score1i": null,
+//       "score2i": null,
+//       "score1et": null,
+//       "score2et": null,
+//       "score1p": null,
+//       "score2p": null,
+//       "knockout": true,
+//       "stadium": {
+//         "key": "spartak",
+//         "name": "Spartak Stadium"
+//       },
+//       "city": "Moscow",
+//       "timezone": "UTC+3"
+//     }
+//   ]
+// });
